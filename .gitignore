@@ -1,0 +1,17 @@
+bin/
+obj/
+Debug/
+Release/
+Library/
+ProjectSettings/
+Temp/
+Server/
+Tmp/
+.vs/
+*.sln
+*.sdf
+*.vcxproj
+*.filters
+*.pdb
+*.dll
+*.exe
