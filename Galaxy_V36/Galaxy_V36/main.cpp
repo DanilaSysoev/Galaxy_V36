@@ -2,6 +2,8 @@
 #include "GameFactory.h"
 #include "Game.h"
 
+#include "LibtcodGame.h"
+
 int main()
 {
 	galaxy_v36::game::Game* game = 

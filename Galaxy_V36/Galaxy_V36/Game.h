@@ -1,19 +1,38 @@
 #ifndef GAME_H
 #define GAME_H
+
 #include <vector>
+#include <set>
+#include "Drawable.h"
+#include "Updatable.h"
 
 namespace galaxy_v36
 {
+	namespace entities
+	{
+		class Galaxy;
+	}
+
 	namespace game
 	{
 		class DrawManager;
-		class Drawable;
 		class CommandProcessor;
 		class UpdateManager;
+		class Drawable;
 		class Updatable;
 
-		using Drawables = std::vector<Drawable*>;
-		using Updatables = std::vector<Updatable*>;
+
+		class DrawableComparator
+		{
+			bool operator()(const Drawable*& left, const Drawable*& right);
+		};
+		class UpdatableComparator
+		{
+			bool operator()(const Updatable*& left, const Updatable*& right);
+		};
+
+		using Drawables = std::multiset<Drawable*, DrawableComparator>;
+		using Updatables = std::multiset<Updatable*, UpdatableComparator>;
 
 		class Game
 		{
@@ -24,6 +43,12 @@ namespace galaxy_v36
 			void initialize( DrawManager* drawManager
 				           , CommandProcessor* commandProcesor
 				           , UpdateManager* updateManager);
+
+			virtual galaxy_v36::entities::Galaxy* getGalaxy() = 0;
+
+			DrawManager*      getDrawManager();
+			CommandProcessor* getCommandProcessor();
+			UpdateManager*    getUpdateManager();
 
 			virtual ~Game();
 
@@ -38,7 +63,7 @@ namespace galaxy_v36
 
 		private:
 			DrawManager* drawManager;
-			CommandProcessor* commandProcesor;
+			CommandProcessor* commandProcessor;
 			UpdateManager* updateManager;
 
 			void drawAll();
