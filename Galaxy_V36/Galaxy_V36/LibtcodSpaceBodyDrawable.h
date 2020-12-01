@@ -14,7 +14,7 @@ namespace galaxy_v36
 	{
 		namespace libtcod
 		{
-			class LibtcodSpaceBodyDrawable : SpaceBodyDrawable
+			class LibtcodSpaceBodyDrawable : public SpaceBodyDrawable
 			{
 			public:
 				LibtcodSpaceBodyDrawable(entities::SpaceBody* spaceBody, int drawPriority);

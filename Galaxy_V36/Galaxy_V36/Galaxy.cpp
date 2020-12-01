@@ -1,5 +1,6 @@
 #include "StarSystem.h"
 #include "Galaxy.h"
+#include "LibtcodGalaxyDrawable.h"
 
 galaxy_v36::entities::Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
 	: starSystems(starSystems)
@@ -10,6 +11,8 @@ galaxy_v36::entities::Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
 		starSystemsNamed[starSystem->getName()] = starSystem;
 		starSystemsPositioned[starSystem->getPosition()] = starSystem;
 	}
+
+	drawable = new game::libtcod::LibtcodGalaxyDrawable(this);
 }
 
 int
@@ -44,8 +47,16 @@ galaxy_v36::entities::Galaxy::getStarSystem(const service::Vector& position) con
 	return starSystemIterator->second;
 }
 
+galaxy_v36::game::Drawable* 
+galaxy_v36::entities::Galaxy::getDrawable()
+{
+	return drawable;
+}
+
 galaxy_v36::entities::Galaxy::~Galaxy()
 {
 	for (auto starSystem : starSystems)
 		delete starSystem;
+
+	delete drawable;
 }

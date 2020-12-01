@@ -12,4 +12,4 @@ galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::draw()
     // TODO
 }
 
-const int galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::STAR_SYSTEM_LIBTCOD_HIGHEST_DRAW_PRIORITY = 1000000;
+const int galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::STAR_SYSTEM_LIBTCOD_HIGHEST_DRAW_PRIORITY = 100000;

@@ -1,9 +1,8 @@
 #ifndef GAME_FACTORY_H
 #define GAME_FACTORY_H
 
-#include <memory>
-
 #include "GameType.h"
+#include "GalaxyBuildType.h"
 
 namespace galaxy_v36
 {
@@ -19,8 +18,6 @@ namespace galaxy_v36
 	{
 	public:
 		game::Game* createGame();
-
-		static std::shared_ptr<GameFactory> getFactory(const GameType& gameType);
 
 		virtual ~GameFactory();
 

@@ -5,12 +5,20 @@
 
 namespace galaxy_v36
 {
+	namespace entities
+	{
+		class Galaxy;
+	}
+
 	namespace game
 	{
 		namespace libtcod
 		{
-			class LibtcodGalaxyDrawable : GalaxyDrawable
+			class LibtcodGalaxyDrawable : public GalaxyDrawable
 			{
+			public:
+				LibtcodGalaxyDrawable(entities::Galaxy* galaxy);
+
 				virtual void draw() override;
 			};
 		}

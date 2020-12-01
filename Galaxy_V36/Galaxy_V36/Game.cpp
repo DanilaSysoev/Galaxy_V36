@@ -19,6 +19,10 @@ galaxy_v36::game::Game::initialize( game::DrawManager* drawManager
 	this->drawManager = drawManager;
 	this->commandProcessor = commandProcesor;
 	this->updateManager = updateManager;
+
+	drawManager->setGame(this);
+	commandProcesor->setGame(this);
+	updateManager->setGame(this);
 }
 
 galaxy_v36::game::DrawManager*
@@ -78,13 +82,13 @@ galaxy_v36::game::Game::~Game()
 }
 
 bool
-galaxy_v36::game::DrawableComparator::operator()(const Drawable*& left, const Drawable*& right)
+galaxy_v36::game::DrawableComparator::operator()(Drawable* left, Drawable* right) const
 {
 	return left->getDrawPriority() > right->getDrawPriority();
 }
 
 bool
-galaxy_v36::game::UpdatableComparator::operator()(const Updatable*& left, const Updatable*& right)
+galaxy_v36::game::UpdatableComparator::operator()(Updatable*& left, Updatable*& right) const
 {
 	return left->getUpdatePriority() > right->getUpdatePriority();
 }

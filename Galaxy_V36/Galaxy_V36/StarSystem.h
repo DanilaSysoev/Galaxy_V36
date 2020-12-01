@@ -17,7 +17,7 @@ namespace galaxy_v36
 		class StarSystem
 		{
 		public:
-			StarSystem(std::vector<SpaceBody*> spaceBodies);
+			StarSystem(const std::string& name, const service::Vector& position, std::vector<SpaceBody*> spaceBodies);
 
 			std::string getName() const;
 			service::Vector getPosition() const;

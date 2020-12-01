@@ -18,21 +18,22 @@ namespace galaxy_v36
 		class DrawManager;
 		class CommandProcessor;
 		class UpdateManager;
-		class Drawable;
-		class Updatable;
-
 
 		class DrawableComparator
 		{
-			bool operator()(const Drawable*& left, const Drawable*& right);
+		public:
+			bool operator()(Drawable* left, Drawable* right) const;
 		};
 		class UpdatableComparator
 		{
-			bool operator()(const Updatable*& left, const Updatable*& right);
+		public:
+			bool operator()(Updatable*& left, Updatable*& right) const;
 		};
+
 
 		using Drawables = std::multiset<Drawable*, DrawableComparator>;
 		using Updatables = std::multiset<Updatable*, UpdatableComparator>;
+
 
 		class Game
 		{

@@ -1,0 +1,19 @@
+#ifndef GALAXY_FACTORY_H
+#define GALAXY_FACTORY_H
+
+namespace galaxy_v36
+{
+	namespace entities
+	{
+		class Galaxy;
+	}
+
+	class GalaxyFactory
+	{
+	public:
+		virtual entities::Galaxy* buildGalaxy() = 0;
+	};
+}
+
+#endif // !GALAXY_FACTORY_H
+

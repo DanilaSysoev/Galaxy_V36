@@ -1,10 +1,12 @@
 #include "SpaceBody.h"
 #include "StarSystem.h"
 
-galaxy_v36::entities::StarSystem::StarSystem(std::vector<SpaceBody*> spaceBodies)
-	: spaceBodies(spaceBodies)
+galaxy_v36::entities::StarSystem::StarSystem(const std::string& name, const service::Vector& position, std::vector<SpaceBody*> spaceBodies)
+	: name(name)
+	, position(position)
+	, spaceBodies(spaceBodies)
 	, spaceBodiesNamed()
-	, spaceBodiesPositioned()
+	, spaceBodiesPositioned()	
 {
 	for (auto spaceBody : spaceBodies) {
 		spaceBodiesNamed[spaceBody->getName()] = spaceBody;
