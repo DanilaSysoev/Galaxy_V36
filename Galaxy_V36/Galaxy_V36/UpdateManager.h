@@ -6,15 +6,23 @@ namespace galaxy_v36
 	namespace game
 	{
 		class Updatable;
+		class Game;
 
 		class UpdateManager
 		{
 		public:
-			virtual void prepareUpdate() = 0;
-			virtual void update(Updatable* updatable) = 0;
+			virtual void prepareUpdate() = 0;			
 			virtual void endUpdate() = 0;
 
+			void update(Updatable* updatable);
+			Game* getGame();
+			void setGame(Game* game);
+
 			virtual ~UpdateManager();
+
+
+		private:
+			Game* game;
 		};
 	}
 }

@@ -5,8 +5,8 @@ namespace galaxy_v36
 {
 	namespace game
 	{
-		class Drawable;
-		class Tile;
+		class Drawable;		
+		class Game;
 
 		class DrawManager
 		{
@@ -15,9 +15,14 @@ namespace galaxy_v36
 			virtual void flush() = 0;
 
 			void draw(Drawable* drawable);
+			Game* getGame();
+			void setGame(Game* game);
 
 			virtual ~DrawManager();
+
+
 		private:
+			Game* game;
 		};
 	}
 }
