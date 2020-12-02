@@ -43,4 +43,3 @@ namespace galaxy_v36
 
 
 #endif // !STAR_SYSTEM_H
-
