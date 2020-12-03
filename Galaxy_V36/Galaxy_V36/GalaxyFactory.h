@@ -8,10 +8,12 @@ namespace galaxy_v36
 		class Galaxy;
 	}
 
+	class DrawablesFactory;
+
 	class GalaxyFactory
 	{
 	public:
-		virtual entities::Galaxy* buildGalaxy() = 0;
+		virtual entities::Galaxy* buildGalaxy(DrawablesFactory* drawablesFactory) = 0;
 	};
 }
 

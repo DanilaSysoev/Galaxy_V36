@@ -5,19 +5,21 @@
 #include "LibtcodUpdateManager.h"
 #include "GalaxyFactory.h"
 
-galaxy_v36::LibtcodGameFactory::LibtcodGameFactory(GalaxyFactory* galaxyFactory)
+galaxy_v36::LibtcodGameFactory::LibtcodGameFactory(GalaxyFactory* galaxyFactory, DrawablesFactory* drawablesFactory)
     : galaxyFactory(galaxyFactory)
+    , drawablesFactory(drawablesFactory)
 {
 }
 
 galaxy_v36::LibtcodGameFactory::~LibtcodGameFactory()
 {
     delete galaxyFactory;
+    delete drawablesFactory;
 }
 
 galaxy_v36::game::Game* galaxy_v36::LibtcodGameFactory::buildGame()
 {
-    return new galaxy_v36::game::libtcod::LibtcodGame(galaxyFactory->buildGalaxy());
+    return new galaxy_v36::game::libtcod::LibtcodGame(galaxyFactory->buildGalaxy(drawablesFactory));
 }
 
 galaxy_v36::game::UpdateManager* galaxy_v36::LibtcodGameFactory::buildUpdateManager()

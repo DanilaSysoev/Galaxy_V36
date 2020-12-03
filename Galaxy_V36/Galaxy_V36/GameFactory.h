@@ -2,7 +2,6 @@
 #define GAME_FACTORY_H
 
 #include "GameType.h"
-#include "GalaxyBuildType.h"
 
 namespace galaxy_v36
 {

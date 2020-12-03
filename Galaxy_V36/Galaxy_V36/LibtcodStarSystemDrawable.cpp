@@ -1,5 +1,10 @@
 #include "LibtcodStarSystemDrawable.h"
 
+galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::LibtcodStarSystemDrawable(entities::StarSystem* starSystem)
+    : StarSystemDrawable(starSystem)
+{
+}
+
 int
 galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::getDrawPriority() const
 {

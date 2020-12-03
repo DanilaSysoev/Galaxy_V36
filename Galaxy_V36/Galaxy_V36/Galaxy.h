@@ -12,6 +12,7 @@ namespace galaxy_v36
 	namespace game
 	{
 		class Drawable;
+		class GalaxyDrawable;
 	}
 
 	namespace entities
@@ -23,13 +24,14 @@ namespace galaxy_v36
 		public:
 			Galaxy(std::vector<StarSystem*> starSystems);
 
-			int gaeStarSystemsCount() const;
+			int getStarSystemsCount() const;
 
 			StarSystem* getStarSystem(int index) const;
 			StarSystem* getStarSystem(const std::string& name) const;
 			StarSystem* getStarSystem(const service::Vector& position) const;
 
 			game::Drawable* getDrawable();
+			void setDrawable(game::GalaxyDrawable* drawable);
 
 			~Galaxy();
 
@@ -39,7 +41,7 @@ namespace galaxy_v36
 			std::map<std::string, StarSystem*> starSystemsNamed;
 			std::map<service::Vector, StarSystem*> starSystemsPositioned;
 
-			game::Drawable* drawable;
+			game::GalaxyDrawable* drawable;
 		};
 	}
 }

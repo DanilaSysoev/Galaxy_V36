@@ -20,6 +20,9 @@ namespace galaxy_v36
 				LibtcodGalaxyDrawable(entities::Galaxy* galaxy);
 
 				virtual void draw() override;
+				virtual int getDrawPriority() const override;
+
+				static const int GALAXY_HIGHEST_DRAW_PRIORITY;
 			};
 		}
 	}

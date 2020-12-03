@@ -18,10 +18,6 @@ namespace galaxy_v36
 			GalaxyDrawable(entities::Galaxy* galaxy);
 
 			entities::Galaxy* getGalaxy();
-
-			virtual int getDrawPriority() const override;
-
-			static const int GALAXY_HIGHEST_DRAW_PRIORITY;
 		private:
 			entities::Galaxy* galaxy;
 		};

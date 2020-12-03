@@ -12,6 +12,8 @@ namespace galaxy_v36
 			class LibtcodStarSystemDrawable : public StarSystemDrawable
 			{
 			public:
+				LibtcodStarSystemDrawable(entities::StarSystem* starSystem);
+
 				virtual int getDrawPriority() const override;
 				virtual void draw() override;
 

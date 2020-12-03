@@ -11,12 +11,10 @@ galaxy_v36::entities::Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
 		starSystemsNamed[starSystem->getName()] = starSystem;
 		starSystemsPositioned[starSystem->getPosition()] = starSystem;
 	}
-
-	drawable = new game::libtcod::LibtcodGalaxyDrawable(this);
 }
 
 int
-galaxy_v36::entities::Galaxy::gaeStarSystemsCount() const
+galaxy_v36::entities::Galaxy::getStarSystemsCount() const
 {
 	return starSystems.size();
 }
@@ -51,6 +49,12 @@ galaxy_v36::game::Drawable*
 galaxy_v36::entities::Galaxy::getDrawable()
 {
 	return drawable;
+}
+
+void 
+galaxy_v36::entities::Galaxy::setDrawable(game::GalaxyDrawable* drawable)
+{
+	this->drawable = drawable;
 }
 
 galaxy_v36::entities::Galaxy::~Galaxy()
