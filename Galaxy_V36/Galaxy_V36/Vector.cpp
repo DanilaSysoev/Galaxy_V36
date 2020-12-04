@@ -90,3 +90,11 @@ bool galaxy_v36::service::Vector::operator!=(const Vector& ro) const
 {
 	return !(*this == ro);
 }
+
+const galaxy_v36::service::Vector&
+galaxy_v36::service::Vector::getZero()
+{
+	return galaxy_v36::service::Vector::zero;
+}
+
+const galaxy_v36::service::Vector& galaxy_v36::service::Vector::zero = galaxy_v36::service::Vector();

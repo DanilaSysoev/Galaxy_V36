@@ -17,6 +17,7 @@ namespace galaxy_v36
 			class LibtcodCommandProcessor : public CommandProcessor
 			{
 			public:
+
 				virtual void processCommands()                                                      override;
 				virtual void attachHandler(Command* command, CommandHandler* handler)               override;
 				virtual void attachHandler(const std::string& commandName, CommandHandler* handler) override;

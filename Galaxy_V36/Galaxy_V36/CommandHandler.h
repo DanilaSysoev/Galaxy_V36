@@ -11,7 +11,7 @@ namespace galaxy_v36
 		class CommandHandler
 		{
 		public:
-			virtual void execute(Command* command, CommandArguments* arguments) = 0;
+			virtual void execute(const CommandArguments& arguments) = 0;
 
 			virtual int getOrder() const = 0;
 

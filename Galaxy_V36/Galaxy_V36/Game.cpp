@@ -23,6 +23,8 @@ galaxy_v36::game::Game::initialize( game::DrawManager* drawManager
 	drawManager->setGame(this);
 	commandProcesor->setGame(this);
 	updateManager->setGame(this);
+
+	game = this;
 }
 
 galaxy_v36::game::DrawManager*
@@ -81,6 +83,12 @@ galaxy_v36::game::Game::~Game()
 	delete commandProcessor;
 }
 
+galaxy_v36::game::Game*
+galaxy_v36::game::Game::getGame()
+{
+	return Game::game;
+}
+
 bool
 galaxy_v36::game::DrawableComparator::operator()(Drawable* left, Drawable* right) const
 {
@@ -92,3 +100,5 @@ galaxy_v36::game::UpdatableComparator::operator()(Updatable*& left, Updatable*& 
 {
 	return left->getUpdatePriority() > right->getUpdatePriority();
 }
+
+galaxy_v36::game::Game* galaxy_v36::game::Game::game = nullptr;

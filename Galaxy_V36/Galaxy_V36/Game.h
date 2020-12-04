@@ -53,6 +53,8 @@ namespace galaxy_v36
 
 			virtual ~Game();
 
+			static Game* getGame();
+
 
 		protected:
 			virtual void prepareGame()     = 0;
@@ -66,6 +68,8 @@ namespace galaxy_v36
 			DrawManager* drawManager;
 			CommandProcessor* commandProcessor;
 			UpdateManager* updateManager;
+
+			static Game* game;
 
 			void drawAll();
 			void updateAll();

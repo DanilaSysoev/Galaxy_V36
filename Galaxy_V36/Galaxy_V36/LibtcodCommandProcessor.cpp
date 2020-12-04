@@ -1,9 +1,10 @@
 #include "LibtcodCommandProcessor.h"
 #include "Command.h"
+#include "LibtcodCamera.h"
 #include "libtcod.hpp"
 
 
-void 
+void
 galaxy_v36::game::libtcod::LibtcodCommandProcessor::processCommands()
 {
 	TCOD_key_t key;

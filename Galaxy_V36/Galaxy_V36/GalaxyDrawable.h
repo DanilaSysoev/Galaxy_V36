@@ -12,14 +12,21 @@ namespace galaxy_v36
 
 	namespace game
 	{
+		class Camera;
+
 		class GalaxyDrawable : public Drawable
 		{
 		public:
-			GalaxyDrawable(entities::Galaxy* galaxy);
+			GalaxyDrawable(Camera* camera, entities::Galaxy* galaxy);
+
+			Camera* getCamera();
 
 			entities::Galaxy* getGalaxy();
+
+			virtual ~GalaxyDrawable();
 		private:
 			entities::Galaxy* galaxy;
+			Camera* camera;
 		};
 	}
 }

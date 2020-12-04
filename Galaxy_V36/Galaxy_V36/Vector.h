@@ -28,9 +28,13 @@ namespace galaxy_v36
 			bool operator==(const Vector& ro) const;
 			bool operator!=(const Vector& ro) const;
 
+			static const Vector& getZero();
+
 		private:
 			long long x;
 			long long y;
+
+			static const Vector& zero;
 		};
 	}
 }

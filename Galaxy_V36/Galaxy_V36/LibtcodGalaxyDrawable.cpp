@@ -1,10 +1,11 @@
 #include "LibtcodGalaxyDrawable.h"
 #include "Galaxy.h"
 #include "StarSystem.h"
+#include "LibtcodCamera.h"
 #include "libtcod.hpp"
 
 galaxy_v36::game::libtcod::LibtcodGalaxyDrawable::LibtcodGalaxyDrawable(entities::Galaxy* galaxy)
-	: GalaxyDrawable(galaxy)
+	: GalaxyDrawable(new LibtcodCamera(), galaxy)
 {
 }
 

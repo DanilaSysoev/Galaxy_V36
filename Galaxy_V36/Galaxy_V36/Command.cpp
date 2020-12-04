@@ -13,10 +13,10 @@ galaxy_v36::game::Command::getName() const
 }
 
 void
-galaxy_v36::game::Command::execute(CommandArguments* arguments)
+galaxy_v36::game::Command::execute(const CommandArguments& arguments)
 {
 	for (auto handler : getHandlers())
-		handler->execute(this, arguments);
+		handler->execute(arguments);
 }
 
 galaxy_v36::game::Command::~Command()
