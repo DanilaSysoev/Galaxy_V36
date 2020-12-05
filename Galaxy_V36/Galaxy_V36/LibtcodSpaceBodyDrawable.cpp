@@ -1,7 +1,7 @@
 #include "LibtcodSpaceBodyDrawable.h"
 
-galaxy_v36::game::libtcod::LibtcodSpaceBodyDrawable::LibtcodSpaceBodyDrawable(entities::SpaceBody* spaceBody, int drawPriority)
-	: SpaceBodyDrawable(spaceBody)
+galaxy_v36::game::libtcod::LibtcodSpaceBodyDrawable::LibtcodSpaceBodyDrawable(Camera* camera, entities::SpaceBody* spaceBody, int drawPriority)
+	: SpaceBodyDrawable(camera, spaceBody)
 	, drawPriority(drawPriority)
 {
 }

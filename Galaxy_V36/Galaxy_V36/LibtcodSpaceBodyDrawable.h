@@ -17,7 +17,7 @@ namespace galaxy_v36
 			class LibtcodSpaceBodyDrawable : public SpaceBodyDrawable
 			{
 			public:
-				LibtcodSpaceBodyDrawable(entities::SpaceBody* spaceBody, int drawPriority);
+				LibtcodSpaceBodyDrawable(Camera* camera, entities::SpaceBody* spaceBody, int drawPriority);
 
 				virtual int getDrawPriority() const override;
 				virtual void draw() override;

@@ -8,6 +8,7 @@ namespace galaxy_v36
 		class GalaxyDrawable;
 		class StarSystemDrawable;
 		class SpaceBodyDrawable;
+		class Camera;
 	}
 
 	namespace entities
@@ -20,8 +21,13 @@ namespace galaxy_v36
 	class DrawablesFactory
 	{
 	public:
+		virtual game::Camera*             getGalaxyCamera()                                                  = 0;
 		virtual game::GalaxyDrawable*     getGalaxyDrawable(entities::Galaxy* galaxy)                        = 0;
+
+		virtual game::Camera* getStarSystemCamera()                                                          = 0;
 		virtual game::StarSystemDrawable* getStarSystemDrawable(entities::StarSystem* starSystem)            = 0;
+
+		virtual game::Camera*  getSpaceBodyCamera()                                                          = 0;
 		virtual game::SpaceBodyDrawable*  getSpaceBodyDrawable(entities::SpaceBody* spaceBody, int priority) = 0;
 
 		virtual ~DrawablesFactory();

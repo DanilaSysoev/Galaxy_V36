@@ -19,7 +19,7 @@ namespace galaxy_v36
 		public:
 			GalaxyDrawable(Camera* camera, entities::Galaxy* galaxy);
 
-			Camera* getCamera();
+			Camera* getCamera() const override;
 
 			entities::Galaxy* getGalaxy();
 

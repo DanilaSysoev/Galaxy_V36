@@ -12,12 +12,14 @@ galaxy_v36::service::Vector::Vector(long long x, long long y)
 {
 }
 
-long long galaxy_v36::service::Vector::getX() const
+long long
+galaxy_v36::service::Vector::getX() const
 {
 	return x;
 }
 
-long long galaxy_v36::service::Vector::getY() const
+long long
+galaxy_v36::service::Vector::getY() const
 {
 	return y;
 }
@@ -65,17 +67,20 @@ galaxy_v36::service::Vector::operator<(const Vector& ro) const
 		   x == ro.getX() && y < ro.getY();
 }
 
-bool galaxy_v36::service::Vector::operator<=(const Vector& ro) const
+bool
+galaxy_v36::service::Vector::operator<=(const Vector& ro) const
 {
 	return *this < ro || *this == ro;
 }
 
-bool galaxy_v36::service::Vector::operator>(const Vector& ro) const
+bool
+galaxy_v36::service::Vector::operator>(const Vector& ro) const
 {
 	return !(*this <= ro);
 }
 
-bool galaxy_v36::service::Vector::operator>=(const Vector& ro) const
+bool
+galaxy_v36::service::Vector::operator>=(const Vector& ro) const
 {
 	return !(*this < ro);
 }
@@ -86,7 +91,8 @@ galaxy_v36::service::Vector::operator==(const Vector& ro) const
 	return x == ro.getX() && y == ro.getY();
 }
 
-bool galaxy_v36::service::Vector::operator!=(const Vector& ro) const
+bool 
+galaxy_v36::service::Vector::operator!=(const Vector& ro) const
 {
 	return !(*this == ro);
 }

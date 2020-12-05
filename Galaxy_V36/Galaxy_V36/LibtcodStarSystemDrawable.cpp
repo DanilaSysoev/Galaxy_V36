@@ -1,7 +1,7 @@
 #include "LibtcodStarSystemDrawable.h"
 
-galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::LibtcodStarSystemDrawable(entities::StarSystem* starSystem)
-    : StarSystemDrawable(starSystem)
+galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::LibtcodStarSystemDrawable(Camera* camera, entities::StarSystem* starSystem)
+    : StarSystemDrawable(camera, starSystem)
 {
 }
 

@@ -7,7 +7,7 @@ galaxy_v36::game::GalaxyDrawable::GalaxyDrawable(Camera* camera, entities::Galax
 }
 
 galaxy_v36::game::Camera*
-galaxy_v36::game::GalaxyDrawable::getCamera()
+galaxy_v36::game::GalaxyDrawable::getCamera() const
 {
 	return camera;
 }

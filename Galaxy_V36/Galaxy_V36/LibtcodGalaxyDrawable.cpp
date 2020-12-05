@@ -4,8 +4,8 @@
 #include "LibtcodCamera.h"
 #include "libtcod.hpp"
 
-galaxy_v36::game::libtcod::LibtcodGalaxyDrawable::LibtcodGalaxyDrawable(entities::Galaxy* galaxy)
-	: GalaxyDrawable(new LibtcodCamera(), galaxy)
+galaxy_v36::game::libtcod::LibtcodGalaxyDrawable::LibtcodGalaxyDrawable(Camera* camera, entities::Galaxy* galaxy)
+	: GalaxyDrawable(camera, galaxy)
 {
 }
 
