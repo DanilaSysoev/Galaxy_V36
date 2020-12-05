@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include "CommandProvider.h"
 
 namespace galaxy_v36
@@ -16,11 +18,15 @@ namespace galaxy_v36
 			public:
 				LibtcodCommandProvider();
 
+				void readConfig();
+
 				virtual std::vector<Command*> getCommands() override;
 
 
 			private:
 				std::vector<Command*> commands;
+				nlohmann::json commandProviderConfig;
+
 				std::string getCommandsConfigFileName() const;
 			};
 		}

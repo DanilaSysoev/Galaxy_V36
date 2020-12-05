@@ -1,4 +1,5 @@
 #include "StarSystemDrawable.h"
+#include "Camera.h"
 
 galaxy_v36::game::StarSystemDrawable::StarSystemDrawable(Camera* camera, entities::StarSystem* starSystem)
 	: camera(camera)

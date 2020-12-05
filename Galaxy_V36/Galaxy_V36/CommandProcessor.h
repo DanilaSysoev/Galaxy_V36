@@ -14,6 +14,8 @@ namespace galaxy_v36
 		class CommandProcessor
 		{
 		public:
+			CommandProcessor();
+
 			virtual void processCommands() = 0;
 			virtual void attachHandler(Command* command, CommandHandler* handler) = 0;
 			virtual void attachHandler(const std::string& commandName, CommandHandler* handler) = 0;

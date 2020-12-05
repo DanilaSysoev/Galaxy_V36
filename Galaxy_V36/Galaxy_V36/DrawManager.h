@@ -11,6 +11,8 @@ namespace galaxy_v36
 		class DrawManager
 		{
 		public:
+			DrawManager();
+
 			virtual void prepareDrawing() = 0;
 			virtual void flush() = 0;
 

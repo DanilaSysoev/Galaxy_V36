@@ -1,4 +1,5 @@
 #include "SpaceBodyDrawable.h"
+#include "Camera.h"
 
 galaxy_v36::game::SpaceBodyDrawable::SpaceBodyDrawable(Camera* camera, entities::SpaceBody* spaceBody)
 	: camera(camera)

@@ -14,3 +14,8 @@ void galaxy_v36::game::CommandProcessor::setGame(Game* game)
 galaxy_v36::game::CommandProcessor::~CommandProcessor() 
 {
 }
+
+galaxy_v36::game::CommandProcessor::CommandProcessor()
+    : game(nullptr)
+{
+}

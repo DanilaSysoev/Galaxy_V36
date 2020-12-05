@@ -12,11 +12,14 @@ namespace galaxy_v36
 	{
 		using Commands = std::map<std::string, Command*>;
 
+		class CommandProvider;
+
 		namespace libtcod
 		{
 			class LibtcodCommandProcessor : public CommandProcessor
 			{
 			public:
+				LibtcodCommandProcessor(CommandProvider* commandProvider);
 
 				virtual void processCommands()                                                      override;
 				virtual void attachHandler(Command* command, CommandHandler* handler)               override;

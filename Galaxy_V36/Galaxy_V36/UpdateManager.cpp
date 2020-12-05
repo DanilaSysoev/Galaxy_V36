@@ -5,6 +5,11 @@ galaxy_v36::game::UpdateManager::~UpdateManager()
 {
 }
 
+galaxy_v36::game::UpdateManager::UpdateManager()
+	: game(nullptr)
+{
+}
+
 void
 galaxy_v36::game::UpdateManager::update(Updatable* updatable)
 {

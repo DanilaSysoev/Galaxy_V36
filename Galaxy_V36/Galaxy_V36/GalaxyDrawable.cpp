@@ -1,3 +1,4 @@
+#include "Camera.h"
 #include "GalaxyDrawable.h"
 
 galaxy_v36::game::GalaxyDrawable::GalaxyDrawable(Camera* camera, entities::Galaxy* galaxy)

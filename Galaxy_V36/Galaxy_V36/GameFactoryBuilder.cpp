@@ -38,7 +38,9 @@ galaxy_v36::DrawablesFactory* galaxy_v36::buildDrawablesFactory(const DrawablesT
 	switch (drawablesType)
 	{
 	case DrawablesType::LIBTCOD:
-		return new galaxy_v36::LibtcodDrawablesFactory();
+		auto drawablesFactory = new galaxy_v36::LibtcodDrawablesFactory();
+		drawablesFactory->readConfig();
+		return drawablesFactory;
 	}
 
 	return nullptr;

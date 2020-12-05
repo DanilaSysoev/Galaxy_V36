@@ -11,6 +11,8 @@ namespace galaxy_v36
 		class UpdateManager
 		{
 		public:
+			UpdateManager();
+
 			virtual void prepareUpdate() = 0;			
 			virtual void endUpdate() = 0;
 

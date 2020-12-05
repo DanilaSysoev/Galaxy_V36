@@ -8,6 +8,17 @@ namespace galaxy_v36
 	class GalaxyFactory;
 	class DrawablesFactory;
 
+	namespace game
+	{
+		namespace libtcod
+		{
+			class LibtcodGame;
+			class LibtcodUpdateManager;
+			class LibtcodDrawManager;
+			class LibtcodCommandProcessor;
+		}
+	}
+
 	class LibtcodGameFactory : public GameFactory
 	{
 	public:
@@ -16,14 +27,21 @@ namespace galaxy_v36
 
 
 	protected:
-		virtual game::Game*             buildGame();
-		virtual game::UpdateManager*    buildUpdateManager();
-		virtual game::DrawManager*      buildDrawManager();
-		virtual game::CommandProcessor* buildCommandProcessor();
+		virtual game::Game*             buildGame()             override;
+		virtual game::UpdateManager*    buildUpdateManager()    override;
+		virtual game::DrawManager*      buildDrawManager()      override;
+		virtual game::CommandProcessor* buildCommandProcessor() override;
+		virtual void                    linkCommands()          override;
+
 
 	private:
 		GalaxyFactory* galaxyFactory;
 		DrawablesFactory* drawablesFactory;
+
+		game::libtcod::LibtcodGame*             game;
+		game::libtcod::LibtcodUpdateManager*    updateManager;
+		game::libtcod::LibtcodDrawManager*      drawManager;
+		game::libtcod::LibtcodCommandProcessor* commandProcessor;
 	};
 }
 

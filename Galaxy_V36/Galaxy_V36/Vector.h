@@ -9,17 +9,17 @@ namespace galaxy_v36
 		{
 		public:
 			Vector();
-			Vector(long long x, long long y);
+			Vector(int x, int y);
 
-			long long getX() const;
-			long long getY() const;
+			int getX() const;
+			int getY() const;
 
 			Vector add(const Vector& vector) const;
 			Vector negate() const;
 			Vector multiply(double koefficient) const;
-			long long dot(const Vector& vector) const;
-			long long squareLength() const;
-			long long sqaureDistance(const Vector& vector) const;
+			int dot(const Vector& vector) const;
+			int squareLength() const;
+			int sqaureDistance(const Vector& vector) const;
 
 			bool operator<(const Vector& ro) const;
 			bool operator<=(const Vector& ro) const;
@@ -31,8 +31,8 @@ namespace galaxy_v36
 			static const Vector& getZero();
 
 		private:
-			long long x;
-			long long y;
+			int x;
+			int y;
 
 			static const Vector& zero;
 		};

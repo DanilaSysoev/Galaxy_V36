@@ -1,0 +1,6 @@
+{
+  "galaxy": {
+    "cameraMovemetCommand": "GalaxyCameraMovement",
+    "cameraMovemetHandlerOrder": 0
+  }
+}

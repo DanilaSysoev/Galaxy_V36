@@ -18,6 +18,9 @@ namespace galaxy_v36
 			{
 			public:
 				LibtcodGame(entities::Galaxy* galaxy);
+
+				virtual entities::Galaxy* getGalaxy() override;
+
 				~LibtcodGame();
 
 
@@ -27,7 +30,6 @@ namespace galaxy_v36
 				virtual bool              isGameEnd() const override;
 				virtual Drawables&        getDravables()    override;
 				virtual Updatables&       getUpdatables()   override;
-				virtual entities::Galaxy* getGalaxy()       override;
 
 			private:
 				Drawables drawables;

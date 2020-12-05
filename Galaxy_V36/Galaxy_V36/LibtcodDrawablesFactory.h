@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <nlohmann/json.hpp>
+
 #include "DrawablesFactory.h"
 
 namespace galaxy_v36
@@ -10,6 +12,8 @@ namespace galaxy_v36
 	class LibtcodDrawablesFactory : public DrawablesFactory
 	{
 	public:
+		void readConfig();
+
 		virtual game::Camera*             getGalaxyCamera()                                                  override;
 		virtual game::GalaxyDrawable*     getGalaxyDrawable(entities::Galaxy* galaxy)                        override;
 
@@ -21,6 +25,8 @@ namespace galaxy_v36
 
 
 	private:
+		nlohmann::json drawablesConfigs;
+
 		std::string getDrawablesConfigFileName() const;
 	};
 }

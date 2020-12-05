@@ -6,19 +6,19 @@ galaxy_v36::service::Vector::Vector()
 {
 }
 
-galaxy_v36::service::Vector::Vector(long long x, long long y)
+galaxy_v36::service::Vector::Vector(int x, int y)
 	: x(x)
 	, y(y)
 {
 }
 
-long long
+int
 galaxy_v36::service::Vector::getX() const
 {
 	return x;
 }
 
-long long
+int
 galaxy_v36::service::Vector::getY() const
 {
 	return y;
@@ -42,19 +42,19 @@ galaxy_v36::service::Vector::multiply(double koefficient) const
 	return Vector(static_cast<long long>(x * koefficient), static_cast<long long>(y * koefficient));
 }
 
-long long
+int
 galaxy_v36::service::Vector::dot(const Vector& vector) const
 {
 	return x * vector.getX() + y * vector.getY();
 }
 
-long long 
+int
 galaxy_v36::service::Vector::squareLength() const
 {
 	return x * x + y * y;
 }
 
-long long 
+int
 galaxy_v36::service::Vector::sqaureDistance(const Vector& vector) const
 {
 	return (x - vector.getX()) * (x - vector.getX()) + (y - vector.getY()) * (y - vector.getY());

@@ -1,8 +1,18 @@
 #include "LibtcodCommandProcessor.h"
 #include "Command.h"
 #include "LibtcodCamera.h"
+#include "CommandProvider.h"
 #include "libtcod.hpp"
 
+
+galaxy_v36::game::libtcod::LibtcodCommandProcessor::LibtcodCommandProcessor(CommandProvider* commandProvider)
+	: commands()
+{
+	auto commandsTmp = commandProvider->getCommands();
+
+	for(auto command: commandsTmp)
+		commands[command->getName()] = command;
+}
 
 void
 galaxy_v36::game::libtcod::LibtcodCommandProcessor::processCommands()
