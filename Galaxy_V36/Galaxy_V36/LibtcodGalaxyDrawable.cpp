@@ -20,10 +20,10 @@ galaxy_v36::game::libtcod::LibtcodGalaxyDrawable::draw()
 	for (int i = 0; i < getGalaxy()->getStarSystemsCount(); ++i)
 	{
 		auto position = getGalaxy()->getStarSystem(i)->getPosition();		
-		TCODConsole::root->putChar(position.getX(), position.getY(), TCOD_CHAR_LIGHT);
-		TCODConsole::root->setCharForeground(position.getX(), position.getY(), TCODColor::gold);
+		TCODConsole::root->putChar(position.getX() - getCamera()->getPosition().getX(), position.getY() - getCamera()->getPosition().getY(), TCOD_CHAR_LIGHT);
+		TCODConsole::root->setCharForeground(position.getX() - getCamera()->getPosition().getX(), position.getY() - getCamera()->getPosition().getY(), TCODColor::gold);
 
-		TCODConsole::root->printf(position.getX() + 1, position.getY() + 1, getGalaxy()->getStarSystem(i)->getName().c_str());
+		TCODConsole::root->printf(position.getX() - getCamera()->getPosition().getX() + 1, position.getY() - getCamera()->getPosition().getY() + 1, getGalaxy()->getStarSystem(i)->getName().c_str());
 	}
 }
 

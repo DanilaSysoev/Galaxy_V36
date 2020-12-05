@@ -11,10 +11,10 @@ namespace galaxy_v36
 	}
 	namespace game
 	{
-		class MotionCommandArguments : public CommandArguments
+		class MovementCommandArguments : public CommandArguments
 		{
 		public:
-			MotionCommandArguments(service::Direction& direction);
+			MovementCommandArguments(const service::Direction& direction);
 
 			const service::Direction& getDirection() const;
 

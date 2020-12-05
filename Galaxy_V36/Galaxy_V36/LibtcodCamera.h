@@ -13,24 +13,19 @@ namespace galaxy_v36
 			class LibtcodCamera : public Camera, public CommandHandler
 			{
 			public:
-				LibtcodCamera(
-					service::Vector position, 
-					std::string motionCommandName,
-					int commandHandlerOrder
-				);
+				LibtcodCamera(const service::Vector& position);
 
 				virtual service::Vector getPosition() override;
 				virtual void moveTo(const service::Direction& direction) override;
-				virtual const std::string& getMotionCommandName() const override;
 
 				virtual void execute(const CommandArguments& arguments) override;
 				virtual int getOrder() const override;
 
+				void setOrder(int order);
 
 			private:
 				service::Vector position;
 				int handlerOrder;
-				std::string motionCommandName;
 			};
 		}
 	}

@@ -1,0 +1,24 @@
+{
+  "assigns": [
+    {
+      "commandName": "GalaxyCameraMoveUp",
+      "type": "keyboard",
+      "key": "w"
+    },
+    {
+      "commandName": "GalaxyCameraMoveDown",
+      "type": "keyboard",
+      "key": "s"
+    },
+    {
+      "commandName": "GalaxyCameraMoveLeft",
+      "type": "keyboard",
+      "key": "a"
+    },
+    {
+      "commandName": "GalaxyCameraMoveRight",
+      "type": "keyboard",
+      "key": "d"
+    }
+  ]
+}

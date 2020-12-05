@@ -2,7 +2,8 @@
 #include <iostream>
 
 #include "LibtcodCommandProvider.h"
-#include "CommonCommand.h" 
+#include "MovementCommand.h"
+#include "Direction.h"
 
 galaxy_v36::game::libtcod::LibtcodCommandProvider::LibtcodCommandProvider()
 {
@@ -21,9 +22,9 @@ void galaxy_v36::game::libtcod::LibtcodCommandProvider::readConfig()
 
     for (auto commandConfig : commandProviderConfig["commands"])
     {
-        if (commandConfig["type"] == "Common")
+        if (commandConfig["type"] == "Movement")
         {
-            commands.push_back(new CommonCommand(commandConfig["name"]));
+            commands.push_back(new MovementCommand(commandConfig["name"], MovementCommandArguments(service::Direction::get(commandConfig["arguments"]))));
         }
     }
 }

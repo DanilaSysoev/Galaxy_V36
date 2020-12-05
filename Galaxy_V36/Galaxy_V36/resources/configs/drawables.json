@@ -1,6 +1,8 @@
 {
   "galaxy": {
-    "cameraMovemetCommand": "GalaxyCameraMovement",
-    "cameraMovemetHandlerOrder": 0
+    "camera": {
+      "handlerTag": "GalaxyCameraHandler",
+      "handlerOrder": 0
+    }
   }
 }

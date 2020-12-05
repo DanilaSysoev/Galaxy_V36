@@ -2,6 +2,8 @@
 #include "Command.h"
 #include "LibtcodCamera.h"
 #include "CommandProvider.h"
+#include "MovementCommandArguments.h"
+#include "Direction.h"
 #include "libtcod.hpp"
 
 
@@ -18,8 +20,9 @@ void
 galaxy_v36::game::libtcod::LibtcodCommandProcessor::processCommands()
 {
 	TCOD_key_t key;
-	TCOD_mouse_t mouse;
-	TCOD_event_t ev = TCODSystem::waitForEvent(TCOD_EVENT_ANY, &key, &mouse, true);
+	TCODSystem::waitForEvent(TCOD_EVENT_KEY_PRESS, &key, nullptr, false);
+	if (keyAssigns.find(key.c) != keyAssigns.end())
+		keyAssigns[key.c]->execute();
 }
 
 void 
@@ -59,4 +62,10 @@ galaxy_v36::game::libtcod::LibtcodCommandProcessor::getCommand(const std::string
 		return commands[commandName];
 	
 	return nullptr;
+}
+
+void
+galaxy_v36::game::libtcod::LibtcodCommandProcessor::assignKey(char key, std::string commandName)
+{
+	keyAssigns[key] = getCommand(commandName);
 }

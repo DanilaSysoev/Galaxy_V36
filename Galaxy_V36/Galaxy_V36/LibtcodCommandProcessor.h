@@ -10,7 +10,8 @@ namespace galaxy_v36
 {
 	namespace game
 	{
-		using Commands = std::map<std::string, Command*>;
+		using Commands   = std::map<std::string, Command*>;
+		using KeyAssigns = std::map<char, Command*>;
 
 		class CommandProvider;
 
@@ -29,9 +30,12 @@ namespace galaxy_v36
 				virtual void removeAllHandlers(const std::string& commandName)                      override;
 				virtual Command* getCommand(const std::string& commandName)                         override;
 
+				void assignKey(char key, std::string commandName);
+
 
 			private:
 				Commands commands;
+				KeyAssigns keyAssigns;
 			};
 		}
 	}

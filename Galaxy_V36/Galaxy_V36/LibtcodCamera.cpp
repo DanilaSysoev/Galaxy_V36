@@ -1,16 +1,11 @@
 #include "LibtcodCamera.h"
-#include "MotionCommandArguments.h"
+#include "MovementCommandArguments.h"
 #include "Game.h"
 #include "CommandProcessor.h"
 
-galaxy_v36::game::libtcod::LibtcodCamera::LibtcodCamera(
-    service::Vector position,
-    std::string motionCommandName,
-    int commandHandlerOrder
-)
+galaxy_v36::game::libtcod::LibtcodCamera::LibtcodCamera(const service::Vector& position)
     : position(position)
-    , motionCommandName(motionCommandName)
-    , handlerOrder(commandHandlerOrder)
+    , handlerOrder(0)
 {
 }
 
@@ -29,7 +24,7 @@ galaxy_v36::game::libtcod::LibtcodCamera::moveTo(const service::Direction& direc
 void
 galaxy_v36::game::libtcod::LibtcodCamera::execute(const CommandArguments& arguments)
 {
-    moveTo(dynamic_cast<const MotionCommandArguments&>(arguments).getDirection());
+    moveTo(dynamic_cast<const MovementCommandArguments&>(arguments).getDirection());
 }
 
 int
@@ -38,8 +33,7 @@ galaxy_v36::game::libtcod::LibtcodCamera::getOrder() const
     return handlerOrder;
 }
 
-const std::string&
-galaxy_v36::game::libtcod::LibtcodCamera::getMotionCommandName() const
+void galaxy_v36::game::libtcod::LibtcodCamera::setOrder(int order)
 {
-    return motionCommandName;
+    handlerOrder = order;
 }

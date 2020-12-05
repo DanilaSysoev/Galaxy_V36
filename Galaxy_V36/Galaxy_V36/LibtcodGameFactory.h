@@ -1,6 +1,10 @@
 #ifndef LIBTCOD_GAME_FACTORY_H
 #define LIBTCOD_GAME_FACTORY_H
 
+#include <string>
+
+#include "nlohmann/json.hpp"
+
 #include "GameFactory.h"
 
 namespace galaxy_v36
@@ -27,6 +31,7 @@ namespace galaxy_v36
 
 
 	protected:
+		virtual void                    prepareBuilding()       override;
 		virtual game::Game*             buildGame()             override;
 		virtual game::UpdateManager*    buildUpdateManager()    override;
 		virtual game::DrawManager*      buildDrawManager()      override;
@@ -38,10 +43,18 @@ namespace galaxy_v36
 		GalaxyFactory* galaxyFactory;
 		DrawablesFactory* drawablesFactory;
 
+		nlohmann::json commandLinks;
+		nlohmann::json commandAssigns;
+
 		game::libtcod::LibtcodGame*             game;
 		game::libtcod::LibtcodUpdateManager*    updateManager;
 		game::libtcod::LibtcodDrawManager*      drawManager;
 		game::libtcod::LibtcodCommandProcessor* commandProcessor;
+
+		std::string getCommandLinksFileName() const;
+		std::string getCommandAssignsFileName() const;
+
+		void readJson(const std::string& filename, nlohmann::json& jsonObject);
 	};
 }
 

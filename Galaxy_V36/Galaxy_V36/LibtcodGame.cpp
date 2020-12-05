@@ -24,6 +24,7 @@ void
 galaxy_v36::game::libtcod::LibtcodGame::prepareGame()
 {
     TCODConsole::initRoot(128, 64, "Galaxy V64");
+    TCODSystem::setFps(60);
 }
 
 void galaxy_v36::game::libtcod::LibtcodGame::finishGame()

@@ -4,6 +4,8 @@
 galaxy_v36::game::Game* 
 galaxy_v36::GameFactory::createGame()
 {
+	prepareBuilding();
+
 	auto game = buildGame();
 	auto commandProcessor = buildCommandProcessor();
 	auto drawManager = buildDrawManager();

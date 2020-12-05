@@ -1,6 +1,8 @@
 #ifndef DIRECTION_H
 #define DIRECTION_H
 
+#include <string>
+
 #include "Vector.h"
 
 namespace galaxy_v36
@@ -22,6 +24,7 @@ namespace galaxy_v36
 			static const Direction& getLeft();
 			static const Direction& getUpLeft();
 
+			static const Direction& get(const std::string& direction);
 		private:
 			Direction(const Vector& posiotionDelta, const Direction& opposite);
 			Direction(const Direction& other) = delete;

@@ -1,3 +1,7 @@
+#include <fstream>
+#include <map>
+#include <string>
+
 #include "LibtcodGameFactory.h"
 #include "LibtcodGame.h"
 #include "LibtcodDrawManager.h"
@@ -5,6 +9,7 @@
 #include "LibtcodCommandProvider.h"
 #include "LibtcodUpdateManager.h"
 #include "LibtcodGalaxyDrawable.h"
+#include "LibtcodDrawablesFactory.h"
 #include "LibtcodCamera.h"
 #include "DrawablesFactory.h"
 #include "GalaxyFactory.h"
@@ -15,6 +20,7 @@
 galaxy_v36::LibtcodGameFactory::LibtcodGameFactory(GalaxyFactory* galaxyFactory, DrawablesFactory* drawablesFactory)
     : galaxyFactory(galaxyFactory)
     , drawablesFactory(drawablesFactory)
+    , commandLinks()
     , game(nullptr)
     , updateManager(nullptr)
     , drawManager(nullptr)
@@ -26,6 +32,12 @@ galaxy_v36::LibtcodGameFactory::~LibtcodGameFactory()
 {
     delete galaxyFactory;
     delete drawablesFactory;
+}
+
+void galaxy_v36::LibtcodGameFactory::prepareBuilding()
+{
+    readJson(getCommandLinksFileName(), commandLinks);
+    readJson(getCommandAssignsFileName(), commandAssigns);
 }
 
 galaxy_v36::game::Game* galaxy_v36::LibtcodGameFactory::buildGame()
@@ -58,8 +70,39 @@ galaxy_v36::game::CommandProcessor* galaxy_v36::LibtcodGameFactory::buildCommand
 
 void galaxy_v36::LibtcodGameFactory::linkCommands()
 {
-    commandProcessor->attachHandler(
-        game->getGalaxy()->getDrawable()->getCamera()->getMotionCommandName(),
-        dynamic_cast<game::libtcod::LibtcodCamera*>(game->getGalaxy()->getDrawable()->getCamera())
-    );
+    for (auto link : commandLinks["links"])
+    {
+        auto handler = drawablesFactory->getHandler(link["handlerTag"]);
+        if (handler)
+            commandProcessor->attachHandler(link["commandName"], handler);
+    }
+
+    for (auto assign : commandAssigns["assigns"])
+    {
+        if (assign["type"] == "keyboard")
+        {
+            std::string key = assign["key"]; 
+            commandProcessor->assignKey(key[0], assign["commandName"]);
+        }
+    }
+}
+
+std::string
+galaxy_v36::LibtcodGameFactory::getCommandLinksFileName() const
+{
+    return "./resources/configs/command_links.json";
+}
+
+std::string galaxy_v36::LibtcodGameFactory::getCommandAssignsFileName() const
+{
+    return "./resources/configs/command_assigns.json";
+}
+
+void galaxy_v36::LibtcodGameFactory::readJson(const std::string& filename, nlohmann::json& jsonObject)
+{
+    std::ifstream in(filename);
+    if (!in)
+        return;
+    in >> jsonObject;
+    in.close();
 }

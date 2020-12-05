@@ -1,0 +1,20 @@
+{
+  "links": [
+    {
+      "commandName": "GalaxyCameraMoveUp",
+      "handlerTag": "GalaxyCameraHandler"
+    },
+    {
+      "commandName": "GalaxyCameraMoveDown",
+      "handlerTag": "GalaxyCameraHandler"
+    },
+    {
+      "commandName": "GalaxyCameraMoveLeft",
+      "handlerTag": "GalaxyCameraHandler"
+    },
+    {
+      "commandName": "GalaxyCameraMoveRight",
+      "handlerTag": "GalaxyCameraHandler"
+    }
+  ]
+}

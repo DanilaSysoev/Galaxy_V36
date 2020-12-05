@@ -15,7 +15,6 @@ namespace galaxy_v36
 		public:
 			virtual service::Vector getPosition() = 0;
 			virtual void moveTo(const service::Direction& direction) = 0;
-			virtual const std::string& getMotionCommandName() const = 0;
 
 			virtual ~Camera();
 		};

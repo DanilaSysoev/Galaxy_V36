@@ -22,6 +22,7 @@ namespace galaxy_v36
 
 
 	protected:
+		virtual void                    prepareBuilding()       = 0;
 		virtual game::Game*             buildGame()             = 0;
 		virtual game::UpdateManager*    buildUpdateManager()    = 0;
 		virtual game::DrawManager*      buildDrawManager()      = 0;

@@ -60,6 +60,27 @@ galaxy_v36::service::Direction::getUpLeft()
 	return upLeft;
 }
 
+const galaxy_v36::service::Direction&
+galaxy_v36::service::Direction::get(const std::string& direction)
+{
+	if (direction == "Up")
+		return getUp();
+	if (direction == "UpRight")
+		return getUpRight();
+	if (direction == "Right")
+		return getRight();
+	if (direction == "DownRight")
+		return getDownRight();
+	if (direction == "Down")
+		return getDown();
+	if (direction == "DownLeft")
+		return getDownLeft();
+	if (direction == "Left")
+		return getLeft();
+
+	return getUpLeft();
+}
+
 galaxy_v36::service::Direction::Direction(const Vector& posiotionDelta, const Direction& opposite)
 	: posiotionDelta(posiotionDelta)
 	, opposite(opposite)

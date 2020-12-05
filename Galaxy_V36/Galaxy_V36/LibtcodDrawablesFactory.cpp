@@ -6,7 +6,12 @@
 #include "LibtcodSpaceBodyDrawable.h"
 #include "LibtcodCamera.h"
 
-void galaxy_v36::LibtcodDrawablesFactory::readConfig()
+galaxy_v36::LibtcodDrawablesFactory::LibtcodDrawablesFactory()
+    : commandHandlers()
+{
+}
+
+void galaxy_v36::LibtcodDrawablesFactory::prepareBuilding()
 {
     std::ifstream in(getDrawablesConfigFileName());
 
@@ -21,11 +26,10 @@ void galaxy_v36::LibtcodDrawablesFactory::readConfig()
 galaxy_v36::game::Camera*
 galaxy_v36::LibtcodDrawablesFactory::getGalaxyCamera()
 {
-    auto camera = new game::libtcod::LibtcodCamera(
-        service::Vector::getZero(), 
-        drawablesConfigs["galaxy"]["cameraMovemetCommand"], 
-        drawablesConfigs["galaxy"]["cameraMovemetHandlerOrder"]
-    );
+    auto camera = new game::libtcod::LibtcodCamera(service::Vector::getZero());
+    camera->setOrder(drawablesConfigs["galaxy"]["camera"]["handlerOrder"]);
+
+    commandHandlers[drawablesConfigs["galaxy"]["camera"]["handlerTag"]] = camera;
 
     return camera;
 }
@@ -60,7 +64,16 @@ galaxy_v36::LibtcodDrawablesFactory::getSpaceBodyDrawable(entities::SpaceBody* s
     return new game::libtcod::LibtcodSpaceBodyDrawable(getSpaceBodyCamera(), spaceBody, priority);
 }
 
-std::string galaxy_v36::LibtcodDrawablesFactory::getDrawablesConfigFileName() const
+galaxy_v36::game::CommandHandler*
+galaxy_v36::LibtcodDrawablesFactory::getHandler(const std::string& tag)
+{
+    if (commandHandlers.find(tag) != commandHandlers.end())
+        return commandHandlers[tag];
+    return nullptr;
+}
+
+std::string
+galaxy_v36::LibtcodDrawablesFactory::getDrawablesConfigFileName() const
 {
     return "./resources/configs/drawables.json";
 }
