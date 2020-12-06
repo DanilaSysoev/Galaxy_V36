@@ -70,19 +70,19 @@ galaxy_v36::game::CommandProcessor* galaxy_v36::LibtcodGameFactory::buildCommand
 
 void galaxy_v36::LibtcodGameFactory::linkCommands()
 {
-    for (auto link : commandLinks["links"])
+    for (auto link : commandLinks[LINKS_KEYWORD])
     {
-        auto handler = drawablesFactory->getHandler(link["handlerTag"]);
+        auto handler = drawablesFactory->getHandler(link[HANDLER_TAG_KEYWORD]);
         if (handler)
-            commandProcessor->attachHandler(link["commandName"], handler);
+            commandProcessor->attachHandler(link[COMMAND_NAME_KEYWORD], handler);
     }
 
-    for (auto assign : commandAssigns["assigns"])
+    for (auto assign : commandAssigns[ASSIGNS_KEYWORD])
     {
-        if (assign["type"] == "keyboard")
+        if (assign[TYPE_KEYWORD] == KEYBOARD_COMMAND_TYPE_KEYWORD)
         {
-            std::string key = assign["key"]; 
-            commandProcessor->assignKey(key[0], assign["commandName"]);
+            std::string key = assign[KEY_KEYWORD]; 
+            commandProcessor->assignKey(key[0], assign[COMMAND_NAME_KEYWORD]);
         }
     }
 }
@@ -106,3 +106,19 @@ void galaxy_v36::LibtcodGameFactory::readJson(const std::string& filename, nlohm
     in >> jsonObject;
     in.close();
 }
+
+const std::string 
+galaxy_v36::LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
+
+const std::string
+galaxy_v36::LibtcodGameFactory::LINKS_KEYWORD = "links";
+const std::string
+galaxy_v36::LibtcodGameFactory::ASSIGNS_KEYWORD = "assigns";
+const std::string
+galaxy_v36::LibtcodGameFactory::COMMAND_NAME_KEYWORD = "commandName";
+const std::string
+galaxy_v36::LibtcodGameFactory::HANDLER_TAG_KEYWORD = "handlerTag";
+const std::string
+galaxy_v36::LibtcodGameFactory::TYPE_KEYWORD = "type";
+const std::string
+galaxy_v36::LibtcodGameFactory::KEY_KEYWORD = "key";

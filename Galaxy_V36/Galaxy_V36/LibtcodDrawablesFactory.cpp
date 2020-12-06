@@ -27,9 +27,9 @@ galaxy_v36::game::Camera*
 galaxy_v36::LibtcodDrawablesFactory::getGalaxyCamera()
 {
     auto camera = new game::libtcod::LibtcodCamera(service::Vector::getZero());
-    camera->setOrder(drawablesConfigs["galaxy"]["camera"]["handlerOrder"]);
+    camera->setOrder(drawablesConfigs[GALAXY_KEYWORD][CAMERA_KEYWORD][HANDLER_ORDER_KEYWORD]);
 
-    commandHandlers[drawablesConfigs["galaxy"]["camera"]["handlerTag"]] = camera;
+    commandHandlers[drawablesConfigs[GALAXY_KEYWORD][CAMERA_KEYWORD][HANDLER_TAG_KEYWORD]] = camera;
 
     return camera;
 }
@@ -77,3 +77,12 @@ galaxy_v36::LibtcodDrawablesFactory::getDrawablesConfigFileName() const
 {
     return "./resources/configs/drawables.json";
 }
+
+const std::string
+galaxy_v36::LibtcodDrawablesFactory::GALAXY_KEYWORD = "galaxy";
+const std::string
+galaxy_v36::LibtcodDrawablesFactory::CAMERA_KEYWORD = "camera";
+const std::string
+galaxy_v36::LibtcodDrawablesFactory::HANDLER_TAG_KEYWORD = "handlerTag";
+const std::string
+galaxy_v36::LibtcodDrawablesFactory::HANDLER_ORDER_KEYWORD = "handlerOrder";

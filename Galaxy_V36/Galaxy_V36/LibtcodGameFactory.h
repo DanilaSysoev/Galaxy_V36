@@ -55,6 +55,15 @@ namespace galaxy_v36
 		std::string getCommandAssignsFileName() const;
 
 		void readJson(const std::string& filename, nlohmann::json& jsonObject);
+
+		static const std::string KEYBOARD_COMMAND_TYPE_KEYWORD;
+
+		static const std::string LINKS_KEYWORD;
+		static const std::string ASSIGNS_KEYWORD;
+		static const std::string COMMAND_NAME_KEYWORD;
+		static const std::string HANDLER_TAG_KEYWORD;
+		static const std::string TYPE_KEYWORD;
+		static const std::string KEY_KEYWORD;
 	};
 }
 

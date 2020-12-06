@@ -38,6 +38,11 @@ namespace galaxy_v36
 		std::map<std::string, game::CommandHandler*> commandHandlers;
 
 		std::string getDrawablesConfigFileName() const;
+
+		static const std::string GALAXY_KEYWORD;
+		static const std::string CAMERA_KEYWORD;
+		static const std::string HANDLER_TAG_KEYWORD;
+		static const std::string HANDLER_ORDER_KEYWORD;
 	};
 }
 
