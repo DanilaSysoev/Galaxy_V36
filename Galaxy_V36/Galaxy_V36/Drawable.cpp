@@ -1,5 +1,8 @@
 #include "Drawable.h"
 
-galaxy_v36::game::Drawable::~Drawable()
+using namespace galaxy_v36::game;
+
+
+Drawable::~Drawable()
 {
 }

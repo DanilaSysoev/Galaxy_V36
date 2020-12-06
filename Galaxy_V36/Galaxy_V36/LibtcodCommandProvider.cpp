@@ -5,11 +5,15 @@
 #include "MovementCommand.h"
 #include "Direction.h"
 
-galaxy_v36::game::libtcod::LibtcodCommandProvider::LibtcodCommandProvider()
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::game::libtcod;
+
+
+LibtcodCommandProvider::LibtcodCommandProvider()
 {
 }
 
-void galaxy_v36::game::libtcod::LibtcodCommandProvider::readConfig()
+void LibtcodCommandProvider::readConfig()
 {
     std::ifstream in(getCommandsConfigFileName());
 
@@ -20,22 +24,37 @@ void galaxy_v36::game::libtcod::LibtcodCommandProvider::readConfig()
 
     in.close();
 
-    for (auto commandConfig : commandProviderConfig["commands"])
+    for (auto commandConfig : commandProviderConfig[COMMANDS_KEYWORD])
     {
-        if (commandConfig["type"] == "Movement")
+        if (commandConfig[TYPE_KEYWORD] == MOVEMENT_TYPE_KEYWORD)
         {
-            commands.push_back(new MovementCommand(commandConfig["name"], MovementCommandArguments(service::Direction::get(commandConfig["arguments"]))));
+            commands.push_back(
+                new MovementCommand(
+                    commandConfig[NAME_KEYWORD], 
+                    MovementCommandArguments(
+                        service::Direction::get(
+                            commandConfig[ARGUMENTS_KEYWORD]
+                        )
+                    )
+                )
+            );
         }
     }
 }
 
-std::vector<galaxy_v36::game::Command*>
-galaxy_v36::game::libtcod::LibtcodCommandProvider::getCommands()
+std::vector<Command*> LibtcodCommandProvider::getCommands()
 {
     return commands;
 }
 
-std::string galaxy_v36::game::libtcod::LibtcodCommandProvider::getCommandsConfigFileName() const
+std::string LibtcodCommandProvider::getCommandsConfigFileName() const
 {
     return "./resources/configs/commands.json";
 }
+
+const std::string LibtcodCommandProvider::COMMANDS_KEYWORD = "commands";
+const std::string LibtcodCommandProvider::NAME_KEYWORD = "name";
+const std::string LibtcodCommandProvider::TYPE_KEYWORD = "type";
+const std::string LibtcodCommandProvider::ARGUMENTS_KEYWORD = "arguments";
+
+const std::string LibtcodCommandProvider::MOVEMENT_TYPE_KEYWORD = "Movement";

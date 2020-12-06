@@ -8,7 +8,9 @@ namespace galaxy_v36
 	class DummyGalaxyFactory : public GalaxyFactory
 	{
 	public:
-		virtual entities::Galaxy* buildGalaxy(DrawablesFactory* drawablesFactory) override;
+		virtual entities::Galaxy* buildGalaxy(
+			DrawablesFactory* drawablesFactory
+		) override;
 	};
 }
 

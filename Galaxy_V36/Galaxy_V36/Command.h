@@ -14,10 +14,14 @@ namespace galaxy_v36
 		class CommandHandlerComparator
 		{
 		public:
-			bool operator()(const CommandHandler* lo, const CommandHandler* ro) const;
+			bool operator()(
+				const CommandHandler* lo, 
+				const CommandHandler* ro
+			) const;
 		};
 
-		using CommandHandlers = std::multiset<CommandHandler*, CommandHandlerComparator>;
+		using CommandHandlers = 
+			std::multiset<CommandHandler*, CommandHandlerComparator>;
 
 		class Command
 		{

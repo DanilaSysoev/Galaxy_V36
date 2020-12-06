@@ -21,19 +21,23 @@ namespace galaxy_v36
 		class SpaceBody;
 	}
 
+	using namespace entities;
+
 	class DrawablesFactory
 	{
 	public:
-		virtual game::Camera*             getGalaxyCamera()                                                  = 0;
-		virtual game::GalaxyDrawable*     getGalaxyDrawable(entities::Galaxy* galaxy)                        = 0;
+		virtual game::Camera* getGalaxyCamera() = 0;
+		virtual game::Camera* getStarSystemCamera() = 0;
+		virtual game::Camera* getSpaceBodyCamera() = 0;
 
-		virtual game::Camera*             getStarSystemCamera()                                              = 0;
-		virtual game::StarSystemDrawable* getStarSystemDrawable(entities::StarSystem* starSystem)            = 0;
+		virtual game::GalaxyDrawable*
+			getGalaxyDrawable(Galaxy* galaxy) = 0;
+		virtual game::StarSystemDrawable*
+			getStarSystemDrawable(StarSystem* starSystem) = 0;
+		virtual game::SpaceBodyDrawable*
+			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) = 0;
 
-		virtual game::Camera*             getSpaceBodyCamera()                                               = 0;
-		virtual game::SpaceBodyDrawable*  getSpaceBodyDrawable(entities::SpaceBody* spaceBody, int priority) = 0;
-
-		virtual game::CommandHandler*     getHandler(const std::string& tag)                                 = 0;
+		virtual game::CommandHandler* getHandler(const std::string& tag)                                 = 0;
 
 		virtual ~DrawablesFactory();
 	};

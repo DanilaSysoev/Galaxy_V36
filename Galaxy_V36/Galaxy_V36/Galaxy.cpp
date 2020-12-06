@@ -2,10 +2,14 @@
 #include "Galaxy.h"
 #include "LibtcodGalaxyDrawable.h"
 
-galaxy_v36::entities::Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+
+Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
 	: starSystems(starSystems)
 	, starSystemsNamed()
 	, starSystemsPositioned()
+	, drawable(nullptr)
 {
 	for (auto starSystem : starSystems) {
 		starSystemsNamed[starSystem->getName()] = starSystem;
@@ -13,20 +17,17 @@ galaxy_v36::entities::Galaxy::Galaxy(std::vector<StarSystem*> starSystems)
 	}
 }
 
-int
-galaxy_v36::entities::Galaxy::getStarSystemsCount() const
+int Galaxy::getStarSystemsCount() const
 {
 	return starSystems.size();
 }
 
-galaxy_v36::entities::StarSystem*
-galaxy_v36::entities::Galaxy::getStarSystem(int index) const
+StarSystem* Galaxy::getStarSystem(int index) const
 {
 	return starSystems[index];
 }
 
-galaxy_v36::entities::StarSystem*
-galaxy_v36::entities::Galaxy::getStarSystem(const std::string& name) const
+StarSystem* Galaxy::getStarSystem(const std::string& name) const
 {
 	auto starSystemIterator = starSystemsNamed.find(name);
 	if (starSystemIterator == starSystemsNamed.end())
@@ -35,8 +36,7 @@ galaxy_v36::entities::Galaxy::getStarSystem(const std::string& name) const
 	return starSystemIterator->second;
 }
 
-galaxy_v36::entities::StarSystem*
-galaxy_v36::entities::Galaxy::getStarSystem(const service::Vector& position) const
+StarSystem* Galaxy::getStarSystem(const service::Vector& position) const
 {
 	auto starSystemIterator = starSystemsPositioned.find(position);
 	if (starSystemIterator == starSystemsPositioned.end())
@@ -45,19 +45,17 @@ galaxy_v36::entities::Galaxy::getStarSystem(const service::Vector& position) con
 	return starSystemIterator->second;
 }
 
-galaxy_v36::game::Drawable* 
-galaxy_v36::entities::Galaxy::getDrawable()
+Drawable*Galaxy::getDrawable()
 {
 	return drawable;
 }
 
-void 
-galaxy_v36::entities::Galaxy::setDrawable(game::GalaxyDrawable* drawable)
+void Galaxy::setDrawable(game::GalaxyDrawable* drawable)
 {
 	this->drawable = drawable;
 }
 
-galaxy_v36::entities::Galaxy::~Galaxy()
+Galaxy::~Galaxy()
 {
 	for (auto starSystem : starSystems)
 		delete starSystem;

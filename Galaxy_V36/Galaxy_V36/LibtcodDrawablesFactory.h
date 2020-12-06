@@ -15,6 +15,9 @@ namespace galaxy_v36
 		class CommandHandler;
 	}
 
+	using namespace game;
+	using namespace entities;
+
 	class LibtcodDrawablesFactory : public DrawablesFactory
 	{
 	public:
@@ -22,20 +25,22 @@ namespace galaxy_v36
 
 		void prepareBuilding();
 
-		virtual game::Camera*             getGalaxyCamera()                                                  override;
-		virtual game::GalaxyDrawable*     getGalaxyDrawable(entities::Galaxy* galaxy)                        override;
+		virtual Camera* getGalaxyCamera() override;
+		virtual Camera* getStarSystemCamera() override;
+		virtual Camera* getSpaceBodyCamera() override;
 
-		virtual game::Camera*             getStarSystemCamera()                                              override;
-		virtual game::StarSystemDrawable* getStarSystemDrawable(entities::StarSystem* starSystem)            override;
+		virtual GalaxyDrawable* 
+			getGalaxyDrawable(Galaxy* galaxy) override;
+		virtual StarSystemDrawable*	
+			getStarSystemDrawable(StarSystem* starSystem) override;
+		virtual SpaceBodyDrawable*
+			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) override;
 
-		virtual game::Camera*             getSpaceBodyCamera()                                               override;
-		virtual game::SpaceBodyDrawable*  getSpaceBodyDrawable(entities::SpaceBody* spaceBody, int priority) override;
-
-		virtual game::CommandHandler*     getHandler(const std::string& tag)                                 override;
+		virtual CommandHandler* getHandler(const std::string& tag) override;
 
 	private:
 		nlohmann::json drawablesConfigs;
-		std::map<std::string, game::CommandHandler*> commandHandlers;
+		std::map<std::string, CommandHandler*> commandHandlers;
 
 		std::string getDrawablesConfigFileName() const;
 

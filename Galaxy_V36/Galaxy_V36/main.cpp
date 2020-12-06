@@ -1,9 +1,6 @@
-#include "libtcod.hpp"
 #include "GameFactory.h"
 #include "GameFactoryBuilder.h"
 #include "Game.h"
-
-#include "LibtcodGame.h"
 
 int main()
 {

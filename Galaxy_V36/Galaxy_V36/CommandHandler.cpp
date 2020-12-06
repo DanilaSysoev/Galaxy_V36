@@ -1,5 +1,8 @@
 #include "CommandHandler.h"
 
-galaxy_v36::game::CommandHandler::~CommandHandler()
+using namespace galaxy_v36::game;
+
+
+CommandHandler::~CommandHandler()
 {
 }

@@ -41,9 +41,11 @@ namespace galaxy_v36
 			Game();
 
 			void run();
-			void initialize( DrawManager* drawManager
-				           , CommandProcessor* commandProcesor
-				           , UpdateManager* updateManager);
+			void initialize(
+				DrawManager* drawManager, 
+				CommandProcessor* commandProcesor,
+				UpdateManager* updateManager
+			);
 
 			virtual galaxy_v36::entities::Galaxy* getGalaxy() = 0;
 

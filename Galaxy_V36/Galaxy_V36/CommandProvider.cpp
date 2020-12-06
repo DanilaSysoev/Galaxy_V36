@@ -1,5 +1,8 @@
 #include "CommandProvider.h"
 
-galaxy_v36::game::CommandProvider::~CommandProvider()
+using namespace galaxy_v36::game;
+
+
+CommandProvider::~CommandProvider()
 {
 }

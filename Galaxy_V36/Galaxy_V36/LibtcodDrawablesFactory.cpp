@@ -6,12 +6,20 @@
 #include "LibtcodSpaceBodyDrawable.h"
 #include "LibtcodCamera.h"
 
-galaxy_v36::LibtcodDrawablesFactory::LibtcodDrawablesFactory()
+using std::string;
+using namespace galaxy_v36;
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::service;
+using namespace galaxy_v36::entities;
+using namespace galaxy_v36::game::libtcod;
+
+
+LibtcodDrawablesFactory::LibtcodDrawablesFactory()
     : commandHandlers()
 {
 }
 
-void galaxy_v36::LibtcodDrawablesFactory::prepareBuilding()
+void LibtcodDrawablesFactory::prepareBuilding()
 {
     std::ifstream in(getDrawablesConfigFileName());
 
@@ -23,66 +31,74 @@ void galaxy_v36::LibtcodDrawablesFactory::prepareBuilding()
     in.close();
 }
 
-galaxy_v36::game::Camera*
-galaxy_v36::LibtcodDrawablesFactory::getGalaxyCamera()
+Camera* LibtcodDrawablesFactory::getGalaxyCamera()
 {
-    auto camera = new game::libtcod::LibtcodCamera(service::Vector::getZero());
-    camera->setOrder(drawablesConfigs[GALAXY_KEYWORD][CAMERA_KEYWORD][HANDLER_ORDER_KEYWORD]);
+    auto camera = new LibtcodCamera(Vector::getZero());
+    camera->setOrder(
+        drawablesConfigs[GALAXY_KEYWORD]
+                        [CAMERA_KEYWORD]
+                        [HANDLER_ORDER_KEYWORD]
+    );
 
-    commandHandlers[drawablesConfigs[GALAXY_KEYWORD][CAMERA_KEYWORD][HANDLER_TAG_KEYWORD]] = camera;
+    auto handlerTag = drawablesConfigs[GALAXY_KEYWORD]
+                                      [CAMERA_KEYWORD]
+                                      [HANDLER_TAG_KEYWORD];
+
+    commandHandlers[handlerTag] = camera;
 
     return camera;
 }
 
-galaxy_v36::game::GalaxyDrawable*
-galaxy_v36::LibtcodDrawablesFactory::getGalaxyDrawable(entities::Galaxy* galaxy)
+GalaxyDrawable* LibtcodDrawablesFactory::getGalaxyDrawable(Galaxy* galaxy)
 {
-    return new game::libtcod::LibtcodGalaxyDrawable(getGalaxyCamera(), galaxy);
+    return new LibtcodGalaxyDrawable(getGalaxyCamera(), galaxy);
 }
 
-galaxy_v36::game::Camera*
-galaxy_v36::LibtcodDrawablesFactory::getStarSystemCamera()
+Camera* LibtcodDrawablesFactory::getStarSystemCamera()
 {
     return nullptr;
 }
 
-galaxy_v36::game::StarSystemDrawable*
-galaxy_v36::LibtcodDrawablesFactory::getStarSystemDrawable(entities::StarSystem* starSystem)
+StarSystemDrawable* LibtcodDrawablesFactory::getStarSystemDrawable(
+    StarSystem* starSystem
+)
 {
-    return new game::libtcod::LibtcodStarSystemDrawable(getStarSystemCamera(), starSystem);
+    return new LibtcodStarSystemDrawable(
+        getStarSystemCamera(), 
+        starSystem
+    );
 }
 
-galaxy_v36::game::Camera*
-galaxy_v36::LibtcodDrawablesFactory::getSpaceBodyCamera()
+Camera* LibtcodDrawablesFactory::getSpaceBodyCamera()
 {
     return nullptr;
 }
 
-galaxy_v36::game::SpaceBodyDrawable*
-galaxy_v36::LibtcodDrawablesFactory::getSpaceBodyDrawable(entities::SpaceBody* spaceBody, int priority)
+SpaceBodyDrawable* LibtcodDrawablesFactory::getSpaceBodyDrawable(
+    SpaceBody* spaceBody, 
+    int priority
+)
 {
-    return new game::libtcod::LibtcodSpaceBodyDrawable(getSpaceBodyCamera(), spaceBody, priority);
+    return new LibtcodSpaceBodyDrawable(
+        getSpaceBodyCamera(), 
+        spaceBody, 
+        priority
+    );
 }
 
-galaxy_v36::game::CommandHandler*
-galaxy_v36::LibtcodDrawablesFactory::getHandler(const std::string& tag)
+CommandHandler* LibtcodDrawablesFactory::getHandler(const std::string& tag)
 {
     if (commandHandlers.find(tag) != commandHandlers.end())
         return commandHandlers[tag];
     return nullptr;
 }
 
-std::string
-galaxy_v36::LibtcodDrawablesFactory::getDrawablesConfigFileName() const
+string LibtcodDrawablesFactory::getDrawablesConfigFileName() const
 {
     return "./resources/configs/drawables.json";
 }
 
-const std::string
-galaxy_v36::LibtcodDrawablesFactory::GALAXY_KEYWORD = "galaxy";
-const std::string
-galaxy_v36::LibtcodDrawablesFactory::CAMERA_KEYWORD = "camera";
-const std::string
-galaxy_v36::LibtcodDrawablesFactory::HANDLER_TAG_KEYWORD = "handlerTag";
-const std::string
-galaxy_v36::LibtcodDrawablesFactory::HANDLER_ORDER_KEYWORD = "handlerOrder";
+const string LibtcodDrawablesFactory::GALAXY_KEYWORD = "galaxy";
+const string LibtcodDrawablesFactory::CAMERA_KEYWORD = "camera";
+const string LibtcodDrawablesFactory::HANDLER_TAG_KEYWORD = "handlerTag";
+const string LibtcodDrawablesFactory::HANDLER_ORDER_KEYWORD = "handlerOrder";

@@ -11,7 +11,10 @@ namespace galaxy_v36
 		class MovementCommand : public CommonCommand
 		{
 		public:
-			MovementCommand(const std::string& name, const MovementCommandArguments& arguments);
+			MovementCommand(
+				const std::string& name, 
+				const MovementCommandArguments& arguments
+			);
 
 			virtual const CommandArguments& getArguments() override;
 

@@ -26,7 +26,11 @@ namespace galaxy_v36
 	class LibtcodGameFactory : public GameFactory
 	{
 	public:
-		LibtcodGameFactory(GalaxyFactory* galaxyFactory, DrawablesFactory* drawablesFactory);
+		LibtcodGameFactory(
+			GalaxyFactory* galaxyFactory,
+			DrawablesFactory* drawablesFactory
+		);
+
 		virtual ~LibtcodGameFactory();
 
 

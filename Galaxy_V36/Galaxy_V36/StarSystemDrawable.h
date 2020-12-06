@@ -15,7 +15,11 @@ namespace galaxy_v36
 		class StarSystemDrawable : public Drawable
 		{
 		public:
-			StarSystemDrawable(Camera* camera, entities::StarSystem* starSystem);
+			StarSystemDrawable(
+				Camera* camera, 
+				entities::StarSystem* starSystem
+			);
+
 			entities::StarSystem* getStarSystem();
 			Camera* getCamera() const override;
 

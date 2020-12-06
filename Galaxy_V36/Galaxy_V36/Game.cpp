@@ -5,16 +5,21 @@
 #include "Updatable.h"
 #include "Drawable.h"
 
-galaxy_v36::game::Game::Game()
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+
+
+Game::Game()
 	: drawManager(nullptr)
 	, commandProcessor(nullptr)
 	, updateManager(nullptr)
 {}
 
-void 
-galaxy_v36::game::Game::initialize( game::DrawManager* drawManager
-	                                , game::CommandProcessor* commandProcesor
-	                                , game::UpdateManager* updateManager)
+void Game::initialize(
+	game::DrawManager* drawManager,
+	game::CommandProcessor* commandProcesor,
+	game::UpdateManager* updateManager
+)
 {
 	this->drawManager = drawManager;
 	this->commandProcessor = commandProcesor;
@@ -27,24 +32,22 @@ galaxy_v36::game::Game::initialize( game::DrawManager* drawManager
 	game = this;
 }
 
-galaxy_v36::game::DrawManager*
-galaxy_v36::game::Game::getDrawManager()
+DrawManager* Game::getDrawManager()
 {
 	return drawManager;
 }
-galaxy_v36::game::CommandProcessor*
-galaxy_v36::game::Game::getCommandProcessor()
+
+CommandProcessor* Game::getCommandProcessor()
 {
 	return commandProcessor;
 }
-galaxy_v36::game::UpdateManager*
-galaxy_v36::game::Game::getUpdateManager()
+
+UpdateManager* Game::getUpdateManager()
 {
 	return updateManager;
 }
 
-void 
-galaxy_v36::game::Game::run()
+void Game::run()
 {
 	prepareGame();
 	while (!isGameEnd())
@@ -56,8 +59,7 @@ galaxy_v36::game::Game::run()
 	finishGame();
 }
 
-void 
-galaxy_v36::game::Game::drawAll()
+void Game::drawAll()
 {
 	drawManager->prepareDrawing();
 	for (auto drawable : getDravables()) {
@@ -66,8 +68,7 @@ galaxy_v36::game::Game::drawAll()
 	drawManager->flush();
 }
 
-void 
-galaxy_v36::game::Game::updateAll()
+void Game::updateAll()
 {
 	updateManager->prepareUpdate();
 	for (auto updatable : getUpdatables()) {
@@ -76,29 +77,29 @@ galaxy_v36::game::Game::updateAll()
 	updateManager->endUpdate();
 }
 
-galaxy_v36::game::Game::~Game() 
+Game::~Game() 
 {
 	delete drawManager;
 	delete updateManager;
 	delete commandProcessor;
 }
 
-galaxy_v36::game::Game*
-galaxy_v36::game::Game::getGame()
+Game* Game::getGame()
 {
 	return Game::game;
 }
 
-bool
-galaxy_v36::game::DrawableComparator::operator()(Drawable* left, Drawable* right) const
+bool DrawableComparator::operator()(Drawable* left, Drawable* right) const
 {
 	return left->getDrawPriority() > right->getDrawPriority();
 }
 
-bool
-galaxy_v36::game::UpdatableComparator::operator()(Updatable*& left, Updatable*& right) const
+bool UpdatableComparator::operator()(
+	Updatable*& left,
+	Updatable*& right
+) const
 {
 	return left->getUpdatePriority() > right->getUpdatePriority();
 }
 
-galaxy_v36::game::Game* galaxy_v36::game::Game::game = nullptr;
+Game* Game::game = nullptr;

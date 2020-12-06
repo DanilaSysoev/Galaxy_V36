@@ -1,7 +1,14 @@
 #include "SpaceBody.h"
 #include "StarSystem.h"
 
-galaxy_v36::entities::StarSystem::StarSystem(const std::string& name, const service::Vector& position, std::vector<SpaceBody*> spaceBodies)
+using namespace galaxy_v36::service;
+using namespace galaxy_v36::entities;
+
+StarSystem::StarSystem(
+	const std::string& name, 
+	const Vector& position,
+	std::vector<SpaceBody*> spaceBodies
+)
 	: name(name)
 	, position(position)
 	, spaceBodies(spaceBodies)
@@ -14,32 +21,27 @@ galaxy_v36::entities::StarSystem::StarSystem(const std::string& name, const serv
 	}
 }
 
-std::string
-galaxy_v36::entities::StarSystem::getName() const
+std::string StarSystem::getName() const
 {
 	return name;
 }
 
-galaxy_v36::service::Vector 
-galaxy_v36::entities::StarSystem::getPosition() const
+Vector StarSystem::getPosition() const
 {
 	return position;
 }
 
-int 
-galaxy_v36::entities::StarSystem::getSpaceBodiesCount() const
+int StarSystem::getSpaceBodiesCount() const
 {
 	return spaceBodies.size();
 }
 
-galaxy_v36::entities::SpaceBody* 
-galaxy_v36::entities::StarSystem::getSpaceBody(int index) const
+SpaceBody* StarSystem::getSpaceBody(int index) const
 {
 	return spaceBodies[index];
 }
 
-galaxy_v36::entities::SpaceBody*
-galaxy_v36::entities::StarSystem::getSpaceBody(const std::string& name) const
+SpaceBody* StarSystem::getSpaceBody(const std::string& name) const
 {
 	auto spaceBodyIterator = spaceBodiesNamed.find(name);
 	if (spaceBodyIterator == spaceBodiesNamed.end())
@@ -48,8 +50,7 @@ galaxy_v36::entities::StarSystem::getSpaceBody(const std::string& name) const
 	return spaceBodyIterator->second;
 }
 
-galaxy_v36::entities::SpaceBody*
-galaxy_v36::entities::StarSystem::getSpaceBody(const service::Vector& position) const
+SpaceBody* StarSystem::getSpaceBody(const service::Vector& position) const
 {
 	auto spaceBodyIterator = spaceBodiesPositioned.find(position);
 	if (spaceBodyIterator == spaceBodiesPositioned.end())
@@ -58,7 +59,7 @@ galaxy_v36::entities::StarSystem::getSpaceBody(const service::Vector& position) 
 	return spaceBodyIterator->second;
 }
 
-galaxy_v36::entities::StarSystem::~StarSystem()
+StarSystem::~StarSystem()
 {
 	for (auto spaceBody : spaceBodies)
 		delete spaceBody;

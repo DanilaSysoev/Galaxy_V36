@@ -15,7 +15,11 @@ namespace galaxy_v36
 		class SpaceBodyDrawable : public Drawable
 		{
 		public:
-			SpaceBodyDrawable(Camera* camera, entities::SpaceBody* spaceBody);
+			SpaceBodyDrawable(
+				Camera* camera, 
+				entities::SpaceBody* spaceBody
+			);
+
 			entities::SpaceBody* getSpaceBody();
 			Camera* getCamera() const override;
 

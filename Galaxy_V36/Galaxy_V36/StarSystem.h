@@ -14,29 +14,35 @@ namespace galaxy_v36
 	{
 		class SpaceBody;
 
+		using namespace service;
+
 		class StarSystem
 		{
 		public:
-			StarSystem(const std::string& name, const service::Vector& position, std::vector<SpaceBody*> spaceBodies);
+			StarSystem(
+				const std::string& name,
+				const Vector& position,
+				std::vector<SpaceBody*> spaceBodies
+			);
 
 			std::string getName() const;
-			service::Vector getPosition() const;
+			Vector getPosition() const;
 
 			int getSpaceBodiesCount() const;
 
 			SpaceBody* getSpaceBody(int index) const;
 			SpaceBody* getSpaceBody(const std::string& name) const;
-			SpaceBody* getSpaceBody(const service::Vector& position) const;
+			SpaceBody* getSpaceBody(const Vector& position) const;
 
 			~StarSystem();
 
 		private:
 			std::vector<SpaceBody*> spaceBodies;
 			std::map<std::string, SpaceBody*> spaceBodiesNamed;
-			std::map<service::Vector, SpaceBody*> spaceBodiesPositioned;
+			std::map<Vector, SpaceBody*> spaceBodiesPositioned;
 
 			std::string name;
-			service::Vector position;
+			Vector position;
 		};
 	}
 }

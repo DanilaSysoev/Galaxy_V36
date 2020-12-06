@@ -2,8 +2,11 @@
 #include "Galaxy.h"
 #include "libtcod.hpp"
 
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+using namespace galaxy_v36::game::libtcod;
 
-galaxy_v36::game::libtcod::LibtcodGame::LibtcodGame(entities::Galaxy* galaxy)
+LibtcodGame::LibtcodGame(Galaxy* galaxy)
     : Game()
     , drawables()
     , updatables()
@@ -13,51 +16,45 @@ galaxy_v36::game::libtcod::LibtcodGame::LibtcodGame(entities::Galaxy* galaxy)
     switchToGameplay(Gameplay::GALAXY_LEVEL);
 }
 
-galaxy_v36::game::libtcod::LibtcodGame::~LibtcodGame()
+LibtcodGame::~LibtcodGame()
 {
     if (galaxy != nullptr)
         delete galaxy;
 }
 
 
-void 
-galaxy_v36::game::libtcod::LibtcodGame::prepareGame()
+void LibtcodGame::prepareGame()
 {
     TCODConsole::initRoot(128, 64, "Galaxy V64");
     TCODSystem::setFps(60);
 }
 
-void galaxy_v36::game::libtcod::LibtcodGame::finishGame()
+void LibtcodGame::finishGame()
 {
 }
 
-bool 
-galaxy_v36::game::libtcod::LibtcodGame::isGameEnd() const
+bool LibtcodGame::isGameEnd() const
 {
     return TCODConsole::root->isWindowClosed();
 }
 
 
-galaxy_v36::game::Drawables& 
-galaxy_v36::game::libtcod::LibtcodGame::getDravables()
+Drawables& LibtcodGame::getDravables()
 {
     return drawables;
 }
 
-galaxy_v36::game::Updatables& 
-galaxy_v36::game::libtcod::LibtcodGame::getUpdatables()
+Updatables& LibtcodGame::getUpdatables()
 {
     return updatables;
 }
 
-galaxy_v36::entities::Galaxy*
-galaxy_v36::game::libtcod::LibtcodGame::getGalaxy()
+Galaxy* LibtcodGame::getGalaxy()
 {
     return galaxy;
 }
 
-void
-galaxy_v36::game::libtcod::LibtcodGame::switchToGameplay(const Gameplay& gameplay)
+void LibtcodGame::switchToGameplay(const Gameplay& gameplay)
 {
     switch (gameplay)
     {

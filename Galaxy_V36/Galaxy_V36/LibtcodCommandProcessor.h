@@ -22,12 +22,28 @@ namespace galaxy_v36
 			public:
 				LibtcodCommandProcessor(CommandProvider* commandProvider);
 
-				virtual void processCommands()                                                      override;
-				virtual void attachHandler(Command* command, CommandHandler* handler)               override;
-				virtual void attachHandler(const std::string& commandName, CommandHandler* handler) override;
-				virtual void removeHandler(Command* command, CommandHandler* handler)               override;
-				virtual void removeHandler(const std::string& commandName, CommandHandler* handler) override;
-				virtual void removeAllHandlers(const std::string& commandName)                      override;
+				virtual void processCommands() override;
+
+				virtual void attachHandler(
+					Command* command, 
+					CommandHandler* handler
+				) override;
+				virtual void attachHandler(
+					const std::string& commandName,
+					CommandHandler* handler
+				) override;
+				virtual void removeHandler(
+					Command* command, 
+					CommandHandler* handler
+				) override;
+				virtual void removeHandler(
+					const std::string& commandName, 
+					CommandHandler* handler
+				) override;
+				virtual void removeAllHandlers(
+					const std::string& commandName
+				) override;
+
 				virtual Command* getCommand(const std::string& commandName)                         override;
 
 				void assignKey(char key, std::string commandName);

@@ -1,5 +1,7 @@
 #include "Updatable.h"
 
-galaxy_v36::game::Updatable::~Updatable()
+using namespace galaxy_v36::game;
+
+Updatable::~Updatable()
 {
 }

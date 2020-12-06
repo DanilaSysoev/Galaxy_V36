@@ -1,5 +1,8 @@
 #include "CommandArguments.h"
 
-galaxy_v36::game::CommandArguments::~CommandArguments()
+using namespace galaxy_v36::game;
+
+
+CommandArguments::~CommandArguments()
 {
 }

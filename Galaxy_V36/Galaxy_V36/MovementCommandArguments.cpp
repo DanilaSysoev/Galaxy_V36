@@ -1,12 +1,17 @@
 #include "MovementCommandArguments.h"
 
-galaxy_v36::game::MovementCommandArguments::MovementCommandArguments(const service::Direction& direction)
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::service;
+
+
+MovementCommandArguments::MovementCommandArguments(
+    const Direction& direction
+)
     : direction(direction)
 {
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::game::MovementCommandArguments::getDirection() const
+const Direction& MovementCommandArguments::getDirection() const
 {
     return direction;
 }

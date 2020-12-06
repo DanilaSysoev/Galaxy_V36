@@ -40,6 +40,15 @@ namespace galaxy_v36
 			static const Direction& downLeft;
 			static const Direction& left;
 			static const Direction& upLeft;
+
+			static const std::string UP_STRING;
+			static const std::string UP_RIGHT_STRING;
+			static const std::string RIGHT_STRING;
+			static const std::string DOWN_RIGHT_STRING;
+			static const std::string DOWN_STRING;
+			static const std::string DOWN_LEFT_STRING;
+			static const std::string LEFT_STRING;
+			static const std::string UP_LEFT_STRING;
 		};
 	}
 }

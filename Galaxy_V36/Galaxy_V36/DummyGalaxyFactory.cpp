@@ -9,9 +9,12 @@
 #include "StarSystem.h"
 #include "Vector.h"
 
+using namespace galaxy_v36;
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
 
-galaxy_v36::entities::Galaxy* 
-galaxy_v36::DummyGalaxyFactory::buildGalaxy(DrawablesFactory* drawablesFactory)
+
+Galaxy* DummyGalaxyFactory::buildGalaxy(DrawablesFactory* drawablesFactory)
 {
     const int STAR_SYSTEMS_COUNT = 10;
     const int MIN_STAR_SYSTEM_X_POS = 5;
@@ -21,14 +24,24 @@ galaxy_v36::DummyGalaxyFactory::buildGalaxy(DrawablesFactory* drawablesFactory)
 
     srand(time(nullptr));
 
-    std::vector<entities::StarSystem*> starSystems;
+    std::vector<StarSystem*> starSystems;
 
     for (int i = 0; i < STAR_SYSTEMS_COUNT; ++i)
     {
-        int x = rand() % (MAX_STAR_SYSTEM_X_POS - MIN_STAR_SYSTEM_X_POS) + MIN_STAR_SYSTEM_X_POS;
-        int y = rand() % (MAX_STAR_SYSTEM_Y_POS - MIN_STAR_SYSTEM_Y_POS) + MIN_STAR_SYSTEM_Y_POS;
+        int x = 
+            rand() % (MAX_STAR_SYSTEM_X_POS - MIN_STAR_SYSTEM_X_POS) +
+            MIN_STAR_SYSTEM_X_POS;
+        int y =
+            rand() % (MAX_STAR_SYSTEM_Y_POS - MIN_STAR_SYSTEM_Y_POS) + 
+            MIN_STAR_SYSTEM_Y_POS;
 
-        starSystems.push_back(new entities::StarSystem("S_" + std::to_string(i), service::Vector(x, y), std::vector<entities::SpaceBody*>()));
+        starSystems.push_back(
+            new StarSystem(
+                "S_" + std::to_string(i), 
+                service::Vector(x, y), 
+                std::vector<entities::SpaceBody*>()
+            )
+        );
     }
 
     auto galaxy = new entities::Galaxy(starSystems);

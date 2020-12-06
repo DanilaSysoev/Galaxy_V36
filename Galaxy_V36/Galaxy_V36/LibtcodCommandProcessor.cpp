@@ -6,8 +6,13 @@
 #include "Direction.h"
 #include "libtcod.hpp"
 
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::game::libtcod;
 
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::LibtcodCommandProcessor(CommandProvider* commandProvider)
+
+LibtcodCommandProcessor::LibtcodCommandProcessor(
+	CommandProvider* commandProvider
+)
 	: commands()
 {
 	auto commandsTmp = commandProvider->getCommands();
@@ -16,8 +21,7 @@ galaxy_v36::game::libtcod::LibtcodCommandProcessor::LibtcodCommandProcessor(Comm
 		commands[command->getName()] = command;
 }
 
-void
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::processCommands()
+void LibtcodCommandProcessor::processCommands()
 {
 	TCOD_key_t key;
 	TCODSystem::waitForEvent(TCOD_EVENT_KEY_PRESS, &key, nullptr, false);
@@ -25,38 +29,49 @@ galaxy_v36::game::libtcod::LibtcodCommandProcessor::processCommands()
 		keyAssigns[key.c]->execute();
 }
 
-void 
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::attachHandler(Command* command, CommandHandler* handler)
+void LibtcodCommandProcessor::attachHandler(
+	Command* command,
+	CommandHandler* handler
+)
 {
 	attachHandler(command->getName(), handler);
 }
 
-void 
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::attachHandler(const std::string& commandName, CommandHandler* handler)
+void LibtcodCommandProcessor::attachHandler(
+	const std::string& commandName,
+	CommandHandler* handler
+)
 {
 	if (commands.find(commandName) != commands.end())
 		commands[commandName]->addHandler(handler);
 }
 
-void galaxy_v36::game::libtcod::LibtcodCommandProcessor::removeHandler(Command* command, CommandHandler* handler)
+void LibtcodCommandProcessor::removeHandler(
+	Command* command, 
+	CommandHandler* handler
+)
 {
 	removeHandler(command->getName(), handler);
 }
 
-void galaxy_v36::game::libtcod::LibtcodCommandProcessor::removeHandler(const std::string& commandName, CommandHandler* handler)
+void LibtcodCommandProcessor::removeHandler(
+	const std::string& commandName, 
+	CommandHandler* handler
+)
 {
 	if (commands.find(commandName) != commands.end())
 		commands[commandName]->removeHandler(handler);
 }
 
-void galaxy_v36::game::libtcod::LibtcodCommandProcessor::removeAllHandlers(const std::string& commandName)
+void LibtcodCommandProcessor::removeAllHandlers(
+	const std::string& commandName
+)
 {
 	if (commands.find(commandName) != commands.end())
 		commands[commandName]->removeAllHandlers();
 }
 
-galaxy_v36::game::Command*
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::getCommand(const std::string& commandName)
+Command* LibtcodCommandProcessor::getCommand(const std::string& commandName)
 {
 	if (commands.find(commandName) != commands.end())
 		return commands[commandName];
@@ -64,8 +79,7 @@ galaxy_v36::game::libtcod::LibtcodCommandProcessor::getCommand(const std::string
 	return nullptr;
 }
 
-void
-galaxy_v36::game::libtcod::LibtcodCommandProcessor::assignKey(char key, std::string commandName)
+void LibtcodCommandProcessor::assignKey(char key, std::string commandName)
 {
 	keyAssigns[key] = getCommand(commandName);
 }

@@ -16,9 +16,13 @@ namespace galaxy_v36
 				LibtcodCamera(const service::Vector& position);
 
 				virtual service::Vector getPosition() override;
-				virtual void moveTo(const service::Direction& direction) override;
 
-				virtual void execute(const CommandArguments& arguments) override;
+				virtual void 
+					moveTo(const service::Direction& direction) override;
+
+				virtual void 
+					execute(const CommandArguments& arguments) override;
+
 				virtual int getOrder() const override;
 
 				void setOrder(int order);

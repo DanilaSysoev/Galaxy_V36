@@ -1,97 +1,106 @@
 #include "Direction.h"
 
-galaxy_v36::service::Vector
-galaxy_v36::service::Direction::getPositionDelta() const
+using namespace galaxy_v36::service;
+
+
+Vector Direction::getPositionDelta() const
 {
 	return posiotionDelta;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getOpposite() const
+const Direction& Direction::getOpposite() const
 {
 	return opposite;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getUp()
+const Direction& Direction::getUp()
 {
 	return up;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getUpRight()
+const Direction& Direction::getUpRight()
 {
 	return upRight;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getRight()
+const Direction& Direction::getRight()
 {
 	return right;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getDownRight()
+const Direction& Direction::getDownRight()
 {
 	return downRight;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getDown()
+const Direction& Direction::getDown()
 {
 	return down;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getDownLeft()
+const Direction& Direction::getDownLeft()
 {
 	return downLeft;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getLeft()
+const Direction& Direction::getLeft()
 {
 	return left;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::getUpLeft()
+const Direction& Direction::getUpLeft()
 {
 	return upLeft;
 }
 
-const galaxy_v36::service::Direction&
-galaxy_v36::service::Direction::get(const std::string& direction)
+const Direction& Direction::get(const std::string& direction)
 {
-	if (direction == "Up")
+	if (direction == UP_STRING)
 		return getUp();
-	if (direction == "UpRight")
+	if (direction == UP_RIGHT_STRING)
 		return getUpRight();
-	if (direction == "Right")
+	if (direction == RIGHT_STRING)
 		return getRight();
-	if (direction == "DownRight")
+	if (direction == DOWN_RIGHT_STRING)
 		return getDownRight();
-	if (direction == "Down")
+	if (direction == DOWN_STRING)
 		return getDown();
-	if (direction == "DownLeft")
+	if (direction == DOWN_LEFT_STRING)
 		return getDownLeft();
-	if (direction == "Left")
+	if (direction == LEFT_STRING)
 		return getLeft();
 
 	return getUpLeft();
 }
 
-galaxy_v36::service::Direction::Direction(const Vector& posiotionDelta, const Direction& opposite)
+Direction::Direction(const Vector& posiotionDelta, const Direction& opposite)
 	: posiotionDelta(posiotionDelta)
 	, opposite(opposite)
 {
 }
 
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::up        = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(0,  -1), galaxy_v36::service::Direction::down);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::upRight   = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(1,  -1), galaxy_v36::service::Direction::downLeft);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::right     = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(1,   0), galaxy_v36::service::Direction::left);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::downRight = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(1,   1), galaxy_v36::service::Direction::upLeft);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::down      = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(0,   1), galaxy_v36::service::Direction::up);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::downLeft  = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(-1,  1), galaxy_v36::service::Direction::upRight);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::left      = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(-1,  0), galaxy_v36::service::Direction::right);
-const galaxy_v36::service::Direction& galaxy_v36::service::Direction::upLeft    = galaxy_v36::service::Direction::Direction(galaxy_v36::service::Vector(-1, -1), galaxy_v36::service::Direction::downRight);
+const Direction& Direction::up =
+    Direction::Direction(Vector(0,  -1), Direction::down);
+const Direction& Direction::upRight =
+    Direction::Direction(Vector(1,  -1), Direction::downLeft);
+const Direction& Direction::right =
+    Direction::Direction(Vector(1,   0), Direction::left);
+const Direction& Direction::downRight =
+    Direction::Direction(Vector(1,   1), Direction::upLeft);
+const Direction& Direction::down =
+    Direction::Direction(Vector(0,   1), Direction::up);
+const Direction& Direction::downLeft =
+    Direction::Direction(Vector(-1,  1), Direction::upRight);
+const Direction& Direction::left =
+    Direction::Direction(Vector(-1,  0), Direction::right);
+const Direction& Direction::upLeft =
+    Direction::Direction(Vector(-1, -1), Direction::downRight);
+
+const std::string Direction::UP_STRING = "Up";
+const std::string Direction::UP_RIGHT_STRING = "UpRight";
+const std::string Direction::RIGHT_STRING = "Right";
+const std::string Direction::DOWN_RIGHT_STRING = "DownRight";
+const std::string Direction::DOWN_STRING = "Down";
+const std::string Direction::DOWN_LEFT_STRING = "DownLeft";
+const std::string Direction::LEFT_STRING = "Left";
+const std::string Direction::UP_LEFT_STRING = "UpLeft";

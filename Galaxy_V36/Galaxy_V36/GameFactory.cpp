@@ -1,8 +1,11 @@
 #include "GameFactory.h"
 #include "Game.h"
 
-galaxy_v36::game::Game* 
-galaxy_v36::GameFactory::createGame()
+using namespace galaxy_v36;
+using namespace galaxy_v36::game;
+
+
+Game* GameFactory::createGame()
 {
 	prepareBuilding();
 
@@ -18,5 +21,6 @@ galaxy_v36::GameFactory::createGame()
 	return game;
 }
 
-galaxy_v36::GameFactory::~GameFactory()
-{}
+GameFactory::~GameFactory()
+{
+}

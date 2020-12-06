@@ -1,25 +1,30 @@
 #include "StarSystemDrawable.h"
 #include "Camera.h"
 
-galaxy_v36::game::StarSystemDrawable::StarSystemDrawable(Camera* camera, entities::StarSystem* starSystem)
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+
+
+StarSystemDrawable::StarSystemDrawable(
+	Camera* camera,
+	StarSystem* starSystem
+)
 	: camera(camera)
 	, starSystem(starSystem)
 {
 }
 
-galaxy_v36::entities::StarSystem*
-galaxy_v36::game::StarSystemDrawable::getStarSystem()
+StarSystem* StarSystemDrawable::getStarSystem()
 {
 	return starSystem;
 }
 
-galaxy_v36::game::Camera*
-galaxy_v36::game::StarSystemDrawable::getCamera() const
+Camera* StarSystemDrawable::getCamera() const
 {
 	return camera;
 }
 
-galaxy_v36::game::StarSystemDrawable::~StarSystemDrawable()
+StarSystemDrawable::~StarSystemDrawable()
 {
 	delete camera;
 }

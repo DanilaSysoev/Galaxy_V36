@@ -1,20 +1,26 @@
 #include "LibtcodStarSystemDrawable.h"
 
-galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::LibtcodStarSystemDrawable(Camera* camera, entities::StarSystem* starSystem)
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+using namespace galaxy_v36::game::libtcod;
+
+LibtcodStarSystemDrawable::LibtcodStarSystemDrawable(
+    Camera* camera, 
+    StarSystem* starSystem
+)
     : StarSystemDrawable(camera, starSystem)
 {
 }
 
-int
-galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::getDrawPriority() const
+int LibtcodStarSystemDrawable::getDrawPriority() const
 {
     return STAR_SYSTEM_LIBTCOD_HIGHEST_DRAW_PRIORITY;
 }
 
-void
-galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::draw()
+void LibtcodStarSystemDrawable::draw()
 {
     // TODO
 }
 
-const int galaxy_v36::game::libtcod::LibtcodStarSystemDrawable::STAR_SYSTEM_LIBTCOD_HIGHEST_DRAW_PRIORITY = 100000;
+const int
+LibtcodStarSystemDrawable::STAR_SYSTEM_LIBTCOD_HIGHEST_DRAW_PRIORITY = 100000;

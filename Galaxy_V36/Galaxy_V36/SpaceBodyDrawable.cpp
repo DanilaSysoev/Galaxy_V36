@@ -1,25 +1,30 @@
 #include "SpaceBodyDrawable.h"
 #include "Camera.h"
 
-galaxy_v36::game::SpaceBodyDrawable::SpaceBodyDrawable(Camera* camera, entities::SpaceBody* spaceBody)
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::entities;
+
+
+SpaceBodyDrawable::SpaceBodyDrawable(
+	Camera* camera,
+	entities::SpaceBody* spaceBody
+)
 	: camera(camera)
 	, spaceBody(spaceBody)
 {
 }
 
-galaxy_v36::entities::SpaceBody*
-galaxy_v36::game::SpaceBodyDrawable::getSpaceBody()
+SpaceBody* SpaceBodyDrawable::getSpaceBody()
 {
 	return spaceBody;
 }
 
-galaxy_v36::game::Camera*
-galaxy_v36::game::SpaceBodyDrawable::getCamera() const
+Camera* SpaceBodyDrawable::getCamera() const
 {
 	return camera;
 }
 
-galaxy_v36::game::SpaceBodyDrawable::~SpaceBodyDrawable()
+SpaceBodyDrawable::~SpaceBodyDrawable()
 {
 	delete camera;
 }

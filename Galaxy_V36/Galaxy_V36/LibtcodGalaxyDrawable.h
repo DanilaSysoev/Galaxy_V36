@@ -17,7 +17,10 @@ namespace galaxy_v36
 			class LibtcodGalaxyDrawable : public GalaxyDrawable
 			{
 			public:
-				LibtcodGalaxyDrawable(Camera* camera, entities::Galaxy* galaxy);
+				LibtcodGalaxyDrawable(
+					Camera* camera, 
+					entities::Galaxy* galaxy
+				);
 
 				virtual void draw() override;
 				virtual int getDrawPriority() const override;

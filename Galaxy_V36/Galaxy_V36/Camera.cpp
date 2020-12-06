@@ -1,5 +1,8 @@
 #include "Camera.h"
 
-galaxy_v36::game::Camera::~Camera()
+using namespace galaxy_v36::game;
+
+
+Camera::~Camera()
 {
 }

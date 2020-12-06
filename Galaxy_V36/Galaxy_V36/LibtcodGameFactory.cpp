@@ -16,8 +16,17 @@
 #include "Galaxy.h"
 #include "Camera.h"
 
+using namespace galaxy_v36;
+using namespace galaxy_v36::game;
+using namespace galaxy_v36::libtcod;
+using namespace galaxy_v36::service;
+using namespace galaxy_v36::entities;
 
-galaxy_v36::LibtcodGameFactory::LibtcodGameFactory(GalaxyFactory* galaxyFactory, DrawablesFactory* drawablesFactory)
+
+LibtcodGameFactory::LibtcodGameFactory(
+    GalaxyFactory* galaxyFactory, 
+    DrawablesFactory* drawablesFactory
+)
     : galaxyFactory(galaxyFactory)
     , drawablesFactory(drawablesFactory)
     , commandLinks()
@@ -28,53 +37,58 @@ galaxy_v36::LibtcodGameFactory::LibtcodGameFactory(GalaxyFactory* galaxyFactory,
 {
 }
 
-galaxy_v36::LibtcodGameFactory::~LibtcodGameFactory()
+LibtcodGameFactory::~LibtcodGameFactory()
 {
     delete galaxyFactory;
     delete drawablesFactory;
 }
 
-void galaxy_v36::LibtcodGameFactory::prepareBuilding()
+void LibtcodGameFactory::prepareBuilding()
 {
     readJson(getCommandLinksFileName(), commandLinks);
     readJson(getCommandAssignsFileName(), commandAssigns);
 }
 
-galaxy_v36::game::Game* galaxy_v36::LibtcodGameFactory::buildGame()
+Game* LibtcodGameFactory::buildGame()
 {
-    game = new galaxy_v36::game::libtcod::LibtcodGame(galaxyFactory->buildGalaxy(drawablesFactory));
+    game = new libtcod::LibtcodGame(
+        galaxyFactory->buildGalaxy(drawablesFactory)
+    );
     return game;
 }
 
-galaxy_v36::game::UpdateManager* galaxy_v36::LibtcodGameFactory::buildUpdateManager()
+UpdateManager* LibtcodGameFactory::buildUpdateManager()
 {
-    updateManager = new galaxy_v36::game::libtcod::LibtcodUpdateManager();
+    updateManager = new libtcod::LibtcodUpdateManager();
     return updateManager;
 }
 
-galaxy_v36::game::DrawManager* galaxy_v36::LibtcodGameFactory::buildDrawManager()
+DrawManager* LibtcodGameFactory::buildDrawManager()
 {
-    drawManager = new galaxy_v36::game::libtcod::LibtcodDrawManager();
+    drawManager = new libtcod::LibtcodDrawManager();
     return drawManager;
 }
 
-galaxy_v36::game::CommandProcessor* galaxy_v36::LibtcodGameFactory::buildCommandProcessor()
+CommandProcessor* LibtcodGameFactory::buildCommandProcessor()
 {
     auto commandProvider = new game::libtcod::LibtcodCommandProvider();
     commandProvider->readConfig();
-    commandProcessor = new galaxy_v36::game::libtcod::LibtcodCommandProcessor(commandProvider);
+    commandProcessor = new libtcod::LibtcodCommandProcessor(commandProvider);
     delete commandProvider;
 
     return commandProcessor;
 }
 
-void galaxy_v36::LibtcodGameFactory::linkCommands()
+void LibtcodGameFactory::linkCommands()
 {
     for (auto link : commandLinks[LINKS_KEYWORD])
     {
         auto handler = drawablesFactory->getHandler(link[HANDLER_TAG_KEYWORD]);
         if (handler)
-            commandProcessor->attachHandler(link[COMMAND_NAME_KEYWORD], handler);
+            commandProcessor->attachHandler(
+                link[COMMAND_NAME_KEYWORD], 
+                handler
+            );
     }
 
     for (auto assign : commandAssigns[ASSIGNS_KEYWORD])
@@ -82,23 +96,29 @@ void galaxy_v36::LibtcodGameFactory::linkCommands()
         if (assign[TYPE_KEYWORD] == KEYBOARD_COMMAND_TYPE_KEYWORD)
         {
             std::string key = assign[KEY_KEYWORD]; 
-            commandProcessor->assignKey(key[0], assign[COMMAND_NAME_KEYWORD]);
+            commandProcessor->assignKey(
+                key[0], 
+                assign[COMMAND_NAME_KEYWORD]
+            );
         }
     }
 }
 
 std::string
-galaxy_v36::LibtcodGameFactory::getCommandLinksFileName() const
+LibtcodGameFactory::getCommandLinksFileName() const
 {
     return "./resources/configs/command_links.json";
 }
 
-std::string galaxy_v36::LibtcodGameFactory::getCommandAssignsFileName() const
+std::string LibtcodGameFactory::getCommandAssignsFileName() const
 {
     return "./resources/configs/command_assigns.json";
 }
 
-void galaxy_v36::LibtcodGameFactory::readJson(const std::string& filename, nlohmann::json& jsonObject)
+void LibtcodGameFactory::readJson(
+    const std::string& filename, 
+    nlohmann::json& jsonObject
+)
 {
     std::ifstream in(filename);
     if (!in)
@@ -107,18 +127,11 @@ void galaxy_v36::LibtcodGameFactory::readJson(const std::string& filename, nlohm
     in.close();
 }
 
-const std::string 
-galaxy_v36::LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
+const std::string LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
 
-const std::string
-galaxy_v36::LibtcodGameFactory::LINKS_KEYWORD = "links";
-const std::string
-galaxy_v36::LibtcodGameFactory::ASSIGNS_KEYWORD = "assigns";
-const std::string
-galaxy_v36::LibtcodGameFactory::COMMAND_NAME_KEYWORD = "commandName";
-const std::string
-galaxy_v36::LibtcodGameFactory::HANDLER_TAG_KEYWORD = "handlerTag";
-const std::string
-galaxy_v36::LibtcodGameFactory::TYPE_KEYWORD = "type";
-const std::string
-galaxy_v36::LibtcodGameFactory::KEY_KEYWORD = "key";
+const std::string LibtcodGameFactory::LINKS_KEYWORD = "links";
+const std::string LibtcodGameFactory::ASSIGNS_KEYWORD = "assigns";
+const std::string LibtcodGameFactory::COMMAND_NAME_KEYWORD = "commandName";
+const std::string LibtcodGameFactory::HANDLER_TAG_KEYWORD = "handlerTag";
+const std::string LibtcodGameFactory::TYPE_KEYWORD = "type";
+const std::string LibtcodGameFactory::KEY_KEYWORD = "key";
