@@ -41,7 +41,7 @@ namespace galaxy_v36
 			virtual Command* getCommand(const std::string& commandName) = 0;
 
 			Game* getGame();
-			void setGame(Game* game);
+			virtual void initialize(Game* game);
 
 			virtual ~CommandProcessor();
 

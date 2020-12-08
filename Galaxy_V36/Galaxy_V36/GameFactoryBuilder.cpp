@@ -22,7 +22,8 @@ std::shared_ptr<GameFactory> galaxy_v36::buildGameFactory(
 	case GameType::LIBTCOD:
 		return std::make_shared<LibtcodGameFactory>(
 			galaxy_v36::buildGalaxyFactory(galaxyBuildType),
-			galaxy_v36::buildDrawablesFactory(drawablesType));
+			galaxy_v36::buildDrawablesFactory(drawablesType)
+		);
 	}
 
 	return nullptr;

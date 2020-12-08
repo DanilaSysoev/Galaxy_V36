@@ -20,7 +20,7 @@ Game* DrawManager::getGame()
 	return game;
 }
 
-void DrawManager::setGame(Game* game)
+void DrawManager::initialize(Game* game)
 {
 	this->game = game;
 }

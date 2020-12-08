@@ -27,7 +27,7 @@ namespace galaxy_v36
 		virtual game::UpdateManager*    buildUpdateManager()    = 0;
 		virtual game::DrawManager*      buildDrawManager()      = 0;
 		virtual game::CommandProcessor* buildCommandProcessor() = 0;
-		virtual void linkCommands()                             = 0;
+		virtual void postprocess()                              = 0;
 	};
 }
 

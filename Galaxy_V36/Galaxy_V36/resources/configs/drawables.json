@@ -3,6 +3,7 @@
     "camera": {
       "handlerTag": "GalaxyCameraHandler",
       "handlerOrder": 0
-    }
+    },
+    "console":  "game"
   }
 }

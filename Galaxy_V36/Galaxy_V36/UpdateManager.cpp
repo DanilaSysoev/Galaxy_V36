@@ -24,7 +24,7 @@ Game* UpdateManager::getGame()
 	return game;
 }
 
-void UpdateManager::setGame(Game* game)
+void UpdateManager::initialize(Game* game)
 {
 	this->game = game;
 }

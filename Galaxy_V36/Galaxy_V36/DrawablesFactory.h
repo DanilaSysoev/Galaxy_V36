@@ -12,6 +12,7 @@ namespace galaxy_v36
 		class SpaceBodyDrawable;
 		class Camera;
 		class CommandHandler;
+		class DrawManager;
 	}
 
 	namespace entities
@@ -37,7 +38,7 @@ namespace galaxy_v36
 		virtual game::SpaceBodyDrawable*
 			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) = 0;
 
-		virtual game::CommandHandler* getHandler(const std::string& tag)                                 = 0;
+		virtual game::CommandHandler* getHandler(const std::string& tag) = 0;
 
 		virtual ~DrawablesFactory();
 	};

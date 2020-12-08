@@ -25,9 +25,9 @@ void Game::initialize(
 	this->commandProcessor = commandProcesor;
 	this->updateManager = updateManager;
 
-	drawManager->setGame(this);
-	commandProcesor->setGame(this);
-	updateManager->setGame(this);
+	drawManager->initialize(this);
+	commandProcesor->initialize(this);
+	updateManager->initialize(this);
 
 	game = this;
 }

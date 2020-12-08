@@ -18,7 +18,7 @@ namespace galaxy_v36
 
 			void draw(Drawable* drawable);
 			Game* getGame();
-			void setGame(Game* game);
+			virtual void initialize(Game* game);
 
 			virtual ~DrawManager();
 

@@ -1,11 +1,13 @@
 #include <fstream>
 #include <iostream>
 
+#include "JsonConfig.h"
 #include "LibtcodCommandProvider.h"
 #include "MovementCommand.h"
 #include "Direction.h"
 
 using namespace galaxy_v36::game;
+using namespace galaxy_v36::service;
 using namespace galaxy_v36::game::libtcod;
 
 
@@ -15,14 +17,7 @@ LibtcodCommandProvider::LibtcodCommandProvider()
 
 void LibtcodCommandProvider::readConfig()
 {
-    std::ifstream in(getCommandsConfigFileName());
-
-    if (!in)
-        return;
-
-    in >> commandProviderConfig;
-
-    in.close();
+    readJson(getCommandsConfigFileName(), commandProviderConfig);
 
     for (auto commandConfig : commandProviderConfig[COMMANDS_KEYWORD])
     {
@@ -47,7 +42,7 @@ std::vector<Command*> LibtcodCommandProvider::getCommands()
     return commands;
 }
 
-std::string LibtcodCommandProvider::getCommandsConfigFileName() const
+std::string LibtcodCommandProvider::getCommandsConfigFileName()
 {
     return "./resources/configs/commands.json";
 }

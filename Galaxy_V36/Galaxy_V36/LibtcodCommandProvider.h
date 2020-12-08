@@ -27,7 +27,7 @@ namespace galaxy_v36
 				std::vector<Command*> commands;
 				nlohmann::json commandProviderConfig;
 
-				std::string getCommandsConfigFileName() const;
+				static std::string getCommandsConfigFileName();
 
 				static const std::string COMMANDS_KEYWORD;
 				static const std::string NAME_KEYWORD;

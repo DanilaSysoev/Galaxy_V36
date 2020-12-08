@@ -1,10 +1,15 @@
 #include <fstream>
 
+#include "JsonConfig.h"
 #include "LibtcodDrawablesFactory.h"
 #include "LibtcodGalaxyDrawable.h"
 #include "LibtcodStarSystemDrawable.h"
 #include "LibtcodSpaceBodyDrawable.h"
+#include "LibtcodDrawManager.h"
 #include "LibtcodCamera.h"
+
+#include "libtcod.hpp"
+
 
 using std::string;
 using namespace galaxy_v36;
@@ -21,14 +26,7 @@ LibtcodDrawablesFactory::LibtcodDrawablesFactory()
 
 void LibtcodDrawablesFactory::prepareBuilding()
 {
-    std::ifstream in(getDrawablesConfigFileName());
-
-    if (!in)
-        return;
-
-    in >> drawablesConfigs;
-
-    in.close();
+    readJson(getDrawablesConfigFileName(), drawablesConfigs);
 }
 
 Camera* LibtcodDrawablesFactory::getGalaxyCamera()
@@ -38,7 +36,7 @@ Camera* LibtcodDrawablesFactory::getGalaxyCamera()
         drawablesConfigs[GALAXY_KEYWORD]
                         [CAMERA_KEYWORD]
                         [HANDLER_ORDER_KEYWORD]
-    );
+    );    
 
     auto handlerTag = drawablesConfigs[GALAXY_KEYWORD]
                                       [CAMERA_KEYWORD]
@@ -51,7 +49,11 @@ Camera* LibtcodDrawablesFactory::getGalaxyCamera()
 
 GalaxyDrawable* LibtcodDrawablesFactory::getGalaxyDrawable(Galaxy* galaxy)
 {
-    return new LibtcodGalaxyDrawable(getGalaxyCamera(), galaxy);
+    auto galaxyDrawable = new LibtcodGalaxyDrawable(getGalaxyCamera(), galaxy);
+    galaxyDrawable->setConsoleName(
+        drawablesConfigs[GALAXY_KEYWORD][CONSOLE_KEYWORD]
+    );
+    return galaxyDrawable;
 }
 
 Camera* LibtcodDrawablesFactory::getStarSystemCamera()
@@ -93,7 +95,7 @@ CommandHandler* LibtcodDrawablesFactory::getHandler(const std::string& tag)
     return nullptr;
 }
 
-string LibtcodDrawablesFactory::getDrawablesConfigFileName() const
+string LibtcodDrawablesFactory::getDrawablesConfigFileName()
 {
     return "./resources/configs/drawables.json";
 }
@@ -102,3 +104,4 @@ const string LibtcodDrawablesFactory::GALAXY_KEYWORD = "galaxy";
 const string LibtcodDrawablesFactory::CAMERA_KEYWORD = "camera";
 const string LibtcodDrawablesFactory::HANDLER_TAG_KEYWORD = "handlerTag";
 const string LibtcodDrawablesFactory::HANDLER_ORDER_KEYWORD = "handlerOrder";
+const string LibtcodDrawablesFactory::CONSOLE_KEYWORD = "console";

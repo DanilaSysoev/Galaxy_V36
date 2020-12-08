@@ -8,11 +8,17 @@
 
 #include "DrawablesFactory.h"
 
+
 namespace galaxy_v36
 {
 	namespace game
 	{
 		class CommandHandler;
+		
+		namespace libtcod
+		{
+			class LibtcodDrawManager;
+		}
 	}
 
 	using namespace game;
@@ -38,16 +44,18 @@ namespace galaxy_v36
 
 		virtual CommandHandler* getHandler(const std::string& tag) override;
 
+
 	private:
 		nlohmann::json drawablesConfigs;
 		std::map<std::string, CommandHandler*> commandHandlers;
 
-		std::string getDrawablesConfigFileName() const;
+		static std::string getDrawablesConfigFileName();
 
 		static const std::string GALAXY_KEYWORD;
 		static const std::string CAMERA_KEYWORD;
 		static const std::string HANDLER_TAG_KEYWORD;
 		static const std::string HANDLER_ORDER_KEYWORD;
+		static const std::string CONSOLE_KEYWORD;
 	};
 }
 

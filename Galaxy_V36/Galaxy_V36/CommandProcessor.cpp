@@ -8,7 +8,7 @@ Game* CommandProcessor::getGame()
     return game;
 }
 
-void CommandProcessor::setGame(Game* game)
+void CommandProcessor::initialize(Game* game)
 {
     this->game = game;
 }

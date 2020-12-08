@@ -16,7 +16,7 @@ Game* GameFactory::createGame()
 
 	game->initialize(drawManager, commandProcessor, updateManager);
 
-	linkCommands();
+	postprocess();
 
 	return game;
 }

@@ -18,7 +18,7 @@ namespace galaxy_v36
 
 			void update(Updatable* updatable);
 			Game* getGame();
-			void setGame(Game* game);
+			virtual void initialize(Game* game);
 
 			virtual ~UpdateManager();
 

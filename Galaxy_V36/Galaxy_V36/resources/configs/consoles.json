@@ -1,0 +1,23 @@
+{
+  "consoles": 
+  [
+    {
+      "name": "root",
+      "width": 200,
+      "height": 90,
+      "background": [ 64, 64, 64 ],
+      "foreground": [ 255, 255, 255 ],
+      "title": "Galaxy V36"
+    },
+    {
+      "name": "game",
+      "width": 180,
+      "height": 80,
+      "x": 5,
+      "y": 5,
+      "background": [ 0, 0, 0 ],
+      "foreground": [ 255, 255, 255 ],
+      "parent": "root"
+    }
+  ]
+}

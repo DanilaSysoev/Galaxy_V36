@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 
+#include "JsonConfig.h"
 #include "LibtcodGameFactory.h"
 #include "LibtcodGame.h"
 #include "LibtcodDrawManager.h"
@@ -47,6 +48,7 @@ void LibtcodGameFactory::prepareBuilding()
 {
     readJson(getCommandLinksFileName(), commandLinks);
     readJson(getCommandAssignsFileName(), commandAssigns);
+    readJson(getConsolesFileName(), consoles);
 }
 
 Game* LibtcodGameFactory::buildGame()
@@ -79,6 +81,29 @@ CommandProcessor* LibtcodGameFactory::buildCommandProcessor()
     return commandProcessor;
 }
 
+void LibtcodGameFactory::postprocess()
+{
+    linkCommands();
+    assignKeys();
+    setupConsoles();
+}
+
+std::string
+LibtcodGameFactory::getCommandLinksFileName()
+{
+    return "./resources/configs/command_links.json";
+}
+
+std::string LibtcodGameFactory::getCommandAssignsFileName()
+{
+    return "./resources/configs/command_assigns.json";
+}
+
+std::string galaxy_v36::LibtcodGameFactory::getConsolesFileName()
+{
+    return "./resources/configs/consoles.json";
+}
+
 void LibtcodGameFactory::linkCommands()
 {
     for (auto link : commandLinks[LINKS_KEYWORD])
@@ -86,45 +111,89 @@ void LibtcodGameFactory::linkCommands()
         auto handler = drawablesFactory->getHandler(link[HANDLER_TAG_KEYWORD]);
         if (handler)
             commandProcessor->attachHandler(
-                link[COMMAND_NAME_KEYWORD], 
+                link[COMMAND_NAME_KEYWORD],
                 handler
             );
     }
+}
 
+void LibtcodGameFactory::assignKeys()
+{
     for (auto assign : commandAssigns[ASSIGNS_KEYWORD])
     {
         if (assign[TYPE_KEYWORD] == KEYBOARD_COMMAND_TYPE_KEYWORD)
         {
-            std::string key = assign[KEY_KEYWORD]; 
+            std::string key = assign[KEY_KEYWORD];
             commandProcessor->assignKey(
-                key[0], 
+                key[0],
                 assign[COMMAND_NAME_KEYWORD]
             );
         }
     }
 }
 
-std::string
-LibtcodGameFactory::getCommandLinksFileName() const
+void LibtcodGameFactory::setupConsoles()
 {
-    return "./resources/configs/command_links.json";
+    for (auto consoleConfig : consoles[CONSOLES_KEYWORD])
+    {
+        std::string name = consoleConfig[NAME_KEYWORD];
+        if (name == ROOT_CONSOLE_NAME)
+            setupRoot(consoleConfig);
+        else
+            setupConsole(consoleConfig);
+    }
 }
 
-std::string LibtcodGameFactory::getCommandAssignsFileName() const
+void LibtcodGameFactory::setupRoot(const nlohmann::json& consoleConfig)
 {
-    return "./resources/configs/command_assigns.json";
+    std::string name = consoleConfig[NAME_KEYWORD];
+    int width = consoleConfig[WIDTH_KEYWORD];
+    int height = consoleConfig[HEIGHT_KEYWORD];
+    TCODColor background = parseColor(consoleConfig[BACKGROUND_KEYWORD]);
+    TCODColor foreground = parseColor(consoleConfig[FOREGROUND_KEYWORD]);
+
+    std::string title = consoleConfig[TITLE_KEYWORD];
+    TCODConsole::initRoot(width, height, title.c_str());
+    auto console = TCODConsole::root;
+    
+    console->setDefaultBackground(background);
+    console->setDefaultForeground(foreground);
+    
+    drawManager->addConsole(name, console);
 }
 
-void LibtcodGameFactory::readJson(
-    const std::string& filename, 
-    nlohmann::json& jsonObject
-)
+void LibtcodGameFactory::setupConsole(const nlohmann::json& consoleConfig)
 {
-    std::ifstream in(filename);
-    if (!in)
-        return;
-    in >> jsonObject;
-    in.close();
+    std::string name = consoleConfig[NAME_KEYWORD];
+    int width = consoleConfig[WIDTH_KEYWORD];
+    int height = consoleConfig[HEIGHT_KEYWORD];
+    TCODColor background = parseColor(consoleConfig[BACKGROUND_KEYWORD]);
+    TCODColor foreground = parseColor(consoleConfig[FOREGROUND_KEYWORD]);
+
+    auto console = new TCODConsole(width, height);
+
+    console->setDefaultBackground(background);
+    console->setDefaultForeground(foreground);
+    if (consoleConfig.contains(PARENT_KEYWORD))
+    {
+        Vector position = Vector(
+            consoleConfig[X_KEYWORD],
+            consoleConfig[Y_KEYWORD]
+        );
+        std::string parent = consoleConfig[PARENT_KEYWORD];
+        drawManager->addConsole(name, console, position, parent);
+    }
+    else
+        drawManager->addConsole(name, console);
+}
+
+TCODColor LibtcodGameFactory::parseColor(const nlohmann::json& consoleConfig)
+{
+    return TCODColor(
+        static_cast<int>(consoleConfig[0]),
+        static_cast<int>(consoleConfig[1]),
+        static_cast<int>(consoleConfig[2])
+    );
 }
 
 const std::string LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
@@ -135,3 +204,16 @@ const std::string LibtcodGameFactory::COMMAND_NAME_KEYWORD = "commandName";
 const std::string LibtcodGameFactory::HANDLER_TAG_KEYWORD = "handlerTag";
 const std::string LibtcodGameFactory::TYPE_KEYWORD = "type";
 const std::string LibtcodGameFactory::KEY_KEYWORD = "key";
+
+const std::string LibtcodGameFactory::WIDTH_KEYWORD = "width";
+const std::string LibtcodGameFactory::HEIGHT_KEYWORD = "height";
+const std::string LibtcodGameFactory::X_KEYWORD = "x";
+const std::string LibtcodGameFactory::Y_KEYWORD = "y";
+const std::string LibtcodGameFactory::BACKGROUND_KEYWORD = "background";
+const std::string LibtcodGameFactory::FOREGROUND_KEYWORD = "foreground";
+const std::string LibtcodGameFactory::CONSOLES_KEYWORD = "consoles";
+const std::string LibtcodGameFactory::NAME_KEYWORD = "name";
+const std::string LibtcodGameFactory::PARENT_KEYWORD = "parent";
+const std::string LibtcodGameFactory::TITLE_KEYWORD = "title";
+
+const std::string LibtcodGameFactory::ROOT_CONSOLE_NAME = "root";

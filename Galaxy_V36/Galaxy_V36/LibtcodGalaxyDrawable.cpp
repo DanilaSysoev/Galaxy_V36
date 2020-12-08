@@ -1,7 +1,10 @@
 #include "LibtcodGalaxyDrawable.h"
+#include "LibtcodDrawManager.h"
 #include "Galaxy.h"
 #include "StarSystem.h"
 #include "LibtcodCamera.h"
+#include "Game.h"
+
 #include "libtcod.hpp"
 
 using namespace galaxy_v36::game;
@@ -13,6 +16,7 @@ LibtcodGalaxyDrawable::LibtcodGalaxyDrawable(
 	Galaxy* galaxy
 )
 	: GalaxyDrawable(camera, galaxy)
+	, LibtcodDrawablesComponent()
 {
 }
 
@@ -23,20 +27,25 @@ int LibtcodGalaxyDrawable::getDrawPriority() const
 
 void LibtcodGalaxyDrawable::draw()
 {
+	auto console =
+		static_cast<LibtcodDrawManager*>(
+			Game::getGame()->getDrawManager()
+		)->getConsole(getConsoleName());
+
 	for (int i = 0; i < getGalaxy()->getStarSystemsCount(); ++i)
 	{
 		auto position = getGalaxy()->getStarSystem(i)->getPosition();		
-		TCODConsole::root->putChar(
+		console->putChar(
 			position.getX() - getCamera()->getPosition().getX(), 
 			position.getY() - getCamera()->getPosition().getY(), 
 			TCOD_CHAR_LIGHT
 		);
-		TCODConsole::root->setCharForeground(
+		console->setCharForeground(
 			position.getX() - getCamera()->getPosition().getX(), 
 			position.getY() - getCamera()->getPosition().getY(),
 			TCODColor::gold
 		);
-		TCODConsole::root->printf(
+		console->printf(
 			position.getX() - getCamera()->getPosition().getX() + 1,
 			position.getY() - getCamera()->getPosition().getY() + 1,
 			getGalaxy()->getStarSystem(i)->getName().c_str()

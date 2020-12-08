@@ -2,9 +2,8 @@
 #define LIBTCOD_GAME_FACTORY_H
 
 #include <string>
-
-#include "nlohmann/json.hpp"
-
+#include <nlohmann/json.hpp>
+#include "libtcod.hpp"
 #include "GameFactory.h"
 
 namespace galaxy_v36
@@ -40,7 +39,7 @@ namespace galaxy_v36
 		virtual game::UpdateManager*    buildUpdateManager()    override;
 		virtual game::DrawManager*      buildDrawManager()      override;
 		virtual game::CommandProcessor* buildCommandProcessor() override;
-		virtual void                    linkCommands()          override;
+		virtual void                    postprocess()          override;
 
 
 	private:
@@ -49,16 +48,25 @@ namespace galaxy_v36
 
 		nlohmann::json commandLinks;
 		nlohmann::json commandAssigns;
+		nlohmann::json consoles;
 
 		game::libtcod::LibtcodGame*             game;
 		game::libtcod::LibtcodUpdateManager*    updateManager;
 		game::libtcod::LibtcodDrawManager*      drawManager;
 		game::libtcod::LibtcodCommandProcessor* commandProcessor;
 
-		std::string getCommandLinksFileName() const;
-		std::string getCommandAssignsFileName() const;
+		static std::string getCommandLinksFileName();
+		static std::string getCommandAssignsFileName();
+		static std::string getConsolesFileName();
 
-		void readJson(const std::string& filename, nlohmann::json& jsonObject);
+		void linkCommands();
+		void assignKeys();
+		void setupConsoles();
+
+		void setupRoot(const nlohmann::json& consoleConfig);
+		void setupConsole(const nlohmann::json& consoleConfig);
+
+		TCODColor parseColor(const nlohmann::json& consoleConfig);
 
 		static const std::string KEYBOARD_COMMAND_TYPE_KEYWORD;
 
@@ -68,6 +76,19 @@ namespace galaxy_v36
 		static const std::string HANDLER_TAG_KEYWORD;
 		static const std::string TYPE_KEYWORD;
 		static const std::string KEY_KEYWORD;
+
+		static const std::string WIDTH_KEYWORD;
+		static const std::string HEIGHT_KEYWORD;
+		static const std::string X_KEYWORD;
+		static const std::string Y_KEYWORD;
+		static const std::string BACKGROUND_KEYWORD;
+		static const std::string FOREGROUND_KEYWORD;
+		static const std::string TITLE_KEYWORD;
+		static const std::string CONSOLES_KEYWORD;
+		static const std::string NAME_KEYWORD;
+		static const std::string PARENT_KEYWORD;
+
+		static const std::string ROOT_CONSOLE_NAME;
 	};
 }
 
