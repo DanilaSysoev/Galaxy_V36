@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "SpaceBody.h"
 #include "StarSystem.h"
 
@@ -6,19 +8,14 @@ using namespace galaxy_v36::entities;
 
 StarSystem::StarSystem(
 	const std::string& name, 
-	const Vector& position,
-	std::vector<SpaceBody*> spaceBodies
+	const Vector& position
 )
 	: name(name)
 	, position(position)
-	, spaceBodies(spaceBodies)
+	, spaceBodies()
 	, spaceBodiesNamed()
-	, spaceBodiesPositioned()	
+	, spaceBodiesPositioned()
 {
-	for (auto spaceBody : spaceBodies) {
-		spaceBodiesNamed[spaceBody->getName()] = spaceBody;
-		spaceBodiesPositioned[spaceBody->getPosition()] = spaceBody;
-	}
 }
 
 std::string StarSystem::getName() const
@@ -57,6 +54,31 @@ SpaceBody* StarSystem::getSpaceBody(const service::Vector& position) const
 		return nullptr;
 
 	return spaceBodyIterator->second;
+}
+
+void StarSystem::addSpaceBody(SpaceBody* spaceBody)
+{
+	spaceBodies.push_back(spaceBody);
+	spaceBodiesNamed[spaceBody->getName()] = spaceBody;
+	spaceBodiesPositioned[spaceBody->getPosition()] = spaceBody;
+}
+
+void StarSystem::removeSpaceBody(SpaceBody* spacebody)
+{
+	spaceBodies.erase(
+		std::find(spaceBodies.begin(), spaceBodies.end(), spacebody)
+	);
+	spaceBodiesNamed.erase(spacebody->getName());
+	spaceBodiesPositioned.erase(spacebody->getPosition());
+}
+
+void StarSystem::removeSpaceBody(const std::string& name)
+{
+	auto spaceBody = getSpaceBody(name);
+	if (spaceBody == nullptr)
+		return;
+
+	removeSpaceBody(spaceBody);
 }
 
 StarSystem::~StarSystem()

@@ -21,8 +21,7 @@ namespace galaxy_v36
 		public:
 			StarSystem(
 				const std::string& name,
-				const Vector& position,
-				std::vector<SpaceBody*> spaceBodies
+				const Vector& position
 			);
 
 			std::string getName() const;
@@ -33,6 +32,10 @@ namespace galaxy_v36
 			SpaceBody* getSpaceBody(int index) const;
 			SpaceBody* getSpaceBody(const std::string& name) const;
 			SpaceBody* getSpaceBody(const Vector& position) const;
+
+			void addSpaceBody(SpaceBody* spaceBody);
+			void removeSpaceBody(SpaceBody* spacebody);
+			void removeSpaceBody(const std::string& name);
 
 			~StarSystem();
 

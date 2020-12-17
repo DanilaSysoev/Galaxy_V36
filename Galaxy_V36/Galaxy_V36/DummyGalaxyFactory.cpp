@@ -8,6 +8,7 @@
 #include "Galaxy.h"
 #include "StarSystem.h"
 #include "Vector.h"
+#include "StarGate.h"
 
 using namespace galaxy_v36;
 using namespace galaxy_v36::game;
@@ -35,13 +36,23 @@ Galaxy* DummyGalaxyFactory::buildGalaxy(DrawablesFactory* drawablesFactory)
             rand() % (MAX_STAR_SYSTEM_Y_POS - MIN_STAR_SYSTEM_Y_POS) + 
             MIN_STAR_SYSTEM_Y_POS;
 
-        starSystems.push_back(
+        auto starSystem =
             new StarSystem(
-                "S_" + std::to_string(i), 
-                service::Vector(x, y), 
-                std::vector<entities::SpaceBody*>()
+                "S_" + std::to_string(i),
+                service::Vector(x, y)
+            );
+
+        starSystem->addSpaceBody(
+            new StarGate(
+                "test_gate",
+                Vector::getZero(),
+                10,
+                starSystem,
+                nullptr
             )
         );
+
+        starSystems.push_back(starSystem);
     }
 
     auto galaxy = new entities::Galaxy(starSystems);

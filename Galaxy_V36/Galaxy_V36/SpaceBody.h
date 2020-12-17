@@ -16,9 +16,9 @@ namespace galaxy_v36
 
 			virtual std::string getName() const;
 			virtual service::Vector getPosition() const = 0;
-			virtual service::Vector getSize() const = 0;
+			virtual int getDiameter() const = 0;
 
-			virtual bool isInside(const service::Vector& point) = 0;
+			virtual bool isInside(const service::Vector& point);
 
 			virtual ~SpaceBody();
 
