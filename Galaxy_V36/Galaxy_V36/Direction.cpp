@@ -73,27 +73,42 @@ const Direction& Direction::get(const std::string& direction)
 	return getUpLeft();
 }
 
+bool galaxy_v36::service::operator==(const Direction& lo, const Direction& ro)
+{
+	return &lo == &ro;
+}
+
+bool galaxy_v36::service::operator!=(const Direction& lo, const Direction& ro)
+{
+	return &lo != &ro;
+}
+
 Direction::Direction(const Vector& posiotionDelta, const Direction& opposite)
 	: posiotionDelta(posiotionDelta)
 	, opposite(opposite)
 {
 }
 
-const Direction& Direction::up =
+Direction::Direction(const Direction& other)
+	: posiotionDelta(other.posiotionDelta)
+	, opposite(other.opposite)
+{}
+
+const Direction Direction::up =
     Direction::Direction(Vector(0,  -1), Direction::down);
-const Direction& Direction::upRight =
+const Direction Direction::upRight =
     Direction::Direction(Vector(1,  -1), Direction::downLeft);
-const Direction& Direction::right =
+const Direction Direction::right =
     Direction::Direction(Vector(1,   0), Direction::left);
-const Direction& Direction::downRight =
+const Direction Direction::downRight =
     Direction::Direction(Vector(1,   1), Direction::upLeft);
-const Direction& Direction::down =
+const Direction Direction::down =
     Direction::Direction(Vector(0,   1), Direction::up);
-const Direction& Direction::downLeft =
+const Direction Direction::downLeft =
     Direction::Direction(Vector(-1,  1), Direction::upRight);
-const Direction& Direction::left =
+const Direction Direction::left =
     Direction::Direction(Vector(-1,  0), Direction::right);
-const Direction& Direction::upLeft =
+const Direction Direction::upLeft =
     Direction::Direction(Vector(-1, -1), Direction::downRight);
 
 const std::string Direction::UP_STRING = "Up";

@@ -34,7 +34,7 @@ namespace galaxy_v36
 			int x;
 			int y;
 
-			static const Vector& zero;
+			static const Vector zero;
 		};
 	}
 }

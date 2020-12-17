@@ -27,19 +27,19 @@ namespace galaxy_v36
 			static const Direction& get(const std::string& direction);
 		private:
 			Direction(const Vector& posiotionDelta, const Direction& opposite);
-			Direction(const Direction& other) = delete;
+			Direction(const Direction& other);
 
 			Vector posiotionDelta;
 			const Direction& opposite;
 
-			static const Direction& up;
-			static const Direction& upRight;
-			static const Direction& right;
-			static const Direction& downRight;
-			static const Direction& down;
-			static const Direction& downLeft;
-			static const Direction& left;
-			static const Direction& upLeft;
+			static const Direction up;
+			static const Direction upRight;
+			static const Direction right;
+			static const Direction downRight;
+			static const Direction down;
+			static const Direction downLeft;
+			static const Direction left;
+			static const Direction upLeft;
 
 			static const std::string UP_STRING;
 			static const std::string UP_RIGHT_STRING;
@@ -50,6 +50,9 @@ namespace galaxy_v36
 			static const std::string LEFT_STRING;
 			static const std::string UP_LEFT_STRING;
 		};
+
+		bool operator==(const Direction& lo, const Direction& ro);
+		bool operator!=(const Direction& lo, const Direction& ro);
 	}
 }
 

@@ -95,4 +95,4 @@ const Vector& Vector::getZero()
 	return Vector::zero;
 }
 
-const Vector& Vector::zero = Vector();
+const Vector Vector::zero = Vector();
