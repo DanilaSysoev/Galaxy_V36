@@ -15,6 +15,18 @@
     {
       "commandName": "GalaxyCameraMoveRight",
       "handlerTag": "GalaxyCameraHandler"
+    },
+    {
+      "commandName": "SwitchToGalaxyGameplay",
+      "handlerTag": "GameHandler"
+    },
+    {
+      "commandName": "SwitchToStarSystemGameplay",
+      "handlerTag": "GameHandler"
+    },
+    {
+      "commandName": "SwitchToSpaceBodyGameplay",
+      "handlerTag": "GameHandler"
     }
   ]
 }

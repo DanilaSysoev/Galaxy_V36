@@ -16,6 +16,7 @@
 #include "GalaxyFactory.h"
 #include "Galaxy.h"
 #include "Camera.h"
+#include "CommandHandler.h"
 
 using namespace galaxy_v36;
 using namespace galaxy_v36::game;
@@ -30,12 +31,20 @@ LibtcodGameFactory::LibtcodGameFactory(
 )
     : galaxyFactory(galaxyFactory)
     , drawablesFactory(drawablesFactory)
-    , commandLinks()
+    , commandLinksConfigs()
     , game(nullptr)
     , updateManager(nullptr)
     , drawManager(nullptr)
     , commandProcessor(nullptr)
+    , commandHandlers()
 {
+}
+
+CommandHandler* LibtcodGameFactory::getHandler(const std::string& tag)
+{
+    if (commandHandlers.find(tag) != commandHandlers.end())
+        return commandHandlers[tag];
+    return drawablesFactory->getHandler(tag);
 }
 
 LibtcodGameFactory::~LibtcodGameFactory()
@@ -46,9 +55,10 @@ LibtcodGameFactory::~LibtcodGameFactory()
 
 void LibtcodGameFactory::prepareBuilding()
 {
-    readJson(getCommandLinksFileName(), commandLinks);
-    readJson(getCommandAssignsFileName(), commandAssigns);
-    readJson(getConsolesFileName(), consoles);
+    readJson(getCommandLinksFileName(), commandLinksConfigs);
+    readJson(getCommandAssignsFileName(), commandAssignsConfigs);
+    readJson(getConsolesFileName(), consolesConfigs);
+    readJson(getGameFileName(), gameConfigs);
 }
 
 Game* LibtcodGameFactory::buildGame()
@@ -56,6 +66,11 @@ Game* LibtcodGameFactory::buildGame()
     game = new libtcod::LibtcodGame(
         galaxyFactory->buildGalaxy(drawablesFactory)
     );
+
+    commandHandlers[
+        gameConfigs[GAME_KEYWORD][HANDLER_TAG_KEYWORD]
+    ] = game;
+
     return game;
 }
 
@@ -104,11 +119,16 @@ std::string galaxy_v36::LibtcodGameFactory::getConsolesFileName()
     return "./resources/configs/consoles.json";
 }
 
+std::string galaxy_v36::LibtcodGameFactory::getGameFileName()
+{
+    return "./resources/configs/game.json";
+}
+
 void LibtcodGameFactory::linkCommands()
 {
-    for (auto link : commandLinks[LINKS_KEYWORD])
+    for (auto link : commandLinksConfigs[LINKS_KEYWORD])
     {
-        auto handler = drawablesFactory->getHandler(link[HANDLER_TAG_KEYWORD]);
+        auto handler = getHandler(link[HANDLER_TAG_KEYWORD]);
         if (handler)
             commandProcessor->attachHandler(
                 link[COMMAND_NAME_KEYWORD],
@@ -119,7 +139,7 @@ void LibtcodGameFactory::linkCommands()
 
 void LibtcodGameFactory::assignKeys()
 {
-    for (auto assign : commandAssigns[ASSIGNS_KEYWORD])
+    for (auto assign : commandAssignsConfigs[ASSIGNS_KEYWORD])
     {
         if (assign[TYPE_KEYWORD] == KEYBOARD_COMMAND_TYPE_KEYWORD)
         {
@@ -134,7 +154,7 @@ void LibtcodGameFactory::assignKeys()
 
 void LibtcodGameFactory::setupConsoles()
 {
-    for (auto consoleConfig : consoles[CONSOLES_KEYWORD])
+    for (auto consoleConfig : consolesConfigs[CONSOLES_KEYWORD])
     {
         std::string name = consoleConfig[NAME_KEYWORD];
         if (name == ROOT_CONSOLE_NAME)
@@ -197,6 +217,8 @@ TCODColor LibtcodGameFactory::parseColor(const nlohmann::json& consoleConfig)
 }
 
 const std::string LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
+
+const std::string LibtcodGameFactory::GAME_KEYWORD = "game";
 
 const std::string LibtcodGameFactory::LINKS_KEYWORD = "links";
 const std::string LibtcodGameFactory::ASSIGNS_KEYWORD = "assigns";

@@ -16,10 +16,15 @@ namespace galaxy_v36
 	std::shared_ptr<GameFactory> buildGameFactory(
 		const GameType& gameType, 
 		const GalaxyBuildType& galaxyBuildType,
-		const DrawablesType& drawablesType);
+		const DrawablesType& drawablesType
+	);
 
-	GalaxyFactory* buildGalaxyFactory(const GalaxyBuildType& galaxyBuildType);
-	DrawablesFactory* buildDrawablesFactory(const DrawablesType& drawablesType);
+	GalaxyFactory* buildGalaxyFactory(
+		const GalaxyBuildType& galaxyBuildType
+	);
+	DrawablesFactory* buildDrawablesFactory(
+		const DrawablesType& drawablesType
+	);
 }
 
 #endif // !GAME_FACTORY_BUILDER_H

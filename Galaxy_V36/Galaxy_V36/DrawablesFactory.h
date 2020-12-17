@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "CommandHandlerProvider.h"
+
 namespace galaxy_v36
 {
 	namespace game
@@ -24,7 +26,7 @@ namespace galaxy_v36
 
 	using namespace entities;
 
-	class DrawablesFactory
+	class DrawablesFactory : public game::CommandHandlerProvider
 	{
 	public:
 		virtual game::Camera* getGalaxyCamera() = 0;
@@ -37,8 +39,6 @@ namespace galaxy_v36
 			getStarSystemDrawable(StarSystem* starSystem) = 0;
 		virtual game::SpaceBodyDrawable*
 			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) = 0;
-
-		virtual game::CommandHandler* getHandler(const std::string& tag) = 0;
 
 		virtual ~DrawablesFactory();
 	};

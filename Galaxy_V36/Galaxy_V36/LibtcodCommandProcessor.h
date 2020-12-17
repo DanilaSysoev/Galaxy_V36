@@ -44,7 +44,9 @@ namespace galaxy_v36
 					const std::string& commandName
 				) override;
 
-				virtual Command* getCommand(const std::string& commandName)                         override;
+				virtual Command* getCommand(
+					const std::string& commandName
+				) override;
 
 				void assignKey(char key, std::string commandName);
 

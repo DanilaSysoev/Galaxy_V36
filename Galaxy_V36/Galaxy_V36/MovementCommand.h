@@ -1,14 +1,14 @@
 #ifndef MOVEMENT_COMMAND_H
 #define MOVEMENT_COMMAND_H
 
-#include "CommonCommand.h"
+#include "Command.h"
 #include "MovementCommandArguments.h"
 
 namespace galaxy_v36
 {
 	namespace game
 	{
-		class MovementCommand : public CommonCommand
+		class MovementCommand : public Command
 		{
 		public:
 			MovementCommand(
@@ -16,7 +16,7 @@ namespace galaxy_v36
 				const MovementCommandArguments& arguments
 			);
 
-			virtual const CommandArguments& getArguments() override;
+			virtual const CommandArguments& getArguments() const override;
 
 
 		private:

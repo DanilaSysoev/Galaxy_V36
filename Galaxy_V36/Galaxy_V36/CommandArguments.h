@@ -8,7 +8,12 @@ namespace galaxy_v36
 		class CommandArguments
 		{
 		public:
+			static const CommandArguments& getEmpty();
+
 			virtual ~CommandArguments();
+
+		private:
+			static const CommandArguments& empty;
 		};
 	}
 }

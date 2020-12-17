@@ -1,8 +1,9 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <vector>
 #include <set>
+#include <string>
+#include <vector>
 #include "Drawable.h"
 #include "Updatable.h"
 

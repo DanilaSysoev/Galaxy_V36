@@ -33,7 +33,7 @@ namespace galaxy_v36
 			virtual void addHandler(CommandHandler* handler) = 0;
 			virtual void removeHandler(CommandHandler* handler) = 0;
 			virtual void removeAllHandlers() = 0;			
-			virtual const CommandArguments& getArguments() = 0;
+			virtual const CommandArguments& getArguments() const = 0;
 
 			void execute();
 

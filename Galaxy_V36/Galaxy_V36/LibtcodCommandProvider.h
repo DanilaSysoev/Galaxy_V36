@@ -31,10 +31,7 @@ namespace galaxy_v36
 
 				static const std::string COMMANDS_KEYWORD;
 				static const std::string NAME_KEYWORD;
-				static const std::string TYPE_KEYWORD;
 				static const std::string ARGUMENTS_KEYWORD;
-
-				static const std::string MOVEMENT_TYPE_KEYWORD;
 			};
 		}
 	}

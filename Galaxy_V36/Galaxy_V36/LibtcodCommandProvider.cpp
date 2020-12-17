@@ -3,7 +3,7 @@
 
 #include "JsonConfig.h"
 #include "LibtcodCommandProvider.h"
-#include "MovementCommand.h"
+#include "CommonCommand.h"
 #include "Direction.h"
 
 using namespace galaxy_v36::game;
@@ -21,19 +21,14 @@ void LibtcodCommandProvider::readConfig()
 
     for (auto commandConfig : commandProviderConfig[COMMANDS_KEYWORD])
     {
-        if (commandConfig[TYPE_KEYWORD] == MOVEMENT_TYPE_KEYWORD)
-        {
-            commands.push_back(
-                new MovementCommand(
-                    commandConfig[NAME_KEYWORD], 
-                    MovementCommandArguments(
-                        service::Direction::get(
-                            commandConfig[ARGUMENTS_KEYWORD]
-                        )
-                    )
+        commands.push_back(
+            new CommonCommand(
+                commandConfig[NAME_KEYWORD],
+                CommonCommandArguments(
+                    commandConfig[ARGUMENTS_KEYWORD]
                 )
-            );
-        }
+            )
+        );
     }
 }
 
@@ -49,7 +44,4 @@ std::string LibtcodCommandProvider::getCommandsConfigFileName()
 
 const std::string LibtcodCommandProvider::COMMANDS_KEYWORD = "commands";
 const std::string LibtcodCommandProvider::NAME_KEYWORD = "name";
-const std::string LibtcodCommandProvider::TYPE_KEYWORD = "type";
 const std::string LibtcodCommandProvider::ARGUMENTS_KEYWORD = "arguments";
-
-const std::string LibtcodCommandProvider::MOVEMENT_TYPE_KEYWORD = "Movement";

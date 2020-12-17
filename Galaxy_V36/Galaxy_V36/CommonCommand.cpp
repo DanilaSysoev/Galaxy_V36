@@ -3,9 +3,13 @@
 using namespace galaxy_v36::game;
 
 
-CommonCommand::CommonCommand(const std::string& name)
+CommonCommand::CommonCommand(
+    const std::string& name,
+    const CommonCommandArguments& arguments
+)
     : Command(name)
     , handlers()
+    , arguments(arguments)
 {
 }
 
@@ -27,4 +31,9 @@ void CommonCommand::removeAllHandlers()
 CommandHandlers& CommonCommand::getHandlers()
 {
     return handlers;
+}
+
+const CommandArguments& CommonCommand::getArguments() const
+{
+    return arguments;
 }

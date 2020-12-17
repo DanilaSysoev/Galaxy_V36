@@ -2,23 +2,31 @@
   "commands": [
     {
       "name": "GalaxyCameraMoveUp",
-      "type": "Movement",
       "arguments": "Up"
     },
     {
       "name": "GalaxyCameraMoveDown",
-      "type": "Movement",
       "arguments": "Down"
     },
     {
       "name": "GalaxyCameraMoveLeft",
-      "type": "Movement",
       "arguments": "Left"
     },
     {
       "name": "GalaxyCameraMoveRight",
-      "type": "Movement",
       "arguments": "Right"
+    },
+    {
+      "name": "SwitchToGalaxyGameplay",
+      "arguments": "galaxy"
+    },
+    {
+      "name": "SwitchToStarSystemGameplay",
+      "arguments": "starSystem"
+    },
+    {
+      "name": "SwitchToSpaceBodyGameplay",
+      "arguments": "spaceBody"
     }
   ]
 }

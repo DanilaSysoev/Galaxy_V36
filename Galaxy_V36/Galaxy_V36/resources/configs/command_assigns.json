@@ -19,6 +19,21 @@
       "commandName": "GalaxyCameraMoveRight",
       "type": "keyboard",
       "key": "d"
+    },
+    {
+      "commandName": "SwitchToGalaxyGameplay",
+      "type": "keyboard",
+      "key": "g"
+    },
+    {
+      "commandName": "SwitchToStarSystemGameplay",
+      "type": "keyboard",
+      "key": "y"
+    },
+    {
+      "commandName": "SwitchToSpaceBodyGameplay",
+      "type": "keyboard",
+      "key": "b"
     }
   ]
 }

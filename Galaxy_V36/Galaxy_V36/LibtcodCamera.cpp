@@ -1,5 +1,5 @@
 #include "LibtcodCamera.h"
-#include "MovementCommandArguments.h"
+#include "CommonCommandArguments.h"
 #include "Game.h"
 #include "CommandProcessor.h"
 
@@ -27,7 +27,9 @@ void LibtcodCamera::moveTo(const service::Direction& direction)
 void LibtcodCamera::execute(const CommandArguments& arguments)
 {
     moveTo(
-        dynamic_cast<const MovementCommandArguments&>(arguments).getDirection()
+        Direction::get(
+            dynamic_cast<const CommonCommandArguments&>(arguments).getArgument()
+        )
     );
 }
 

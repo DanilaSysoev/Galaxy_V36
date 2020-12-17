@@ -7,12 +7,12 @@ MovementCommand::MovementCommand(
     const std::string& name,
     const MovementCommandArguments& arguments
 )
-    : CommonCommand(name)
+    : Command(name)
     , arguments(arguments)
 {
 }
 
-const CommandArguments& MovementCommand::getArguments()
+const CommandArguments& MovementCommand::getArguments() const
 {
     return arguments;
 }
