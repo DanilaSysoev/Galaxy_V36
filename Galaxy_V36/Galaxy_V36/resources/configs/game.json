@@ -1,5 +1,26 @@
 {
   "game": {
-    "handlerTag": "GameHandler"
-  }
+    "handlerTag": "GameHandler",
+    "gameplay": "galaxy"
+  },
+  "gameplays": [
+    {
+      "name": "galaxy",
+      "drawables": [
+        "galaxy"
+      ],
+      "handlers": [
+        "GalaxyCameraHandler"
+      ]
+    },
+    {
+      "name": "starSystem",
+      "drawables": [
+        "starSystem"
+      ],
+      "handlers": [
+        "StarSystemCameraHandler"
+      ]
+    }
+  ]
 }

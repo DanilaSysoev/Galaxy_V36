@@ -2,6 +2,7 @@
 #define LIBTCOD_GAME_FACTORY_H
 
 #include <string>
+#include <vector>
 #include <nlohmann/json.hpp>
 #include "libtcod.hpp"
 #include "GameFactory.h"
@@ -17,12 +18,14 @@ namespace galaxy_v36
 		namespace libtcod
 		{
 			class LibtcodGame;
+			class LibtcodGameplay;
 			class LibtcodUpdateManager;
 			class LibtcodDrawManager;
 			class LibtcodCommandProcessor;
 		}
 
 		class CommandHandler;
+		class Drawable;
 	}
 
 	class LibtcodGameFactory : 
@@ -58,10 +61,11 @@ namespace galaxy_v36
 		nlohmann::json consolesConfigs;
 		nlohmann::json gameConfigs;
 
-		game::libtcod::LibtcodGame*             game;
-		game::libtcod::LibtcodUpdateManager*    updateManager;
-		game::libtcod::LibtcodDrawManager*      drawManager;
-		game::libtcod::LibtcodCommandProcessor* commandProcessor;
+		game::libtcod::LibtcodGame*                  game;
+		std::vector<game::libtcod::LibtcodGameplay*> gameplays;
+		game::libtcod::LibtcodUpdateManager*         updateManager;
+		game::libtcod::LibtcodDrawManager*           drawManager;
+		game::libtcod::LibtcodCommandProcessor*      commandProcessor;
 		
 		std::map<std::string, game::CommandHandler*> commandHandlers;
 
@@ -80,9 +84,19 @@ namespace galaxy_v36
 
 		TCODColor parseColor(const nlohmann::json& consoleConfig);
 
+		std::vector<game::libtcod::LibtcodGameplay*> buildGameplays();
+		void setupGameplays();
+		std::vector<game::Drawable*> buildBaseDrawables();
+
+		nlohmann::json getGameplayConfig(std::string gameplayName);
+
 		static const std::string KEYBOARD_COMMAND_TYPE_KEYWORD;
 
 		static const std::string GAME_KEYWORD;
+		static const std::string GAMEPLAY_KEYWORD;
+		static const std::string GAMEPLAYS_KEYWORD;
+		static const std::string DRAWABLES_KEYWORD;
+		static const std::string HANDLERS_KEYWORD;
 
 		static const std::string LINKS_KEYWORD;
 		static const std::string ASSIGNS_KEYWORD;

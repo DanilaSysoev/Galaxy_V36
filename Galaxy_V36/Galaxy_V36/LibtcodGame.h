@@ -3,6 +3,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 #include "Game.h"
 #include "CommandHandler.h"
@@ -18,26 +19,27 @@ namespace galaxy_v36
 	{
 		namespace libtcod
 		{
+			class LibtcodGameplay;
+
 			class LibtcodGame : 
 				public Game, 
 				public CommandHandler
 			{
 			public:
-				LibtcodGame(entities::Galaxy* galaxy);
+				LibtcodGame(
+					entities::Galaxy* galaxy,
+					const std::vector<LibtcodGameplay*>& gameplays,
+					const std::string& startGameplayName,
+					const std::vector<Drawable*>& baseDrawables
+				);
 
 				virtual entities::Galaxy* getGalaxy() override;
 								
 				virtual int getOrder() const override;
 
-				~LibtcodGame();
+				LibtcodGameplay* getGameplay(std::string name);
 
-				enum class Gameplay
-				{
-					NONE,
-					GALAXY_LEVEL,
-					STAR_SYSTEM_LEVEL,
-					SPACE_BODY_LEVEL
-				};
+				~LibtcodGame();
 
 
 			protected:
@@ -51,22 +53,19 @@ namespace galaxy_v36
 					const CommandArguments& arguments
 				) override;
 
+
 			private:
 				Drawables drawables;
 				Updatables updatables;
 
+				std::vector<Drawable*> baseDrawables;
+
+				std::map<std::string, LibtcodGameplay*> namedGameplays;
+				LibtcodGameplay* gameplay;
+
 				entities::Galaxy* galaxy;				
 
-				std::map<std::string, Gameplay> namedGameplays;
-
-				Gameplay gameplay;
-
-				void switchToGameplay(const Gameplay& gameplay);
-				Gameplay getGameplayFromString(const std::string& gameplayName);
-
-				static const std::string GALAXY_GAMEPLAY_NAME;
-				static const std::string STAR_SYSTEM_GAMEPLAY_NAME;
-				static const std::string SPACE_BODY_GAMEPLAY_NAME;
+				void switchToGameplay(const std::string& gameplayName);
 			};
 		}
 	}

@@ -95,8 +95,8 @@ bool DrawableComparator::operator()(Drawable* left, Drawable* right) const
 }
 
 bool UpdatableComparator::operator()(
-	Updatable*& left,
-	Updatable*& right
+	Updatable* left,
+	Updatable* right
 ) const
 {
 	return left->getUpdatePriority() > right->getUpdatePriority();

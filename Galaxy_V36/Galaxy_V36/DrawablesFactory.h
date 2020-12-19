@@ -2,6 +2,7 @@
 #define DRAWABLES_FACTORY_H
 
 #include <string>
+#include <vector>
 
 #include "CommandHandlerProvider.h"
 
@@ -12,6 +13,7 @@ namespace galaxy_v36
 		class GalaxyDrawable;
 		class StarSystemDrawable;
 		class SpaceBodyDrawable;
+		class Drawable;
 		class Camera;
 		class CommandHandler;
 		class DrawManager;
@@ -39,6 +41,9 @@ namespace galaxy_v36
 			getStarSystemDrawable(StarSystem* starSystem) = 0;
 		virtual game::SpaceBodyDrawable*
 			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) = 0;
+
+		virtual std::vector<game::Drawable*>
+			getDrawables(const std::string& name) = 0;
 
 		virtual ~DrawablesFactory();
 	};

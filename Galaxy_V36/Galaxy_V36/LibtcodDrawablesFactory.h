@@ -2,6 +2,7 @@
 #define LIBTCOD_DRAWABLES_FACTORY_H
 
 #include <string>
+#include <vector>
 #include <map>
 
 #include <nlohmann/json.hpp>
@@ -14,6 +15,7 @@ namespace galaxy_v36
 	namespace game
 	{
 		class CommandHandler;
+		class Drawable;
 		
 		namespace libtcod
 		{
@@ -42,6 +44,9 @@ namespace galaxy_v36
 		virtual SpaceBodyDrawable*
 			getSpaceBodyDrawable(SpaceBody* spaceBody, int priority) override;
 
+		virtual std::vector<game::Drawable*>
+			getDrawables(const std::string& name) override;
+
 		virtual CommandHandler* getHandler(const std::string& tag) override;
 
 
@@ -52,6 +57,7 @@ namespace galaxy_v36
 
 		nlohmann::json drawablesConfigs;
 		std::map<std::string, CommandHandler*> commandHandlers;
+		std::map<std::string, std::vector<Drawable*>> drawables;
 
 		void buildStarSystemImages();
 		Camera* buildCamera(const nlohmann::json& config);

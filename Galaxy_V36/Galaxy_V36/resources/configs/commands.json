@@ -24,10 +24,6 @@
     {
       "name": "SwitchToStarSystemGameplay",
       "arguments": "starSystem"
-    },
-    {
-      "name": "SwitchToSpaceBodyGameplay",
-      "arguments": "spaceBody"
     }
   ]
 }

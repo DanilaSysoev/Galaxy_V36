@@ -28,11 +28,11 @@ namespace galaxy_v36
 		class UpdatableComparator
 		{
 		public:
-			bool operator()(Updatable*& left, Updatable*& right) const;
+			bool operator()(Updatable* left, Updatable* right) const;
 		};
 
 
-		using Drawables = std::multiset<Drawable*, DrawableComparator>;
+		using Drawables = std::multiset<Drawable*, DrawableComparator>;		
 		using Updatables = std::multiset<Updatable*, UpdatableComparator>;
 
 

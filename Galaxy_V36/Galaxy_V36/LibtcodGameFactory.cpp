@@ -1,10 +1,12 @@
-#include <fstream>
 #include <map>
 #include <string>
+#include <fstream>
+#include <exception>
 
 #include "JsonConfig.h"
 #include "LibtcodGameFactory.h"
 #include "LibtcodGame.h"
+#include "LibtcodGameplay.h"
 #include "LibtcodDrawManager.h"
 #include "LibtcodCommandProcessor.h"
 #include "LibtcodCommandProvider.h"
@@ -37,6 +39,7 @@ LibtcodGameFactory::LibtcodGameFactory(
     , drawManager(nullptr)
     , commandProcessor(nullptr)
     , commandHandlers()
+    , gameplays()
 {
 }
 
@@ -63,9 +66,22 @@ void LibtcodGameFactory::prepareBuilding()
 
 Game* LibtcodGameFactory::buildGame()
 {
+    buildGameplays();
+    auto galaxy = galaxyFactory->buildGalaxy(drawablesFactory);
+    setupGameplays();
+
+    std::vector<Drawable*> baseDrawables = buildBaseDrawables();
+
+    std::string startGameplayName =
+        gameConfigs[GAME_KEYWORD][GAMEPLAY_KEYWORD];
+
     game = new libtcod::LibtcodGame(
-        galaxyFactory->buildGalaxy(drawablesFactory)
+        galaxy,
+        gameplays,
+        startGameplayName,
+        baseDrawables
     );
+
 
     commandHandlers[
         gameConfigs[GAME_KEYWORD][HANDLER_TAG_KEYWORD]
@@ -216,9 +232,59 @@ TCODColor LibtcodGameFactory::parseColor(const nlohmann::json& consoleConfig)
     );
 }
 
+std::vector<LibtcodGameplay*> LibtcodGameFactory::buildGameplays()
+{
+    for (auto gp : gameConfigs[GAMEPLAYS_KEYWORD])
+    {
+        gameplays.push_back(
+            new LibtcodGameplay(gp[NAME_KEYWORD])
+        );
+    }
+
+    return gameplays;
+}
+
+void galaxy_v36::LibtcodGameFactory::setupGameplays()
+{
+    for (auto gameplay : gameplays)
+    {
+        auto gameplayConfig = getGameplayConfig(gameplay->getName());
+
+        for (auto drawableGroupName : gameplayConfig[DRAWABLES_KEYWORD])
+        {
+            auto drawables = 
+                drawablesFactory->getDrawables(drawableGroupName);
+            for (auto drawable : drawables)
+                gameplay->addDrawable(drawable);
+        }
+        for (auto handler : gameplayConfig[HANDLERS_KEYWORD])
+            gameplay->addHandler(getHandler(handler));
+
+        gameplay->deactivate();
+    }
+}
+
+std::vector<Drawable*> galaxy_v36::LibtcodGameFactory::buildBaseDrawables()
+{
+    return std::vector<Drawable*>();
+}
+
+nlohmann::json
+LibtcodGameFactory::getGameplayConfig(std::string gameplayName)
+{
+    for (auto config : gameConfigs[GAMEPLAYS_KEYWORD])
+        if (config[NAME_KEYWORD] == gameplayName)
+            return config;
+    throw std::exception(("Unknown gameplay name \"" + gameplayName + "\"").c_str());
+}
+
 const std::string LibtcodGameFactory::KEYBOARD_COMMAND_TYPE_KEYWORD = "keyboard";
 
 const std::string LibtcodGameFactory::GAME_KEYWORD = "game";
+const std::string LibtcodGameFactory::GAMEPLAY_KEYWORD = "gameplay";
+const std::string LibtcodGameFactory::GAMEPLAYS_KEYWORD = "gameplays";
+const std::string LibtcodGameFactory::DRAWABLES_KEYWORD = "drawables";
+const std::string LibtcodGameFactory::HANDLERS_KEYWORD = "handlers";
 
 const std::string LibtcodGameFactory::LINKS_KEYWORD = "links";
 const std::string LibtcodGameFactory::ASSIGNS_KEYWORD = "assigns";

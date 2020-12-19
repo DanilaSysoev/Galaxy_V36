@@ -22,7 +22,11 @@ using namespace galaxy_v36::game::libtcod;
 
 
 LibtcodDrawablesFactory::LibtcodDrawablesFactory()
-    : commandHandlers()
+    : galaxyCamera(nullptr)
+    , starSystemCamera(nullptr)
+    , spaceBodyCamera(nullptr)
+    , commandHandlers()
+    , drawables()
 {
 }
 
@@ -49,6 +53,13 @@ GalaxyDrawable* LibtcodDrawablesFactory::getGalaxyDrawable(Galaxy* galaxy)
     galaxyDrawable->setConsoleName(
         drawablesConfigs[GALAXY_KEYWORD][CONSOLE_KEYWORD]
     );
+
+    if (drawables.find(GALAXY_KEYWORD) == drawables.end())
+        drawables.insert(
+            std::make_pair(GALAXY_KEYWORD, std::vector<Drawable*>())
+        );
+    drawables[GALAXY_KEYWORD].push_back(galaxyDrawable);
+
     return galaxyDrawable;
 }
 
@@ -73,6 +84,13 @@ StarSystemDrawable* LibtcodDrawablesFactory::getStarSystemDrawable(
     starSystemDrawable->setConsoleName(
         drawablesConfigs[STAR_SYSTEM_KEYWORD][CONSOLE_KEYWORD]
     );
+
+    if (drawables.find(STAR_SYSTEM_KEYWORD) == drawables.end())
+        drawables.insert(
+            std::make_pair(STAR_SYSTEM_KEYWORD, std::vector<Drawable*>())
+        );
+    drawables[STAR_SYSTEM_KEYWORD].push_back(starSystemDrawable);
+
     return starSystemDrawable;
 }
 
@@ -91,6 +109,15 @@ SpaceBodyDrawable* LibtcodDrawablesFactory::getSpaceBodyDrawable(
         spaceBody, 
         priority
     );
+}
+
+std::vector<Drawable*>
+LibtcodDrawablesFactory::getDrawables(const std::string& name)
+{
+    auto namedDrawable = drawables.find(name);
+    if (namedDrawable != drawables.end())
+        return namedDrawable->second;
+    return std::vector<Drawable*>();
 }
 
 CommandHandler* LibtcodDrawablesFactory::getHandler(const std::string& tag)
