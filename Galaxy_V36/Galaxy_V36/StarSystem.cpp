@@ -2,7 +2,9 @@
 
 #include "SpaceBody.h"
 #include "StarSystem.h"
+#include "LibtcodStarSystemDrawable.h"
 
+using namespace galaxy_v36::game;
 using namespace galaxy_v36::service;
 using namespace galaxy_v36::entities;
 
@@ -15,6 +17,7 @@ StarSystem::StarSystem(
 	, spaceBodies()
 	, spaceBodiesNamed()
 	, spaceBodiesPositioned()
+	, drawable(nullptr)
 {
 }
 
@@ -81,8 +84,20 @@ void StarSystem::removeSpaceBody(const std::string& name)
 	removeSpaceBody(spaceBody);
 }
 
+Drawable* StarSystem::getDrawable()
+{
+	return drawable;
+}
+
+void StarSystem::setDrawable(StarSystemDrawable* drawable)
+{
+	this->drawable = drawable;
+}
+
 StarSystem::~StarSystem()
 {
 	for (auto spaceBody : spaceBodies)
 		delete spaceBody;
+
+	delete drawable;
 }

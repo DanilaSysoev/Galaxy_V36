@@ -4,6 +4,16 @@
       "handlerTag": "GalaxyCameraHandler",
       "handlerOrder": 0
     },
-    "console":  "game"
+    "console": "game"
+  },
+  "starSystem": {
+    "camera": {
+      "handlerTag": "StarSystemCameraHandler",
+      "handlerOrder": 0
+    },
+    "console": "game",
+    "images": [
+      [ "gate", "G" ]
+    ]
   }
 }

@@ -15,6 +15,7 @@ namespace galaxy_v36
 				std::string getConsoleName() const;
 				void setConsoleName(const std::string& consoleName);
 
+
 			private:
 				std::string consoleName;
 			};

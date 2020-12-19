@@ -45,7 +45,7 @@ StarSystem* Galaxy::getStarSystem(const service::Vector& position) const
 	return starSystemIterator->second;
 }
 
-Drawable*Galaxy::getDrawable()
+Drawable* Galaxy::getDrawable()
 {
 	return drawable;
 }

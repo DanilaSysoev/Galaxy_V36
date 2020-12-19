@@ -12,9 +12,10 @@ namespace galaxy_v36
 		class SpaceBody
 		{
 		public:
-			SpaceBody(std::string name);
+			SpaceBody(std::string name, std::string type);
 
 			virtual std::string getName() const;
+			virtual std::string getType() const;
 			virtual service::Vector getPosition() const = 0;
 			virtual int getDiameter() const = 0;
 
@@ -24,6 +25,7 @@ namespace galaxy_v36
 
 		private:
 			std::string name;
+			std::string type;
 		};
 	}
 }

@@ -34,20 +34,23 @@ void LibtcodGalaxyDrawable::draw()
 
 	for (int i = 0; i < getGalaxy()->getStarSystemsCount(); ++i)
 	{
-		auto position = getGalaxy()->getStarSystem(i)->getPosition();		
+		auto position = getGalaxy()->getStarSystem(i)->getPosition();
+		auto screenPosition = 
+			getCamera()->transformToScreenPosition(position);
+
 		console->putChar(
-			position.getX() - getCamera()->getPosition().getX(), 
-			position.getY() - getCamera()->getPosition().getY(), 
+			screenPosition.getX(),
+			screenPosition.getY(),
 			TCOD_CHAR_LIGHT
 		);
 		console->setCharForeground(
-			position.getX() - getCamera()->getPosition().getX(), 
-			position.getY() - getCamera()->getPosition().getY(),
+			screenPosition.getX(),
+			screenPosition.getY(),
 			TCODColor::gold
 		);
 		console->printf(
-			position.getX() - getCamera()->getPosition().getX() + 1,
-			position.getY() - getCamera()->getPosition().getY() + 1,
+			screenPosition.getX() + 1,
+			screenPosition.getY() + 1,
 			getGalaxy()->getStarSystem(i)->getName().c_str()
 		);
 	}

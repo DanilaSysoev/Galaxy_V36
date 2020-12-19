@@ -26,8 +26,7 @@ namespace galaxy_v36
 				LibtcodGame(entities::Galaxy* galaxy);
 
 				virtual entities::Galaxy* getGalaxy() override;
-
-				virtual void execute(const CommandArguments& arguments) override;
+								
 				virtual int getOrder() const override;
 
 				~LibtcodGame();
@@ -47,6 +46,10 @@ namespace galaxy_v36
 				virtual bool              isGameEnd() const override;
 				virtual Drawables&        getDravables()    override;
 				virtual Updatables&       getUpdatables()   override;
+
+				virtual void executeProcess(
+					const CommandArguments& arguments
+				) override;
 
 			private:
 				Drawables drawables;

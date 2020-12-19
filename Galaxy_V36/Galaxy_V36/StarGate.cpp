@@ -11,7 +11,7 @@ StarGate::StarGate(
 	StarSystem* starSystemOfLocation, 
 	StarSystem* destinationStarSystem
 )
-	: SpaceBody(name)
+	: SpaceBody(name, GATE_TYPE)
 	, position(position)
 	, diameter(diameter)
 	, starSystemOfLocation(starSystemOfLocation)
@@ -38,3 +38,5 @@ int StarGate::getDiameter() const
 {
 	return diameter;
 }
+
+const std::string StarGate::GATE_TYPE = "gate";

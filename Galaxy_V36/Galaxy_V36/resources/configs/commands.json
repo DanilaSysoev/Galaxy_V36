@@ -1,21 +1,22 @@
 {
   "commands": [
     {
-      "name": "GalaxyCameraMoveUp",
+      "name": "CameraMoveUp",
       "arguments": "Up"
     },
     {
-      "name": "GalaxyCameraMoveDown",
+      "name": "CameraMoveDown",
       "arguments": "Down"
     },
     {
-      "name": "GalaxyCameraMoveLeft",
+      "name": "CameraMoveLeft",
       "arguments": "Left"
     },
     {
-      "name": "GalaxyCameraMoveRight",
+      "name": "CameraMoveRight",
       "arguments": "Right"
     },
+
     {
       "name": "SwitchToGalaxyGameplay",
       "arguments": "galaxy"

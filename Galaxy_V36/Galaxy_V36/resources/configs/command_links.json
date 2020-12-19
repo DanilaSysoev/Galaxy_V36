@@ -1,21 +1,40 @@
 {
   "links": [
     {
-      "commandName": "GalaxyCameraMoveUp",
+      "commandName": "CameraMoveUp",
       "handlerTag": "GalaxyCameraHandler"
     },
     {
-      "commandName": "GalaxyCameraMoveDown",
+      "commandName": "CameraMoveDown",
       "handlerTag": "GalaxyCameraHandler"
     },
     {
-      "commandName": "GalaxyCameraMoveLeft",
+      "commandName": "CameraMoveLeft",
       "handlerTag": "GalaxyCameraHandler"
     },
     {
-      "commandName": "GalaxyCameraMoveRight",
+      "commandName": "CameraMoveRight",
       "handlerTag": "GalaxyCameraHandler"
     },
+
+    {
+      "commandName": "CameraMoveUp",
+      "handlerTag": "StarSystemCameraHandler"
+    },
+    {
+      "commandName": "CameraMoveDown",
+      "handlerTag": "StarSystemCameraHandler"
+    },
+    {
+      "commandName": "CameraMoveLeft",
+      "handlerTag": "StarSystemCameraHandler"
+    },
+    {
+      "commandName": "CameraMoveRight",
+      "handlerTag": "StarSystemCameraHandler"
+    },
+
+
     {
       "commandName": "SwitchToGalaxyGameplay",
       "handlerTag": "GameHandler"

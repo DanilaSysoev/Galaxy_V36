@@ -41,6 +41,10 @@ Galaxy* DummyGalaxyFactory::buildGalaxy(DrawablesFactory* drawablesFactory)
                 "S_" + std::to_string(i),
                 service::Vector(x, y)
             );
+        starSystem->setDrawable(
+            drawablesFactory->getStarSystemDrawable(starSystem)
+        );
+
 
         starSystem->addSpaceBody(
             new StarGate(

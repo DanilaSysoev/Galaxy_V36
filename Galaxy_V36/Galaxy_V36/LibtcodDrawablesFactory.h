@@ -46,16 +46,25 @@ namespace galaxy_v36
 
 
 	private:
+		Camera* galaxyCamera;
+		Camera* starSystemCamera;
+		Camera* spaceBodyCamera;
+
 		nlohmann::json drawablesConfigs;
 		std::map<std::string, CommandHandler*> commandHandlers;
+
+		void buildStarSystemImages();
+		Camera* buildCamera(const nlohmann::json& config);
 
 		static std::string getDrawablesConfigFileName();
 
 		static const std::string GALAXY_KEYWORD;
+		static const std::string STAR_SYSTEM_KEYWORD;
 		static const std::string CAMERA_KEYWORD;
 		static const std::string HANDLER_TAG_KEYWORD;
 		static const std::string HANDLER_ORDER_KEYWORD;
 		static const std::string CONSOLE_KEYWORD;
+		static const std::string IMAGES_KEYWORD;
 	};
 }
 

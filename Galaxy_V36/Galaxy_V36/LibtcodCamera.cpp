@@ -24,7 +24,7 @@ void LibtcodCamera::moveTo(const service::Direction& direction)
     position = position.add(direction.getPositionDelta());
 }
 
-void LibtcodCamera::execute(const CommandArguments& arguments)
+void LibtcodCamera::executeProcess(const CommandArguments& arguments)
 {
     moveTo(
         Direction::get(
@@ -41,4 +41,12 @@ int LibtcodCamera::getOrder() const
 void LibtcodCamera::setOrder(int order)
 {
     handlerOrder = order;
+}
+
+Vector LibtcodCamera::transformToScreenPosition(const Vector& worldPosition)
+{
+    return Vector(
+        worldPosition.getX() - position.getX(),
+        worldPosition.getY() - position.getY()
+    );
 }

@@ -11,12 +11,23 @@ namespace galaxy_v36
 		class CommandHandler
 		{
 		public:
-			virtual void execute(const CommandArguments& arguments) = 0;
+			CommandHandler();
 
+			void execute(const CommandArguments& arguments);
 			virtual int getOrder() const = 0;
+			virtual void disable();
+			virtual void enable();
+			virtual bool isEnabled();
 
 			virtual ~CommandHandler();
 
+
+		protected:
+			virtual void executeProcess(const CommandArguments& arguments) = 0;
+
+
+		private:
+			bool enabled;
 		};
 	}
 }

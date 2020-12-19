@@ -33,6 +33,8 @@ namespace galaxy_v36
 
 			service::Vector position;
 			int diameter;
+
+			static const std::string GATE_TYPE;
 		};
 	}
 }

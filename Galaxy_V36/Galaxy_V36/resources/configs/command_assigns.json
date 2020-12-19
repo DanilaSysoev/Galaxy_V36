@@ -1,25 +1,26 @@
 {
   "assigns": [
     {
-      "commandName": "GalaxyCameraMoveUp",
+      "commandName": "CameraMoveUp",
       "type": "keyboard",
       "key": "w"
     },
     {
-      "commandName": "GalaxyCameraMoveDown",
+      "commandName": "CameraMoveDown",
       "type": "keyboard",
       "key": "s"
     },
     {
-      "commandName": "GalaxyCameraMoveLeft",
+      "commandName": "CameraMoveLeft",
       "type": "keyboard",
       "key": "a"
     },
     {
-      "commandName": "GalaxyCameraMoveRight",
+      "commandName": "CameraMoveRight",
       "type": "keyboard",
       "key": "d"
     },
+
     {
       "commandName": "SwitchToGalaxyGameplay",
       "type": "keyboard",

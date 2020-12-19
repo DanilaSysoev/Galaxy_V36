@@ -2,6 +2,7 @@
 
 #include "Galaxy.h"
 #include "libtcod.hpp"
+#include "StarSystem.h"
 #include "LibtcodGame.h"
 #include "CommonCommandArguments.h"
 
@@ -73,6 +74,8 @@ void LibtcodGame::switchToGameplay(const Gameplay& gameplay)
         drawables.insert(galaxy->getDrawable());
         break;
     case Gameplay::STAR_SYSTEM_LEVEL:
+        drawables.clear();
+        drawables.insert(galaxy->getStarSystem(0)->getDrawable());
         break;
     case Gameplay::SPACE_BODY_LEVEL:
         break;
@@ -94,7 +97,7 @@ LibtcodGame::getGameplayFromString(const std::string& gameplayName)
     return namedGameplays[gameplayName];
 }
 
-void LibtcodGame::execute(const CommandArguments& arguments)
+void LibtcodGame::executeProcess(const CommandArguments& arguments)
 {
     auto gameplay = getGameplayFromString(
         dynamic_cast<const CommonCommandArguments&>(arguments).getArgument()

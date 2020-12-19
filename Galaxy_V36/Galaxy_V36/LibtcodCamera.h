@@ -20,12 +20,20 @@ namespace galaxy_v36
 				virtual void 
 					moveTo(const service::Direction& direction) override;
 
-				virtual void 
-					execute(const CommandArguments& arguments) override;
+				virtual service::Vector	transformToScreenPosition(
+					const service::Vector& worldPosition
+				) override;
 
 				virtual int getOrder() const override;
 
 				void setOrder(int order);
+
+
+			protected:
+				virtual void executeProcess(
+					const CommandArguments& arguments
+				) override;
+
 
 			private:
 				service::Vector position;

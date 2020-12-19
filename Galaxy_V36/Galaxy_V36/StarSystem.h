@@ -10,6 +10,12 @@
 
 namespace galaxy_v36
 {
+	namespace game
+	{
+		class Drawable;
+		class StarSystemDrawable;
+	}
+
 	namespace entities
 	{
 		class SpaceBody;
@@ -37,12 +43,17 @@ namespace galaxy_v36
 			void removeSpaceBody(SpaceBody* spacebody);
 			void removeSpaceBody(const std::string& name);
 
+			game::Drawable* getDrawable();
+			void setDrawable(game::StarSystemDrawable* drawable);
+
 			~StarSystem();
 
 		private:
 			std::vector<SpaceBody*> spaceBodies;
 			std::map<std::string, SpaceBody*> spaceBodiesNamed;
 			std::map<Vector, SpaceBody*> spaceBodiesPositioned;
+
+			game::StarSystemDrawable* drawable;
 
 			std::string name;
 			Vector position;
