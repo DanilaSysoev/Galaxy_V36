@@ -41,5 +41,13 @@ namespace Galaxy_V36_Tests
             Vector3 res = vector1.Add(vector2);
             Assert.AreEqual(new Vector3(1, 2, 3), vector1);
         }
+        [TestCase]
+        public void Add_AddSomeVector_ComponentsadditionVectorNotChanged()
+        {
+            Vector3 vector1 = new Vector3(1, 2, 3);
+            Vector3 vector2 = new Vector3(3, 1, 6);
+            Vector3 res = vector1.Add(vector2);
+            Assert.AreEqual(new Vector3(3, 1, 6), vector2);
+        }
     }
 }
