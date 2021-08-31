@@ -51,10 +51,22 @@ namespace Galaxy_V36_Tests
         }
 
         [TestCase]
-        public void Equals_VectorsWithEqualsComponents_ReturnTrue()
+        public void Equals_VectorsWithStrongEqualsComponents_ReturnTrue()
         {
             Vector3 vector1 = new Vector3(1, 2, 3);
             Vector3 vector2 = new Vector3(1, 2, 3);
+            Assert.IsTrue(vector1.Equals(vector2));
+        }
+
+        [TestCase]
+        public void Equals_VectorsWithNonStrongEqualsComponents_ReturnTrue()
+        {
+            Vector3 vector1 = new Vector3(1, 2, 3);
+            Vector3 vector2 = 
+                new Vector3(
+                    1 + Configuration.FloatEpsilon / 2,
+                    2 - Configuration.FloatEpsilon / 2,
+                    3 + Configuration.FloatEpsilon / 2);
             Assert.IsTrue(vector1.Equals(vector2));
         }
     }
