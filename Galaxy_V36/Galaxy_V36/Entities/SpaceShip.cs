@@ -14,5 +14,10 @@ namespace Galaxy_V36.Entities
                 return Vector3.Zero;
             }
         }
+
+        public void Move(Vector3 motion)
+        {
+
+        }
     }
 }
