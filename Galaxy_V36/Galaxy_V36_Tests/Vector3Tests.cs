@@ -82,5 +82,12 @@ namespace Galaxy_V36_Tests
             Vector3 vector2 = new Vector3(4, 2, 3);
             Assert.IsFalse(vector1.Equals(vector2));
         }
+        [TestCase]
+        public void Equals_VectorsWithStrongDifferentYComponents_ReturnFalse()
+        {
+            Vector3 vector1 = new Vector3(1, 2, 3);
+            Vector3 vector2 = new Vector3(1, 4, 3);
+            Assert.IsFalse(vector1.Equals(vector2));
+        }
     }
 }
