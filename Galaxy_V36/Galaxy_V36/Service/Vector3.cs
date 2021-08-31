@@ -6,21 +6,21 @@ namespace Galaxy_V36.Service
 {
     public class Vector3
     {
-        public long X
+        public float X
         {
             get
             {
                 return x;
             }
         }
-        public long Y
+        public float Y
         {
             get
             {
                 return y;
             }
         }
-        public long Z
+        public float Z
         {
             get
             {
@@ -28,7 +28,7 @@ namespace Galaxy_V36.Service
             }
         }
 
-        public Vector3(long x, long y, long z)
+        public Vector3(float x, float y, float z)
         {
             this.x = x;
             this.y = y;
@@ -42,10 +42,12 @@ namespace Galaxy_V36.Service
         {
             if (!(obj is Vector3))
                 return false;
+
+            Vector3 v = (Vector3)obj;
             return
-                ((Vector3)obj).x == x &&
-                ((Vector3)obj).y == y &&
-                ((Vector3)obj).z == z;
+                MathF.Abs(x - v.x) < Configuration.FloatEpsilon &&
+                MathF.Abs(y - v.y) < Configuration.FloatEpsilon &&
+                MathF.Abs(z - v.z) < Configuration.FloatEpsilon;
         }
         public override int GetHashCode()
         {
@@ -64,9 +66,9 @@ namespace Galaxy_V36.Service
             }
         }
 
-        private long x;
-        private long y;
-        private long z;
+        private float x;
+        private float y;
+        private float z;
 
         private static Vector3 zero;
 
