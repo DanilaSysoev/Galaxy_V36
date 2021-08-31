@@ -11,13 +11,19 @@ namespace Galaxy_V36.Entities
         {
             get
             {
-                return Vector3.Zero;
+                return position;
             }
         }
 
+        public SpaceShip()
+        {
+            position = Vector3.Zero;
+        }
         public void Move(Vector3 motion)
         {
-
+            position = position.Add(motion);
         }
+
+        private Vector3 position;
     }
 }
