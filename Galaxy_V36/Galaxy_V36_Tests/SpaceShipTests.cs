@@ -1,9 +1,9 @@
 ﻿using Galaxy_V36;
 using Galaxy_V36.Entities;
+using Galaxy_V36.Service;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Text;
 
 namespace Galaxy_V36_Tests

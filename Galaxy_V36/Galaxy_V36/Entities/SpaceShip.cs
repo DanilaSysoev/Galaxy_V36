@@ -11,7 +11,7 @@ namespace Galaxy_V36.Entities
         {
             get
             {
-                return null;
+                return Vector3.Zero;
             }
         }
     }

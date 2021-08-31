@@ -9,7 +9,7 @@ namespace Galaxy_V36
     {
         public static SpaceShip CreateSpaceShip()
         {
-            return null;
+            return new SpaceShip();
         }
     }
 }
