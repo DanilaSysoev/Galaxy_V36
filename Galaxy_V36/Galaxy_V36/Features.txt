@@ -1,0 +1,3 @@
+﻿Space Ship Features
+	contains position
+	motion with given speed
