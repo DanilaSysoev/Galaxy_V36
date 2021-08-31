@@ -6,6 +6,28 @@ namespace Galaxy_V36.Service
 {
     public class Vector3
     {
+        public long X
+        {
+            get
+            {
+                return x;
+            }
+        }
+        public long Y
+        {
+            get
+            {
+                return y;
+            }
+        }
+        public long Z
+        {
+            get
+            {
+                return z;
+            }
+        }
+
         public Vector3(long x, long y, long z)
         {
             this.x = x;
