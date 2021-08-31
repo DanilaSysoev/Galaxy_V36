@@ -57,7 +57,6 @@ namespace Galaxy_V36_Tests
             Vector3 vector2 = new Vector3(1, 2, 3);
             Assert.IsTrue(vector1.Equals(vector2));
         }
-
         [TestCase]
         public void Equals_VectorsWithNonStrongEqualsComponents_ReturnTrue()
         {
@@ -68,6 +67,13 @@ namespace Galaxy_V36_Tests
                     2 - Configuration.FloatEpsilon / 2,
                     3 + Configuration.FloatEpsilon / 2);
             Assert.IsTrue(vector1.Equals(vector2));
+        }
+        [TestCase]
+        public void Equals_VectorsWithstrongDifferentThreeComponents_ReturnFalse()
+        {
+            Vector3 vector1 = new Vector3(1, 2, 3);
+            Vector3 vector2 = new Vector3(4, 5, 6);
+            Assert.IsFalse(vector1.Equals(vector2));
         }
     }
 }
