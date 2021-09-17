@@ -7,20 +7,27 @@ namespace Galaxy_V36.Engine
 {
     public class Game
     {
+        public bool Prepared { get; private set; }
+        public bool Loaded { get; private set; }
+        public bool Initialized { get; private set; }
+
         public Game(IUserInterface userInterface)
         {
             this.userInterface = userInterface;
+            Prepared = false;
+            Loaded = false;
+            Initialized = false;
         }
 
         public void Run()
-        {            
+        {
             Prepare();
             Load();
             Initialize();
             while (Tik()) ;
         }
 
-        private void Prepare()
+        public void Prepare()
         {
             userInterface.PrepareStart();
             PreparationProcedure();
@@ -28,9 +35,11 @@ namespace Galaxy_V36.Engine
         }
         private void PreparationProcedure()
         {
+
+            Prepared = true;
         }
 
-        private void Load()
+        public void Load()
         {
             userInterface.LoadStart();
             LoadingProcedure();
@@ -38,9 +47,11 @@ namespace Galaxy_V36.Engine
         }
         private void LoadingProcedure()
         {
+
+            Loaded = true;
         }
 
-        private void Initialize()
+        public void Initialize()
         {
             userInterface.InitializeStart();
             InitializationProcedure();
@@ -48,9 +59,11 @@ namespace Galaxy_V36.Engine
         }
         private void InitializationProcedure()
         {
+
+            Initialized = true;
         }
 
-        private bool Tik()
+        public bool Tik()
         {
             return false;
         }

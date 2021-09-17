@@ -1,0 +1,2 @@
+﻿Game class features:
+	Run with Prepare -> Load -> Initialize
