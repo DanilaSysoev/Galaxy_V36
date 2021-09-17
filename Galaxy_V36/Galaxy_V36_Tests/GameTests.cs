@@ -29,5 +29,18 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(game.Initialized);
         }
 
+        [TestCase]
+        public void Load_CallFirst_ThrowsException()
+        {
+            Game game = new Game(new FakeUserInterface());
+            
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => game.Load()
+            );
+            Assert.IsTrue(
+                exception.Message.ToLower().Contains("call prepare first")
+            );
+        }
+
     }
 }
