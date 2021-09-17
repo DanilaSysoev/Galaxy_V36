@@ -52,7 +52,6 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(game.Initialized);
         }
 
-
         [TestCase]
         public void Initialize_CallFirst_ThrowsException()
         {
@@ -66,7 +65,7 @@ namespace Galaxy_V36_Tests
             );
         }
         [TestCase]
-        public void Initialize_CallSecond_FlagsSetup()
+        public void Initialize_CallSecond_ThrowsException()
         {
             Game game = new Game(new FakeUserInterface());
             game.Prepare();
@@ -87,6 +86,44 @@ namespace Galaxy_V36_Tests
             Assert.IsTrue(game.Prepared);
             Assert.IsTrue(game.Loaded);
             Assert.IsTrue(game.Initialized);
+        }
+
+        [TestCase]
+        public void Tick_CallFirst_ThrowsException()
+        {
+            Game game = new Game(new FakeUserInterface());
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => game.Initialize()
+            );
+            Assert.IsTrue(
+                exception.Message.ToLower().Contains("call prepare first")
+            );
+        }
+        [TestCase]
+        public void Tick_CallSecond_ThrowsException()
+        {
+            Game game = new Game(new FakeUserInterface());
+            game.Prepare();
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => game.Initialize()
+            );
+            Assert.IsTrue(
+                exception.Message.ToLower().Contains("call load first")
+            ); ;
+        }
+        [TestCase]
+        public void Tick_CallThird_ThrowsException()
+        {
+            Game game = new Game(new FakeUserInterface());
+            game.Prepare();
+            game.Load();
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => game.Initialize()
+            );
+            Assert.IsTrue(
+                exception.Message.ToLower().Contains("call initialize first")
+            ); ;
         }
 
         [TestCase]

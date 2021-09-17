@@ -24,7 +24,7 @@ namespace Galaxy_V36.Engine
             Prepare();
             Load();
             Initialize();
-            while (Tik()) ;
+            while (Tick()) ;
         }
 
         public void Prepare()
@@ -48,7 +48,7 @@ namespace Galaxy_V36.Engine
         private void LoadingProcedure()
         {
             if (!Prepared)
-                throw new InvalidOperationException("Call prepare first");
+                throw new InvalidOperationException("Call Prepare first");
             Loaded = true;
         }
 
@@ -61,15 +61,22 @@ namespace Galaxy_V36.Engine
         private void InitializationProcedure()
         {
             if (!Prepared)
-                throw new InvalidOperationException("Call prepare first");
+                throw new InvalidOperationException("Call Prepare first");
             if (!Loaded)
-                throw new InvalidOperationException("Call load first");
+                throw new InvalidOperationException("Call Load first");
 
             Initialized = true;
         }
 
-        public bool Tik()
+        public bool Tick()
         {
+            if (!Prepared)
+                throw new InvalidOperationException("Call Prepare first");
+            if (!Loaded)
+                throw new InvalidOperationException("Call Load first");
+            if (!Initialized)
+                throw new InvalidOperationException("Call Initialize first");
+
             return false;
         }
 
