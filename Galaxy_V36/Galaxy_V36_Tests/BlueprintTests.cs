@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Galaxy_V36.Entities;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
