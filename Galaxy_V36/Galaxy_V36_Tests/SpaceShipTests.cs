@@ -26,5 +26,14 @@ namespace Galaxy_V36_Tests
             spaceShip.MoveOn(motion);
             Assert.AreEqual(motion, spaceShip.Position);
         }
+        [TestCase]
+        public void Move_DoubleMoveOnCorrectVector_MotonIsOk()
+        {
+            SpaceShip spaceShip = GameEntityBuilder.CreateSpaceShip();
+            Vector3 motion = new Vector3(1, 1, 1);
+            spaceShip.MoveOn(motion);
+            spaceShip.MoveOn(motion);
+            Assert.AreEqual(new Vector3(2, 2, 2), spaceShip.Position);
+        }
     }
 }
