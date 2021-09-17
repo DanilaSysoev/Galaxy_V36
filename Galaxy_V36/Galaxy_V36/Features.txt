@@ -1,3 +1,13 @@
-﻿Space Ship Features
+﻿GameFeatures
+	Space ship creation using blueprint with zero position
+	Init all modules
+
+Blueprints Features
+	Space ship blueprint contains energy and universal interfaces count
+	Blueprint builder build blueprint from string
+
+Space Ship Features
 	+ contains position
-	motion with given speed (speed - motion in one tick)
+	+ motion on vector
+	contains energy interfaces
+	contains universal interfaces
