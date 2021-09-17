@@ -77,6 +77,17 @@ namespace Galaxy_V36_Tests
                 exception.Message.ToLower().Contains("call load first")
             ); ;
         }
+        [TestCase]
+        public void Load_CallThird_FlagsSetup()
+        {
+            Game game = new Game(new FakeUserInterface());
+            game.Prepare();
+            game.Load();
+            game.Initialize();
+            Assert.IsTrue(game.Prepared);
+            Assert.IsTrue(game.Loaded);
+            Assert.IsTrue(game.Initialized);
+        }
 
     }
 }
