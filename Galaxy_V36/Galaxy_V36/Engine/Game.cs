@@ -47,7 +47,8 @@ namespace Galaxy_V36.Engine
         }
         private void LoadingProcedure()
         {
-
+            if (!Prepared)
+                throw new InvalidOperationException("Call prepare first");
             Loaded = true;
         }
 
