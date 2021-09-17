@@ -60,6 +60,10 @@ namespace Galaxy_V36.Engine
         }
         private void InitializationProcedure()
         {
+            if (!Prepared)
+                throw new InvalidOperationException("Call prepare first");
+            if (!Loaded)
+                throw new InvalidOperationException("Call load first");
 
             Initialized = true;
         }
