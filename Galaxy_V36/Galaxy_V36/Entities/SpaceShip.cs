@@ -19,7 +19,7 @@ namespace Galaxy_V36.Entities
         {
             position = Vector3.Zero;
         }
-        public void Move(Vector3 motion)
+        public void MoveOn(Vector3 motion)
         {
             position = position.Add(motion);
         }
