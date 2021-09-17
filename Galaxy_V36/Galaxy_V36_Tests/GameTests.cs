@@ -41,6 +41,16 @@ namespace Galaxy_V36_Tests
                 exception.Message.ToLower().Contains("call prepare first")
             );
         }
+        [TestCase]
+        public void Load_CallSecond_FlagsSetup()
+        {
+            Game game = new Game(new FakeUserInterface());
+            game.Prepare();
+            game.Load();
+            Assert.IsTrue(game.Prepared);
+            Assert.IsTrue(game.Loaded);
+            Assert.IsFalse(game.Initialized);
+        }
 
     }
 }
