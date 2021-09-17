@@ -19,5 +19,15 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(game.Initialized);            
         }
 
+        [TestCase]
+        public void Prepare_CallFirst_FlagSetup()
+        {
+            Game game = new Game(new FakeUserInterface());
+            game.Prepare();
+            Assert.IsTrue(game.Prepared);
+            Assert.IsFalse(game.Loaded);
+            Assert.IsFalse(game.Initialized);
+        }
+
     }
 }
