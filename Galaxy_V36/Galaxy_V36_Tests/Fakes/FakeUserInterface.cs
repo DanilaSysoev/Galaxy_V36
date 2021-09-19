@@ -25,12 +25,15 @@ namespace Galaxy_V36_Tests.Fakes
                 );
             if (Game.Instance.Prepared)
                 throw new InvalidOperationException(
-                    "PrepareStart call after preparing"
+                    "PrepareStart call after preparation"
                 );
                 
             PrepareStartCallIsOk = true;
         }
-        public void PrepareEnd() { }
+        public void PrepareEnd() 
+        {
+            PrepareEndCallIsOk = true;
+        }
         
         public void LoadStart() { }
         public void LoadEnd() { }

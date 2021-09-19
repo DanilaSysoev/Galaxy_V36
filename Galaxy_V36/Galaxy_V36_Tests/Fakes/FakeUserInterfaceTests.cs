@@ -25,5 +25,18 @@ namespace Galaxy_V36_Tests.Fakes
                 "preparestart call before game creation"
             ));
         }
+        [TestCase]
+        public void PrepareStart_CallAterGamePrepare_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.PrepareStart()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "preparestart call after preparation"
+            ));
+        }
     }
 }
