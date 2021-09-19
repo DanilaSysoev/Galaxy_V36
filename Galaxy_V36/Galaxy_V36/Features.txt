@@ -1,3 +1,10 @@
 ﻿Game class features:
 	+ Run with Prepare -> Load -> Initialize
 	+ Implement singleton interface
+
+User interface features:
+	+ prepare, load and initialization calls correct 
+		(PrepareStart->Prepare->PrepareEnd->
+		 LoadStart->Load->LoadEnd->
+		 InitializeStart->Initialize->InitializeEnd)
+	
