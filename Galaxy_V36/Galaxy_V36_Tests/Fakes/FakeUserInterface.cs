@@ -1,4 +1,5 @@
-﻿using Galaxy_V36.UI;
+﻿using Galaxy_V36.Engine;
+using Galaxy_V36.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,18 @@ namespace Galaxy_V36_Tests.Fakes
         public bool InitializeEndCallIsOk { get; private set; }
 
         public void PrepareStart() 
-        { }
+        {
+            if(Game.Instance == null)
+                throw new InvalidOperationException(
+                    "PrepareStart call before game creation"
+                );
+            if (Game.Instance.Prepared)
+                throw new InvalidOperationException(
+                    "PrepareStart call after preparing"
+                );
+                
+            PrepareStartCallIsOk = true;
+        }
         public void PrepareEnd() { }
         
         public void LoadStart() { }
