@@ -38,6 +38,20 @@ namespace Galaxy_V36_Tests.Fakes
                 "preparestart call after preparation"
             ));
         }
+        [TestCase]
+        public void PrepareStart_CallSecondTime_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            userInterface.PrepareStart();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.PrepareStart()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "preparestart already called"
+            ));
+        }
 
         [TestCase]
         public void PrepareEnd_CallBeforePrepareStart_ThrowsException()
