@@ -27,7 +27,11 @@ namespace Galaxy_V36_Tests.Fakes
                 throw new InvalidOperationException(
                     "PrepareStart call after preparation"
                 );
-                
+            if(PrepareStartCallIsOk)
+                throw new InvalidOperationException(
+                    "PrepareStart already called"
+                );
+
             PrepareStartCallIsOk = true;
         }
         public void PrepareEnd() 
