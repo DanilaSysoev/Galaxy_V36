@@ -131,6 +131,21 @@ namespace Galaxy_V36_Tests
             Assert.IsTrue(game.Loaded);
             Assert.IsTrue(game.Initialized);
         }
+        [TestCase]
+        public void Load_CallThird_UserInterfaceReactionOk()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            game.Initialize();
+            Assert.IsTrue(userInterface.PrepareStartCallIsOk);
+            Assert.IsTrue(userInterface.PrepareEndCallIsOk);
+            Assert.IsTrue(userInterface.LoadStartCallIsOk);
+            Assert.IsTrue(userInterface.LoadEndCallIsOk);
+            Assert.IsTrue(userInterface.InitializeStartCallIsOk);
+            Assert.IsTrue(userInterface.InitializeEndCallIsOk);
+        }
 
         [TestCase]
         public void Tick_CallBeforePrepare_ThrowsException()
@@ -178,6 +193,19 @@ namespace Galaxy_V36_Tests
             Assert.IsTrue(game.Prepared);
             Assert.IsTrue(game.Loaded);
             Assert.IsTrue(game.Initialized);
+        }
+        [TestCase]
+        public void Run_RunAfterCreation_UserInterfaceReactionOk()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Run();
+            Assert.IsTrue(userInterface.PrepareStartCallIsOk);
+            Assert.IsTrue(userInterface.PrepareEndCallIsOk);
+            Assert.IsTrue(userInterface.LoadStartCallIsOk);
+            Assert.IsTrue(userInterface.LoadEndCallIsOk);
+            Assert.IsTrue(userInterface.InitializeStartCallIsOk);
+            Assert.IsTrue(userInterface.InitializeEndCallIsOk);
         }
 
     }
