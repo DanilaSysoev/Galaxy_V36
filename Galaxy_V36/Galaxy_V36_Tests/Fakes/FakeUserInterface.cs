@@ -96,11 +96,11 @@ namespace Galaxy_V36_Tests.Fakes
         }
         public void InitializeEnd() 
         {
-            if (!LoadStartCallIsOk)
+            if (!InitializeStartCallIsOk)
                 throw new InvalidOperationException(
                     "InitializeEnd call before InitializeStart"
                 );
-            if (!Game.Instance.Loaded)
+            if (!Game.Instance.Initialized)
                 throw new InvalidOperationException(
                     "InitializeEnd call before initialization"
                 );
