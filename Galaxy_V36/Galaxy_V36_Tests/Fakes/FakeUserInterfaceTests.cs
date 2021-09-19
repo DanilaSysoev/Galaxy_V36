@@ -66,5 +66,19 @@ namespace Galaxy_V36_Tests.Fakes
                 "prepareend call before preparation"
             ));
         }
+        [TestCase]
+        public void PrepareEnd_CallSecondTime_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.PrepareEnd()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "prepareend already called"
+            ));
+        }
     }
 }
