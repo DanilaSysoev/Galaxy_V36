@@ -10,6 +10,12 @@ namespace Galaxy_V36_Tests
     [TestFixture]
     class GameTests
     {
+        [TearDown]
+        public void Destroy()
+        {
+            Game.DestroyGame();
+        }
+
         [TestCase]
         public void Game_Create_FlagsFalse()
         {
