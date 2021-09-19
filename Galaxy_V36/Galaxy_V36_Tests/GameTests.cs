@@ -45,6 +45,15 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(game.Loaded);
             Assert.IsFalse(game.Initialized);
         }
+        [TestCase]
+        public void Prepare_CallFirst_UserInterfaceReactionOk()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            Assert.IsTrue(userInterface.PrepareStartCallIsOk);
+            Assert.IsTrue(userInterface.PrepareEndCallIsOk);
+        }
 
         [TestCase]
         public void Load_CallFirst_ThrowsException()
