@@ -97,18 +97,6 @@ namespace Galaxy_V36_Tests.Fakes
         }
 
         [TestCase]
-        public void LoadStart_CallBeforeGamePreparation_ThrowsException()
-        {
-            FakeUserInterface userInterface = new FakeUserInterface();
-            Game game = Game.CreateGame(userInterface);
-            var exception = Assert.Throws<InvalidOperationException>(
-                () => userInterface.LoadStart()
-            );
-            Assert.IsTrue(exception.Message.ToLower().Contains(
-                "loadstart call before preparation"
-            ));
-        }
-        [TestCase]
         public void LoadStart_CallAterGameLoading_ThrowsException()
         {
             FakeUserInterface userInterface = new FakeUserInterface();
