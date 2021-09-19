@@ -24,6 +24,17 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(game.Loaded);
             Assert.IsFalse(game.Initialized);            
         }
+        [TestCase]
+        public void FakeUserInterface_Create_FlagsFalse()
+        {
+            var fui = new FakeUserInterface();
+            Assert.IsFalse(fui.PrepareStartCallIsOk);
+            Assert.IsFalse(fui.PrepareEndCallIsOk);
+            Assert.IsFalse(fui.LoadStartCallIsOk);
+            Assert.IsFalse(fui.LoadEndCallIsOk);
+            Assert.IsFalse(fui.InitializeStartCallIsOk);
+            Assert.IsFalse(fui.InitializeEndCallIsOk);
+        }
 
         [TestCase]
         public void Prepare_CallFirst_FlagSetup()
