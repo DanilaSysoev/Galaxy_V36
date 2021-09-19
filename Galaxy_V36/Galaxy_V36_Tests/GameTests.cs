@@ -13,7 +13,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Game_Create_FlagsFalse()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             Assert.IsFalse(game.Prepared);
             Assert.IsFalse(game.Loaded);
             Assert.IsFalse(game.Initialized);            
@@ -22,7 +22,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Prepare_CallFirst_FlagSetup()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             Assert.IsTrue(game.Prepared);
             Assert.IsFalse(game.Loaded);
@@ -32,7 +32,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Load_CallFirst_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             
             var exception = Assert.Throws<InvalidOperationException>(
                 () => game.Load()
@@ -44,7 +44,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Load_CallSecond_FlagsSetup()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             game.Load();
             Assert.IsTrue(game.Prepared);
@@ -55,7 +55,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Initialize_CallFirst_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
 
             var exception = Assert.Throws<InvalidOperationException>(
                 () => game.Initialize()
@@ -67,7 +67,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Initialize_CallSecond_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             var exception = Assert.Throws<InvalidOperationException>(
                 () => game.Initialize()
@@ -79,7 +79,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Load_CallThird_FlagsSetup()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             game.Load();
             game.Initialize();
@@ -91,7 +91,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Tick_CallBeforePrepare_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
 
             var exception = Assert.Throws<InvalidOperationException>(
                 () => game.Tick()
@@ -103,7 +103,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Tick_CallBeforeLoad_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             var exception = Assert.Throws<InvalidOperationException>(
                 () => game.Tick()
@@ -115,7 +115,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Tick_CallBeforeInitialize_ThrowsException()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Prepare();
             game.Load();
             var exception = Assert.Throws<InvalidOperationException>(
@@ -129,7 +129,7 @@ namespace Galaxy_V36_Tests
         [TestCase]
         public void Run_RunAfterCreation_FlagsSetup()
         {
-            Game game = new Game(new FakeUserInterface());
+            Game game = Game.CreateGame(new FakeUserInterface());
             game.Run();
             Assert.IsTrue(game.Prepared);
             Assert.IsTrue(game.Loaded);

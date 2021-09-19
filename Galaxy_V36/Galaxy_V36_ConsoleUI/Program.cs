@@ -7,7 +7,7 @@ namespace Galaxy_V36_ConsoleUI
     {
         static void Main(string[] args)
         {
-            Game game = new Game(new ConsoleUserInterface());
+            Game game = Game.CreateGame(new ConsoleUserInterface());
             game.Run();
         }
     }
