@@ -53,10 +53,6 @@ namespace Galaxy_V36_Tests.Fakes
         
         public void LoadStart() 
         {
-            if(!PrepareEndCallIsOk)
-                throw new InvalidOperationException(
-                    "LoadStart call before preparation"
-                );
             if (Game.Instance.Loaded)
                 throw new InvalidOperationException(
                     "LoadStart call after loading"
