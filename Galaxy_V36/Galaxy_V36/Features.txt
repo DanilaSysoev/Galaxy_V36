@@ -1,2 +1,3 @@
 ﻿Game class features:
-	Run with Prepare -> Load -> Initialize
+	+ Run with Prepare -> Load -> Initialize
+	+ Implement singleton interface

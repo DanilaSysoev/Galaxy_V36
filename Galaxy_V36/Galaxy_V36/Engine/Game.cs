@@ -11,14 +11,6 @@ namespace Galaxy_V36.Engine
         public bool Loaded { get; private set; }
         public bool Initialized { get; private set; }
 
-        public Game(IUserInterface userInterface)
-        {
-            this.userInterface = userInterface;
-            Prepared = false;
-            Loaded = false;
-            Initialized = false;
-        }
-
         public void Run()
         {
             Prepare();
@@ -80,6 +72,29 @@ namespace Galaxy_V36.Engine
             return false;
         }
 
+        public static Game Instance { get; private set; }
+        public static Game CreateGame(IUserInterface userInterface)
+        {
+            if (Instance == null)
+                Instance = new Game(userInterface);
+            return Instance;
+        }
+        public static void DestroyGame()
+        {
+            if (Instance != null)
+                Instance.Destroy();
+            Instance = null;
+        }
+
         private IUserInterface userInterface;
+
+        private Game(IUserInterface userInterface)
+        {
+            this.userInterface = userInterface;
+            Prepared = false;
+            Loaded = false;
+            Initialized = false;
+        }
+        private void Destroy() { }
     }
 }
