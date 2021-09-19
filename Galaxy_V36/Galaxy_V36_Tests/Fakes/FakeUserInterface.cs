@@ -32,6 +32,18 @@ namespace Galaxy_V36_Tests.Fakes
         }
         public void PrepareEnd() 
         {
+            if(!PrepareStartCallIsOk)
+                throw new InvalidOperationException(
+                    "PrepareEnd call before PrepareStart"
+                );
+            if (!Game.Instance.Prepared)
+                throw new InvalidOperationException(
+                    "PrepareEnd call before preparation"
+                );
+            if (PrepareEndCallIsOk)
+                throw new InvalidOperationException(
+                    "PrepareEnd already called"
+                );
             PrepareEndCallIsOk = true;
         }
         
