@@ -81,7 +81,34 @@ namespace Galaxy_V36_Tests.Fakes
             LoadEndCallIsOk = true;
         }
         
-        public void InitializeStart() { }
-        public void InitializeEnd() { }
+        public void InitializeStart()
+        {
+            if (Game.Instance.Initialized)
+                throw new InvalidOperationException(
+                    "InitializeStart call after initialization"
+                );
+            if (InitializeStartCallIsOk)
+                throw new InvalidOperationException(
+                    "InitializeStart already called"
+                );
+
+            InitializeStartCallIsOk = true;
+        }
+        public void InitializeEnd() 
+        {
+            if (!LoadStartCallIsOk)
+                throw new InvalidOperationException(
+                    "InitializeEnd call before InitializeStart"
+                );
+            if (!Game.Instance.Loaded)
+                throw new InvalidOperationException(
+                    "InitializeEnd call before initialization"
+                );
+            if (InitializeEndCallIsOk)
+                throw new InvalidOperationException(
+                    "InitializeEnd already called"
+                );
+            InitializeEndCallIsOk = true;
+        }
     }
 }

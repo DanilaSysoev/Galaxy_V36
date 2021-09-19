@@ -170,5 +170,85 @@ namespace Galaxy_V36_Tests.Fakes
                 "loadend already called"
             ));
         }
+
+        [TestCase]
+        public void InitializeStart_CallAterGameInitialization_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            game.Initialize();
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.InitializeStart()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "initializestart call after initialization"
+            ));
+        }
+        [TestCase]
+        public void InitializeStart_CallSecondTime_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            userInterface.InitializeStart();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.InitializeStart()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "initializestart already called"
+            ));
+        }
+
+        [TestCase]
+        public void InitializeEnd_CallBeforeInitializeStart_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.InitializeEnd()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "initializeend call before initializestart"
+            ));
+        }
+        [TestCase]
+        public void InitializeEnd_CallBeforeGameInitialization_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            userInterface.InitializeStart();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.InitializeEnd()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "initializeend call before initialization"
+            ));
+        }
+        [TestCase]
+        public void InitializeEnd_CallSecondTime_ThrowsException()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            game.Initialize();
+
+            var exception = Assert.Throws<InvalidOperationException>(
+                () => userInterface.InitializeEnd()
+            );
+            Assert.IsTrue(exception.Message.ToLower().Contains(
+                "initializeend already called"
+            ));
+        }
     }
 }
