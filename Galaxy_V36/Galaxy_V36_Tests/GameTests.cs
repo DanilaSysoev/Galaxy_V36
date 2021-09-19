@@ -53,6 +53,10 @@ namespace Galaxy_V36_Tests
             game.Prepare();
             Assert.IsTrue(userInterface.PrepareStartCallIsOk);
             Assert.IsTrue(userInterface.PrepareEndCallIsOk);
+            Assert.IsFalse(userInterface.LoadStartCallIsOk);
+            Assert.IsFalse(userInterface.LoadEndCallIsOk);
+            Assert.IsFalse(userInterface.InitializeStartCallIsOk);
+            Assert.IsFalse(userInterface.InitializeEndCallIsOk);
         }
 
         [TestCase]
@@ -76,6 +80,20 @@ namespace Galaxy_V36_Tests
             Assert.IsTrue(game.Prepared);
             Assert.IsTrue(game.Loaded);
             Assert.IsFalse(game.Initialized);
+        }
+        [TestCase]
+        public void Load_CallSecond_UserInterfaceReactionOk()
+        {
+            FakeUserInterface userInterface = new FakeUserInterface();
+            Game game = Game.CreateGame(userInterface);
+            game.Prepare();
+            game.Load();
+            Assert.IsTrue(userInterface.PrepareStartCallIsOk);
+            Assert.IsTrue(userInterface.PrepareEndCallIsOk);
+            Assert.IsTrue(userInterface.LoadStartCallIsOk);
+            Assert.IsTrue(userInterface.LoadEndCallIsOk);
+            Assert.IsFalse(userInterface.InitializeStartCallIsOk);
+            Assert.IsFalse(userInterface.InitializeEndCallIsOk);
         }
 
         [TestCase]
