@@ -32,6 +32,10 @@ namespace Galaxy_V36.Service
             Y *= coefficient;
             Z *= coefficient;
         }
+        public static Vector3 operator +(Vector3 lo, Vector3 ro)
+        {
+            return new Vector3(lo.X + ro.X, lo.Y + ro.Y, lo.Z + ro.Z);
+        }
 
         public override int GetHashCode()
         {

@@ -125,5 +125,20 @@ namespace Galaxy_V36_Tests
             v1.Multiply(3.1f);
             Assert.AreEqual(new Vector3(3.41031f, 6.82062f, 10.23093f), v1);
         }
+
+        [TestCase]
+        public void Plus_SumIntegerComponents_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(1, 2, 3);
+            Assert.AreEqual(new Vector3(2, 4, 6), v1 + v2);
+        }
+        [TestCase]
+        public void Plus_SumFloatComponents_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1.1001f, 2.2002f, 3.3003f);
+            Vector3 v2 = new Vector3(1.2001f, 2.1002f, 3.1234f);
+            Assert.AreEqual(new Vector3(2.3002f, 4.3004f, 6.4237f), v1 + v2);
+        }
     }
 }
