@@ -27,7 +27,11 @@ namespace Galaxy_V36.Service
         }
         public override string ToString()
         {
-            return string.Format("Vector3({0:.3}, {1:.3}, {2:.3})", X, Y, Z);
+            return string.Format(
+                System.Globalization.NumberFormatInfo.InvariantInfo, 
+                "Vector3({0:F1}, {1:F1}, {2:F1})", 
+                X, Y, Z
+            );
         }
         public override bool Equals(object obj)
         {
