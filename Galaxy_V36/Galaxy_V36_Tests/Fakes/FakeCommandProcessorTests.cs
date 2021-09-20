@@ -14,5 +14,11 @@ namespace Galaxy_V36_Tests.Fakes
             FakeCommandProcessor fcp = new FakeCommandProcessor();
             Assert.IsFalse(fcp.CommandProcessed);
         }
+        [TestCase]
+        public void Create_Creation_LastCommandProcessedIsNull()
+        {
+            FakeCommandProcessor fcp = new FakeCommandProcessor();
+            Assert.IsNull(fcp.LastProcessedCommand);
+        }
     }
 }
