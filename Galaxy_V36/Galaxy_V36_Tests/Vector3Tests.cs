@@ -102,5 +102,13 @@ namespace Galaxy_V36_Tests
             v1.Add(v2);
             Assert.AreEqual(new Vector3(2, 4, 6), v1);
         }
+        [TestCase]
+        public void Add_AddFloatComponents_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1.1001f, 2.2002f, 3.3003f);
+            Vector3 v2 = new Vector3(1.2001f, 2.1002f, 3.1234f);
+            v1.Add(v2);
+            Assert.AreEqual(new Vector3(2.3002f, 4.3004f, 6.4237f), v1);
+        }
     }
 }
