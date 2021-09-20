@@ -171,5 +171,19 @@ namespace Galaxy_V36_Tests
                 new Vector3(3.41031f, 6.82062f, 10.23093f), v1 * 3.1f
             );
         }
+        [TestCase]
+        public void Multiplication_MultiplyIntegerCoefficientVectorRO_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Assert.AreEqual(new Vector3(3, 6, 9), 3 * v1);
+        }
+        [TestCase]
+        public void Multiplication_MultiplyFloatCoefficientVectorRO_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1.1001f, 2.2002f, 3.3003f);
+            Assert.AreEqual(
+                new Vector3(3.41031f, 6.82062f, 10.23093f), 3.1f * v1
+            );
+        }
     }
 }
