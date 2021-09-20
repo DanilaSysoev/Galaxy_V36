@@ -20,6 +20,12 @@ namespace Galaxy_V36.Service
             Y = y;
             Z = z;
         }
+        public void Add(Vector3 other)
+        {
+            X += other.X;
+            Y += other.Y;
+            Z += other.Z;
+        }
 
         public override int GetHashCode()
         {
