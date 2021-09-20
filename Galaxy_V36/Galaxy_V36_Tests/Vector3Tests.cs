@@ -32,5 +32,11 @@ namespace Galaxy_V36_Tests
             Vector3 vector3 = new Vector3(1, 2, 3);
             Assert.AreEqual("Vector3(1.0, 2.0, 3.0)", vector3.ToString());
         }
+        [TestCase]
+        public void ToString_FloatComponents_CorrectString()
+        {
+            Vector3 vector3 = new Vector3(1.111f, 2.222f, 3.333f);
+            Assert.AreEqual("Vector3(1.1, 2.2, 3.3)", vector3.ToString());
+        }
     }
 }
