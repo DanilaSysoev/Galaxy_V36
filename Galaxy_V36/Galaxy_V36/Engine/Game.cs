@@ -27,7 +27,6 @@ namespace Galaxy_V36.Engine
         }
         private void PreparationProcedure()
         {
-
             Prepared = true;
         }
 
@@ -87,6 +86,7 @@ namespace Galaxy_V36.Engine
         }
 
         private IUserInterface userInterface;
+        private bool vaitCommand;
 
         private Game(IUserInterface userInterface)
         {

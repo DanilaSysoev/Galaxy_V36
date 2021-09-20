@@ -14,5 +14,7 @@ namespace Galaxy_V36.UI
 
         void InitializeStart() { }
         void InitializeEnd() { }
+
+        string GetCommand();
     }
 }
