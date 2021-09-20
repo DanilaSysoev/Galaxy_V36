@@ -110,5 +110,7 @@ namespace Galaxy_V36_Tests.Fakes
                 );
             InitializeEndCallIsOk = true;
         }
+
+        public virtual string GetCommand() { return null; }
     }
 }

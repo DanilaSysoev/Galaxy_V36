@@ -30,5 +30,10 @@ namespace Galaxy_V36_ConsoleUI
         public void PrepareStart()
         {
         }
+
+        public string GetCommand()
+        {
+            return Console.ReadLine();
+        }
     }
 }
