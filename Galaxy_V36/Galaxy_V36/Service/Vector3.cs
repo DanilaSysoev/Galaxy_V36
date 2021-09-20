@@ -36,6 +36,14 @@ namespace Galaxy_V36.Service
         {
             return new Vector3(lo.X + ro.X, lo.Y + ro.Y, lo.Z + ro.Z);
         }
+        public static Vector3 operator *(Vector3 lo, float ro)
+        {
+            return new Vector3(lo.X * ro, lo.Y * ro, lo.Z * ro);
+        }
+        public static Vector3 operator *(float lo, Vector3 ro)
+        {
+            return ro * lo;
+        }
 
         public override int GetHashCode()
         {
