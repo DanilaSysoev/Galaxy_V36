@@ -140,5 +140,21 @@ namespace Galaxy_V36_Tests
             Vector3 v2 = new Vector3(1.2001f, 2.1002f, 3.1234f);
             Assert.AreEqual(new Vector3(2.3002f, 4.3004f, 6.4237f), v1 + v2);
         }
+        [TestCase]
+        public void Plus_SumIntegerComponents_LeftOperandOk()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(2, 3, 4);
+            Vector3 v3 = v1 + v2;
+            Assert.AreEqual(new Vector3(1, 2, 3), v1);
+        }
+        [TestCase]
+        public void Plus_SumIntegerComponents_RoghtOperandOk()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(2, 3, 4);
+            Vector3 v3 = v1 + v2;
+            Assert.AreEqual(new Vector3(2, 3, 4), v2);
+        }
     }
 }
