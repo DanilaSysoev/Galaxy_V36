@@ -25,5 +25,6 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(2, vector3.Y);
             Assert.AreEqual(3, vector3.Z);
         }
+
     }
 }

@@ -20,5 +20,26 @@ namespace Galaxy_V36.Service
             Y = y;
             Z = z;
         }
+
+        public override int GetHashCode()
+        {
+            return ((int)X * 31 + (int)Y) * 31 + (int)Z;
+        }
+        public override string ToString()
+        {
+            return string.Format("Vector3({0:.3}, {1:.3}, {2:.3})", X, Y, Z);
+        }
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Vector3))
+                return false;
+            Vector3 v3 = obj as Vector3;
+            return
+                MathF.Abs(v3.X - X) < Epsilon &&
+                MathF.Abs(v3.Y - Y) < Epsilon &&
+                MathF.Abs(v3.Z - Z) < Epsilon;
+        }
+
+        private const float Epsilon = .000001f;
     }
 }
