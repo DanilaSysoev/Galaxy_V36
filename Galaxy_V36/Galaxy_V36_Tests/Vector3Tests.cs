@@ -17,5 +17,13 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(0, vector3.Y);
             Assert.AreEqual(0, vector3.Z);
         }
+        [TestCase]
+        public void Vector3_CreationWithParams_CoordinatesEqualsParams()
+        {
+            Vector3 vector3 = new Vector3(1, 2, 3);
+            Assert.AreEqual(1, vector3.X);
+            Assert.AreEqual(2, vector3.Y);
+            Assert.AreEqual(3, vector3.Z);
+        }
     }
 }
