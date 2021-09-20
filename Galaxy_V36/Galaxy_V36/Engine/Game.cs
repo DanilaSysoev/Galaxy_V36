@@ -91,11 +91,24 @@ namespace Galaxy_V36.Engine
         }
 
         private IUserInterface userInterface;
+        private ICommandProcessor commandProcessor;
         private bool waitCommand;
 
         private Game(IUserInterface userInterface)
         {
             this.userInterface = userInterface;
+            this.commandProcessor = new CommandProcessor();
+            Prepared = false;
+            Loaded = false;
+            Initialized = false;
+        }
+        private Game(
+            IUserInterface userInterface,
+            ICommandProcessor commandProcessor
+        )
+        {
+            this.userInterface = userInterface;
+            this.commandProcessor = commandProcessor;
             Prepared = false;
             Loaded = false;
             Initialized = false;
@@ -105,7 +118,10 @@ namespace Galaxy_V36.Engine
             string command = userInterface.GetCommand();
             ProcessCommand(command);
         }
-        private void ProcessCommand(string command) { }
+        private void ProcessCommand(string command) 
+        {
+            commandProcessor.ProcessCommand(command);
+        }
         private void ProcessTask() { }
         private void Destroy() { }
     }
