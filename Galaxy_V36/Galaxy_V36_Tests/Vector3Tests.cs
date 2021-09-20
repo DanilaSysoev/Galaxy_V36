@@ -26,5 +26,11 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(3, vector3.Z);
         }
 
+        [TestCase]
+        public void ToString_IntegerComponents_CorrectString()
+        {
+            Vector3 vector3 = new Vector3(1, 2, 3);
+            Assert.AreEqual("Vector3(1.0, 2.0, 3.0)", vector3.ToString());
+        }
     }
 }
