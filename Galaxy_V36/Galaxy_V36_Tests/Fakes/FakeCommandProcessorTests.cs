@@ -35,5 +35,13 @@ namespace Galaxy_V36_Tests.Fakes
             fcp.ProcessCommand("command");
             Assert.IsTrue(fcp.CommandProcessed);
         }
+        [TestCase]
+        public void ProcessComand_ProcessTwoTimes_LastCommandProcessedEqualSecondCommand()
+        {
+            FakeCommandProcessor fcp = new FakeCommandProcessor();
+            fcp.ProcessCommand("command");
+            fcp.ProcessCommand("command_2");
+            Assert.AreEqual("command_2", fcp.LastProcessedCommand);
+        }
     }
 }
