@@ -44,5 +44,14 @@ namespace Galaxy_V36_Tests
             Vector3 vector3 = new Vector3(1.16f, 2.26f, 3.333f);
             Assert.AreEqual("Vector3(1.2, 2.3, 3.3)", vector3.ToString());
         }
+
+        [TestCase]
+        public void Equals_XComponentDiif_NotEqual()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(2, 2, 3);
+            Assert.IsFalse(v1.Equals(v2));
+            Assert.IsFalse(v2.Equals(v1));
+        }
     }
 }
