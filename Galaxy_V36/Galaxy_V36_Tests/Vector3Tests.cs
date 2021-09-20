@@ -93,5 +93,14 @@ namespace Galaxy_V36_Tests
             Assert.IsTrue(v1.Equals(v2));
             Assert.IsTrue(v2.Equals(v1));
         }
+
+        [TestCase]
+        public void Add_AddIntegerComponents_ResultIsOk()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(1, 2, 3);
+            v1.Add(v2);
+            Assert.AreEqual(new Vector3(2, 4, 6), v1);
+        }
     }
 }
