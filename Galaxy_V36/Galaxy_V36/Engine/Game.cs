@@ -68,6 +68,11 @@ namespace Galaxy_V36.Engine
             if (!Initialized)
                 throw new InvalidOperationException("Call Initialize first");
 
+            if(waitCommand)
+                GetAndProcessCommand();
+            else
+                ProcessTask();
+
             return false;
         }
 
@@ -86,7 +91,7 @@ namespace Galaxy_V36.Engine
         }
 
         private IUserInterface userInterface;
-        private bool vaitCommand;
+        private bool waitCommand;
 
         private Game(IUserInterface userInterface)
         {
@@ -95,6 +100,13 @@ namespace Galaxy_V36.Engine
             Loaded = false;
             Initialized = false;
         }
+        private void GetAndProcessCommand()
+        {
+            string command = userInterface.GetCommand();
+            ProcessCommand(command);
+        }
+        private void ProcessCommand(string command) { }
+        private void ProcessTask() { }
         private void Destroy() { }
     }
 }
