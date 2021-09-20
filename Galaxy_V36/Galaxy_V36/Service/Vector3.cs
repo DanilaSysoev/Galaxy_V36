@@ -26,6 +26,12 @@ namespace Galaxy_V36.Service
             Y += other.Y;
             Z += other.Z;
         }
+        public void Multiply(float coefficient)
+        {
+            X *= coefficient;
+            Y *= coefficient;
+            Z *= coefficient;
+        }
 
         public override int GetHashCode()
         {
