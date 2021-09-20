@@ -53,5 +53,13 @@ namespace Galaxy_V36_Tests
             Assert.IsFalse(v1.Equals(v2));
             Assert.IsFalse(v2.Equals(v1));
         }
+        [TestCase]
+        public void Equals_YComponentDiif_NotEqual()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(1, 3, 3);
+            Assert.IsFalse(v1.Equals(v2));
+            Assert.IsFalse(v2.Equals(v1));
+        }
     }
 }
