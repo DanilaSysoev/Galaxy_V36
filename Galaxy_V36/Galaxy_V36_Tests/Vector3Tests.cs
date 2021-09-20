@@ -141,7 +141,7 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(new Vector3(2.3002f, 4.3004f, 6.4237f), v1 + v2);
         }
         [TestCase]
-        public void Plus_SumIntegerComponents_LeftOperandOk()
+        public void Plus_SumIntegerComponents_LeftOperandNotChanged()
         {
             Vector3 v1 = new Vector3(1, 2, 3);
             Vector3 v2 = new Vector3(2, 3, 4);
@@ -149,7 +149,7 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(new Vector3(1, 2, 3), v1);
         }
         [TestCase]
-        public void Plus_SumIntegerComponents_RoghtOperandOk()
+        public void Plus_SumIntegerComponents_RoghtOperandNotChanged()
         {
             Vector3 v1 = new Vector3(1, 2, 3);
             Vector3 v2 = new Vector3(2, 3, 4);
@@ -184,6 +184,20 @@ namespace Galaxy_V36_Tests
             Assert.AreEqual(
                 new Vector3(3.41031f, 6.82062f, 10.23093f), 3.1f * v1
             );
+        }
+        [TestCase]
+        public void Multiplication_MultiplyIntegerCoefficient_OperandNotChanged()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = v1 * 3;
+            Assert.AreEqual(new Vector3(1, 2, 3), v1);
+        }
+        [TestCase]
+        public void Multiplication_MultiplyIntegerCoefficientVectorRO_OperandNotChanged()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = 3 * v1;
+            Assert.AreEqual(new Vector3(1, 2, 3), v1);
         }
     }
 }
