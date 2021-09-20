@@ -4,8 +4,12 @@ using System.Text;
 
 namespace Galaxy_V36.Engine
 {
-    public class Player
+    public enum TaskStatus
     {
-        
+        Ready,
+        InProcess,
+        Paused,
+        Stopped,
+        Completed
     }
 }

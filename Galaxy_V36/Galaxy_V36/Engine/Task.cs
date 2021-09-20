@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Galaxy_V36.Engine
 {
-    public class Player
+    public class Task
     {
-        
     }
 }
